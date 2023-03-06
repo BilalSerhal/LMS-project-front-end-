@@ -50,7 +50,7 @@ const sections = () => {
           {cards.map((card) =>(
           <tbody key={card.id} >
           <tr className="section-tr row row1">
-            <td className="section-td name1">{card.sectionName}</td>
+            <td className="section-td nameR1">{card.sectionName}</td>
             
             <td className="section-td icon">
               <button className="section-button" >

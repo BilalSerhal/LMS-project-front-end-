@@ -91,7 +91,7 @@ const levels = () => {
           <table className="class-table">
             <thead>
               <tr className="class-tr">
-                <th className="class-th name">class</th>
+                <th className="class-th name">Class</th>
                 <th className="class-th">Edit</th>
                 <th className="class-th">Delete</th>
                 <th
@@ -101,7 +101,7 @@ const levels = () => {
                     1
                   )}
                 >
-                  section
+                  Section
                 </th>
               </tr>
             </thead>
