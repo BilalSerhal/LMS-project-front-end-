@@ -1,11 +1,9 @@
 .container{
-    width: 20%;
     background-color:#2599BD;
-    height: 40rem;
+    height: 45rem;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-
 }
 .dashboard{
     display: flex;
@@ -16,7 +14,7 @@
 .img_dashboard{
     width:3rem;
     height: auto;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 .text a{
@@ -30,5 +28,6 @@
 
 .text{
     text-align: center;
+    padding-left: 35px;
 }
 

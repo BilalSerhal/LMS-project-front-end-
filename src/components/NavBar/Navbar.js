@@ -11,7 +11,7 @@ return (
             <img  className='img_dashboard' src='/pictures/monitor.png' alt=''/>
             <div className='text'><a href='www.google.com'>DashBoard</a></div>
             </div>
-           
+        
         </div>
         <div className='dashboard_main'>
         <div className='dashboard'>
@@ -23,6 +23,18 @@ return (
         <div className='dashboard'>
             <img className='img_dashboard' src='/pictures/classroom.png' alt=''/>
             <div className='text'><a href='www.google.com'>Classes</a></div>
+            </div>
+        </div>
+        <div className='dashboard_main'>
+        <div className='dashboard'>
+            <img className='img_dashboard' src='/pictures/sections.png' alt=''/>
+            <div className='text'><a href='www.google.com'>Sections</a></div>
+            </div>
+        </div>
+        <div className='dashboard_main'>
+        <div className='dashboard'>
+            <img className='img_dashboard' src='/pictures/courses.png' alt=''/>
+            <div className='text'><a href='www.google.com'>Courses</a></div>
             </div>
         </div>
         <div className='dashboard_main'>
