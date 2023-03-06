@@ -4,7 +4,12 @@
 .class-headline{
     text-align: center;
     color: #2599bd;
-    font-size: 30px;
+    font-size: 50px;
+}
+.class-headline1{
+  text-align: center;
+  color: #2599bd;
+  font-size: 30px;
 }
 .class-section {
     width: 100%;
@@ -30,9 +35,7 @@
     border:none;
     cursor: pointer;
   }
-  .class-button:hover {
-    background-color: #98d4e6;
-  }
+
   
   .class-button:active {
     background-color: #98d4e6;
@@ -68,7 +71,7 @@
   }
   
   .row1 :hover {
-    background-color: #2599BD;
+    background-color: #98d4e6;
   }
   .class-tr {
     border: 1px solid white;
@@ -179,7 +182,7 @@
   @media screen and (max-width: 1024px) {
     .name {
       padding-left: 10px;
-      width: 80%;
+      width: 50%;
       text-align: left;
     }
     /* .edit-section{

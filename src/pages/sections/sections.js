@@ -29,9 +29,9 @@ const sections = () => {
 
   return (
     <div className="section-body">
-    <h2 className="section-headline">Sections</h2>
+    <h1 className="section-headline">Sections</h1>
     <div className="head-div">
-      <h2 className="section-headline">Add Section</h2>
+      <h2 className="section-headline1">Add Section</h2>
       <div>
         <button id="add" className="section-button">
           <img src={add} alt="" className="section-image" />

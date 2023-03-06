@@ -73,7 +73,7 @@ const levels = () => {
       <div className="class-body">
         <h2 className="class-headline">Classes</h2>
         <div className="head-div">
-          <h2 className="class-headline">Add Class</h2>
+          <h2 className="class-headline1">Add Class</h2>
           <div>
             <button id="add" className="class-button">
               <img src={add} alt="" className="class-image" />
