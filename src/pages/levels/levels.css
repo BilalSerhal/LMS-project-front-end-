@@ -57,7 +57,10 @@
   }
   
   .name1 {
-    padding-left: 10px;
+    /* padding-left: 10px; */
+   }
+   .name2 {
+    width: 40%;
    }
   .class-th {
     border: 2px solid white;
@@ -79,6 +82,7 @@
     border: 2px solid white;
     background-color: #ededed;
     border-radius: 15px;
+    text-align: center;
   }
   .name {
     padding-left: 10px;
@@ -202,11 +206,16 @@
      }
      .class-section {
       padding-right: 20px;
+      
      }
    
     
     .class-image{
       width: 1.5rem;
     }
+    .class-td{
+      font-size: 15px;
+    }
+  
    
 }
