@@ -24,6 +24,11 @@ const levels = () => {
           id: 3,
           sectionName: "C",
         },
+        {
+          id: 2,
+          sectionName: "B",
+        },
+  
       ],
     },
     {
@@ -38,6 +43,7 @@ const levels = () => {
           id: 2,
           sectionName: "B",
         },
+       
       ],
     },
     {
@@ -81,7 +87,7 @@ const levels = () => {
           </div>
         </div>
 
-        <div className="class-section">
+        <div className="class-section" >
           <table className="class-table">
             <thead>
               <tr className="class-tr">
@@ -89,7 +95,7 @@ const levels = () => {
                 <th className="class-th">Edit</th>
                 <th className="class-th">Delete</th>
                 <th
-                  className="class-th name"
+                  className="class-th name2"
                   colSpan={cards.reduce(
                     (acc, card) => acc + card.sections.length,
                     1

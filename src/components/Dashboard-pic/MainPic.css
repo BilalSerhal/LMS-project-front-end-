@@ -1,0 +1,11 @@
+.picture img{
+    height: 45rem;
+    width :103rem;
+}
+
+@media (max-width: 768px) {
+    .picture img{
+        height: 45rem;
+        width :24.5rem;
+    }
+}

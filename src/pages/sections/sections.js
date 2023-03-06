@@ -38,28 +38,28 @@ const sections = () => {
         </button>
       </div>
     </div>
-     <div className="class-section">
-        <table className="class-table">
+     <div className="section-section">
+        <table className="section-table">
           <thead>
-          <tr className="class-tr">
-            <th className="class-th nameR">class</th>
-            <th className="class-th">Edit</th>
-            <th className="class-th">Delete</th>
+          <tr className="section-tr">
+            <th className="section-th nameR">Section</th>
+            <th className="section-th">Edit</th>
+            <th className="section-th">Delete</th>
           </tr>
           </thead>
           {cards.map((card) =>(
           <tbody key={card.id} >
-          <tr className="class-tr row row1">
-            <td className="class-td name1">{card.sectionName}</td>
+          <tr className="section-tr row row1">
+            <td className="section-td name1">{card.sectionName}</td>
             
-            <td className="class-td icon">
-              <button className="class-button" >
+            <td className="section-td icon">
+              <button className="section-button" >
                 <img src={edit} className='class-image'alt="" />
               </button>
             </td>
-            <td className="class-td icon">
-              <button className="class-button" >
-                <img src={delet} alt="" className='class-image'/>
+            <td className="section-td icon">
+              <button className="section-button" >
+                <img src={delet} alt="" className='section-image'/>
               </button>
             </td>
           </tr>

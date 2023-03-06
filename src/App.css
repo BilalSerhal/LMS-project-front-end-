@@ -40,3 +40,9 @@
     transform: rotate(360deg);
   }
 }
+@media (max-width: 768px) {
+  .app-body{
+    display:flex;
+    flex-direction:column;
+  }
+}
