@@ -1,0 +1,37 @@
+/* *{
+    width:100%;
+} */
+.header_page{
+    display: flex;
+    flex-direction: row;
+  
+    
+}
+
+.main_logo{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main_logo img{
+    width: 150px;
+    height: 150px;
+    padding-right: 150px;
+}
+
+.header_title{
+    color: #2599BD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header_text{
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    padding-left: 270px;
+
+}
