@@ -1,17 +1,14 @@
 .section{
     margin-left: 10rem;
-}
-
-.dropdownSection{
-   background-color: #2599BD;
-   font-size: 40px;
-   border: 2px solid #2599BD;
-}
-
-
-
-.childSection{
+    }
+    
+    .dropdownSection{
+    background-color: #2599BD;
+    font-size: 40px;
+    border: 2px solid #2599BD;
+    }
+    
+    
+    .childSection{
     width:14rem;
-}
-
-
+    }

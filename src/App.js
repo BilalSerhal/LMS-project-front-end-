@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import {Routes ,Route} from 'react-router-dom';
 import './app.css';
 import Attendance from "./pages/Attendances/Attendance"
+import CreateAttendance from "./pages/Attendances/CreateAttendances/CreateAttendances";
 
 function App(onChange) {
   return (
@@ -18,6 +19,7 @@ function App(onChange) {
       <Routes>
         <Route path="/" exact element={<MainPic/>}/>
         <Route path="/attendances"  element={<Attendance/>}/>
+        <Route path="/attendances/createAttendance"  element={<CreateAttendance/>}/>
       </Routes>
       </div>
       </Router>
