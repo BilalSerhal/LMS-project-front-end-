@@ -1,18 +1,17 @@
 import './login.css'
 import React from 'react';
 import { Component, useState } from "react";
-import '../Dashboard/TeacherSuperAdmin'
-import Cookies from 'js-cookie';
+import '../StudentSuperAdmin/StudentSuperAdmin'
+
 import axios from 'axios';
-import TeacherSuperAdmin from '../Dashboard/TeacherSuperAdmin';
+import TeacherSuperAdmin from '../StudentSuperAdmin/StudentSuperAdmin';
 
 function Login(){
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
@@ -45,7 +44,7 @@ function Login(){
      
       const response=axios(config)
       .then(function (response) {
-        console.log("zeinab ",JSON.stringify(response.data.token));
+        // console.log("zeinab ",JSON.stringify(response.data.token));
       if (response) {
         alert("login successful");
         window.localStorage.setItem("token", response.data.token);
@@ -80,37 +79,11 @@ function Login(){
      }
 
 
-     
-
-    //  setIsLoggedIn=true;
-    //  console.log("dhkd",isLoggedIn);
-    //  if(isLoggedIn){
-    //    console.log("dhkd",isLoggedIn);
-    //    <TeacherSuperAdmin/>
-    //  }
-      /**
-       * Getting token 
-       */
-     // const { token } = await response.json();
-      // const { token } = await response.json();
-
-      //Set Timing For The Cookies
-      // const time = new Date(new Date().getTime() + 15 * 60 * 1000)
-
-      /** set cookie */
-      // Cookies.set('jwt_auth', token, {
-      //   expires: time,
-      //   secure: true,
-      //   sameSite: "Strict",
-      //   path: '/'
-
-      // }
-      // );
-     
+    
 
     } catch (error) {
       setErrorMessage('wrong email or password', error);
-      console.log(error);
+    
     }
   }
     return (
