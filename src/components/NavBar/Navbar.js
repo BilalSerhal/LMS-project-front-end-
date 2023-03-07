@@ -16,7 +16,7 @@ return (
         <div className='dashboard_main'>
         <div className='dashboard'>
             <img className='img_dashboard' src='/pictures/presentation.png' alt=''/>
-            <div className='text'><a href='www.google.com'>Teachers</a></div>
+            <div className='text'><a href='http://localhost:3000/'>Teachers</a></div>
             </div>
         </div>
         <div className='dashboard_main'>
@@ -40,7 +40,7 @@ return (
         <div className='dashboard_main'>
         <div className='dashboard'>
             <img className='img_dashboard' src='/pictures/attendance.png' alt=''/>
-            <div className='text'><a href='www.google.com'>Attendance</a></div>
+            <div className='text'><a href='http://localhost:3000/attendances'>Attendance</a></div>
             </div>
         </div>
     </div>
