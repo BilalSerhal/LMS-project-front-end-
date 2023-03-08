@@ -1,10 +1,10 @@
 .section{
-    margin-left: 10rem;
+    margin-left: 4rem;
     }
     
     .dropdownSection{
+    width: 12rem;
     background-color: #2599BD;
-    font-size: 40px;
     border: 2px solid #2599BD;
     }
     
@@ -12,3 +12,118 @@
     .childSection{
     width:14rem;
     }
+
+    .attendances{
+        display: flex;
+        justify-content: center;
+    }
+
+
+    .table ul {
+        display: flex;
+        flex-direction: row;
+        width: 72rem;
+        justify-content: center;
+    }
+    .table li {
+        font-weight: bold;
+    
+        width: 24rem;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #2599bd;
+        height: 3rem;
+    }
+    .table {
+        width: 100rem;
+        display: flex;
+        justify-content: center;
+        height: 3rem;
+        margin-bottom: 16px;
+    }
+    
+    .tableStudent button {
+        width: 8rem;
+        cursor: pointer;
+    }
+    .present {
+        border :1px solid #2599bd;
+        border-radius: 6px;
+    }
+    
+    .absent {
+        border :1px solid #2599bd;
+        border-radius: 6px;
+    }
+    
+    .late {
+        border :1px solid #2599bd;
+        border-radius: 6px;
+    }
+    
+    .tableStudent ul {
+        display: flex;
+        flex-direction: row;
+        width: 72rem;
+        margin: 0;
+        justify-content: center;
+    }
+    .tableStudent li {
+        width: 24rem;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid;
+        height: 2rem;
+    }
+    .tableStudent {
+        width: 100rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .gradeAndSection{
+        width: 26rem;
+        display: flex;
+        justify-content: space-around;
+        
+        
+    }
+    
+    .sectionAttendance{
+        font-weight: bold;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width:10rem;
+        height: 3rem;
+        background-color: #2599bd;
+    }
+    
+    .gradeAttendance{
+        font-weight: bold;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width:10rem;
+        height: 3rem;
+        background-color: #2599bd;
+    }
+    
+    .createAttendance{
+        width:80rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .tableStudent button:hover{
+        background-color: #2599bd;
+    }
+    

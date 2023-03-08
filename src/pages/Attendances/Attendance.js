@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Attendance.css";
 import Dropdown from "react-multilevel-dropdown";
 
 function Attendance() {
 const dropdownStyles = {
-fontSize: "34px",
+fontSize: "24px",
 };
+
+const student = [
+    {
+        id:1,
+        firstName:'Achraf',
+        lastName:'Al Rachini'
+
+    },
+    {
+        id:2,
+        firstName:'Ranim',
+        lastName:'CodiB09'
+
+    },
+    {
+        id:3,
+        firstName:'Rasha',
+        lastName:'Badran'
+
+    }
+]
 
 const cards = [
 {
@@ -69,6 +90,13 @@ sectionName: "D",
 ],
 },
 ];
+
+const [tableMood, setTableMood] = useState(false);
+
+const handleGetStudent = ()=> {
+    setTableMood(true);
+
+}
 return (
 <div className="attendances">
 <div className="section">
@@ -86,7 +114,7 @@ style={dropdownStyles}
 {card.sections.map((section)=>
 
 <Dropdown.Item key={section.id}>
-<h3>Sections {section.sectionName}</h3>
+<h3 onClick={handleGetStudent}>Sections {section.sectionName}</h3>
 </Dropdown.Item>)}
 </Dropdown.Submenu>
 </Dropdown.Item>
@@ -94,6 +122,36 @@ style={dropdownStyles}
 </Dropdown>
 
 </div>
+{tableMood && (
+<div className='createAttendance'>
+        <div className='gradeAndSection'>
+            <div className='gradeAttendance'>Grade 1</div>
+            <div className='sectionAttendance'>Section A</div>
+        </div>
+        <div className='table'>
+            <ul>
+                <li>Student Name</li>
+                <li>Attendance</li>
+            </ul>
+        </div>
+        <div className='tableStudent'>
+            {student.map ((student)=>
+            <ul key={student.id}>
+            <li>{student.firstName} {student.lastName}</li>
+            <button className='present'>Present</button>
+            <button className='absent'>Absent</button>
+            <button className='late'>Late</button>
+        </ul>
+        )}
+            
+            
+
+        </div>
+    
+            
+</div>
+
+)}
 </div>
 );
 }

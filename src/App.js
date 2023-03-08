@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import {Routes ,Route} from 'react-router-dom';
 import './app.css';
 import Attendance from "./pages/Attendances/Attendance"
-import CreateAttendance from "./pages/Attendances/CreateAttendances/CreateAttendances";
+import Report from "./pages/Attendances/Report/Report";
 
 function App(onChange) {
   return (
@@ -19,8 +19,8 @@ function App(onChange) {
       <Routes>
         <Route path="/" exact element={<MainPic/>}/>
         <Route path="/attendances"  element={<Attendance/>}/>
-        <Route path="/attendances/createAttendance"  element={<CreateAttendance/>}/>
-      </Routes>
+        <Route path="/report"  element={<Report/>}/>
+    </Routes>
       </div>
       </Router>
       </div>
