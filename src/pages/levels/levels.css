@@ -5,11 +5,23 @@
     text-align: center;
     color: #2599bd;
     font-size: 50px;
+    
 }
 .class-headline1{
   text-align: center;
   color: #2599bd;
   font-size: 30px;
+}
+.class-form{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.class-input{
+  padding: 5px;
+  margin: 5px;
+  border-radius: 15px;
 }
 .class-section {
   overflow:auto;
@@ -36,6 +48,13 @@
     border:none;
     cursor: pointer;
   }
+  .class-buttonR{
+    padding: 5px;
+    background-color: #2599bd;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+  }
 
   
   .class-button:active {
@@ -56,9 +75,7 @@
   
   }
   
-  .name1 {
-    /* padding-left: 10px; */
-   }
+  
    .name2 {
     width: 40%;
    }
@@ -208,7 +225,17 @@
       padding-right: 20px;
       
      }
-   
+     .class-form{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      padding-left: 40px;
+    }
+    .class-input{
+      padding: 5px;
+      margin: 5px;
+    }
     
     .class-image{
       width: 1.5rem;

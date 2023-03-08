@@ -83,16 +83,16 @@ const MenuBar = ({ menubar }) => {
 				<Link to="/">Dashboard</Link>
 			</button>
 			<button className="navmenu-menu">
-				<Link to="/services">Teachers</Link>
+				<Link to="/">Teachers</Link>
 			</button>
             <button className="navmenu-menu">
-				<Link to="/services">Students</Link>
+				<Link to="/">Students</Link>
 			</button>
 			<button className="navmenu-menu">
-				<Link to="/projects">classes</Link>
+				<Link to="/levels">Classes</Link>
 			</button>
 			<button className="navmenu-menu">
-				<Link to="/clients">Sections</Link>
+				<Link to="/sections">Sections</Link>
 			</button>
 			<button className="navmenu-menu">
 				<Link to="/contact">Courses</Link>

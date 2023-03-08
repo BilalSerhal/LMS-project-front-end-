@@ -11,6 +11,24 @@
   color: #2599bd;
   font-size: 30px;
 }
+.section-form{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.section-input{
+  padding: 5px;
+  margin: 5px;
+  border-radius: 15px;
+}
+.section-buttonR{
+  padding: 5px;
+  background-color: #2599bd;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px;
+}
 .section-section {
   /* overflow:auto; */
     width: 100%;
@@ -211,5 +229,17 @@
     .nameR1{
       padding-left: 65px;
     }
+    .section-form{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      padding-left: 40px;
+    }
+    .section-input{
+      padding: 5px;
+      margin: 5px;
+    }
+    
    
 }
