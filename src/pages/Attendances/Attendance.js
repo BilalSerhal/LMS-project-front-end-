@@ -1,95 +1,55 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Attendance.css";
 import Dropdown from "react-multilevel-dropdown";
+import axios from "axios";
+
 
 function Attendance() {
+
+const [data, setData] = useState([]);
+const [student, setStudent] = useState([]);
+
+const [levelName, setLevelName] = useState([]);
+const [sectionName, setSectionName] = useState([]);
+
+
+
+const handleLevelName =(levelName)=>{
+    setLevelName = levelName;
+}
+
+const handleSectionName =(sectionName)=>{
+    setSectionName = sectionName;
+}
+
+
+useEffect(()=>{
+    axios.get(`http://localhost:8000/api/levels`).then((response)=> {
+        setData(response.data);
+    })
+    .catch((error)=>{
+        console.log(error);
+    })
+}
+)
+
+useEffect((levelName, sectionName)=>{
+    axios.get(`http://localhost:8000/api/listStudent/${levelName}/${sectionName}`).then((response)=> {
+        setStudent(response.student);
+    })
+    .catch((error)=>{
+        console.log(error);
+    })
+}
+)
+
 const dropdownStyles = {
 fontSize: "24px",
 };
 
-const student = [
-    {
-        id:1,
-        firstName:'Achraf',
-        lastName:'Al Rachini'
 
-    },
-    {
-        id:2,
-        firstName:'Ranim',
-        lastName:'CodiB09'
 
-    },
-    {
-        id:3,
-        firstName:'Rasha',
-        lastName:'Badran'
 
-    }
-]
-
-const cards = [
-{
-id: 1,
-levelName: "grade 1",
-sections: [
-{
-id: 1,
-sectionName: "A",
-},
-{
-id: 2,
-sectionName: "B",
-},
-{
-id: 3,
-sectionName: "C",
-},
-{
-id: 2,
-sectionName: "B",
-},
-],
-},
-{
-id: 2,
-levelName: "grade 2",
-sections: [
-{
-id: 1,
-sectionName: "A",
-},
-{
-id: 2,
-sectionName: "B",
-},
-],
-},
-{
-id: 3,
-levelName: "grade 3",
-sections: [
-{
-id: 1,
-sectionName: "A",
-},
-],
-},
-{
-id: 4,
-levelName: "grade 4",
-sections: [
-{
-id: 2,
-sectionName: "B",
-},
-{
-id: 4,
-sectionName: "D",
-},
-],
-},
-];
 
 const [tableMood, setTableMood] = useState(false);
 
@@ -107,14 +67,14 @@ position="right"
 buttonVariant="primary"
 style={dropdownStyles}
 >
-{cards.map((card) => (
+{data.map((card) => (
 <Dropdown.Item key={card.id}style={dropdownStyles} className="childSection">
-{card.levelName}
+{card.levelName} 
 <Dropdown.Submenu position="right">
 {card.sections.map((section)=>
 
-<Dropdown.Item key={section.id}>
-<h3 onClick={handleGetStudent}>Sections {section.sectionName}</h3>
+<Dropdown.Item key={card.id} >
+<h3 onClick={handleGetStudent}>Section {section.sectionName}</h3>
 </Dropdown.Item>)}
 </Dropdown.Submenu>
 </Dropdown.Item>

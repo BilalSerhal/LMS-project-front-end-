@@ -45,7 +45,7 @@ return (
     <div>
         <div className='search'>
             <div className='searchName'>
-                <input placeholder='Search By Name' onChange={event => setName(event.target.value)}/>
+                <input placeholder='Search By Name' onChange={event => setName(event.target.value)} />
             </div>
             <div className='searchSection'>
                 <div><input placeholder='Search By Grade' onChange={event => setGrade(event.target.value)}/></div>
