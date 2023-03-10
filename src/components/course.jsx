@@ -82,7 +82,7 @@ function Course() {
 </Button>
 
 
-      <Grid container spacing={3} style={{ marginTop: "200px" }}>
+      <Grid container spacing={3} style={{ marginTop: "120px" }}>
         {course && course.map((item, index) => {
 
         return (
