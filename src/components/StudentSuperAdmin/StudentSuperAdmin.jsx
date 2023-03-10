@@ -14,108 +14,117 @@ function StudentSuperAdmin(){
   const dropdownStyles = {
     fontSize: "34px",
     };
-  
-
-    const data=[{
-        
-        firstName:"Rasha",
-        lastName:"Badran",
-        email:"badran@gmail.com",
-        phoneNumber:'012332',
-        levelName:'Grade1',
-        sectionName:'A'
-        
-    },
-    {
-        firstName:"Rasha",
-        lastName:"Badran",
-        email:"badran@gmail.com",
-        phoneNumber:'012332',
-        levelName:'Grade1',
-        sectionName:'B'
-    },
-    {
-        firstName:"Rasha",
-        lastName:"Badran",
-        email:"badran@gmail.com",
-        phoneNumber:'012332',
-        levelName:'Grade1',
-        sectionName:'B'
-    },
-    {
-      firstName:"Rasha",
-      lastName:"Badran",
-      email:"badran@gmail.com",
-      phoneNumber:'012332',
-      levelName:'Grade1',
-      sectionName:'B'
-  },
-  {
-    firstName:"Rasha",
-    lastName:"Badran",
-    email:"badran@gmail.com",
-    phoneNumber:'012332',
-    levelName:'Grade1',
-    sectionName:'A'
-},
-{
-  firstName:"Rasha",
-  lastName:"Badran",
-  email:"badran@gmail.com",
-  phoneNumber:'012332',
-  levelName:'Grade2',
-  sectionName:'A'
-}
-]
-
-
- 
-
 
 const [levelName, setLevel] = useState('Grade1');
 const [sectionName, setSection] = useState('A');
 const [editStudent,setEditStudent]=useState(false);
 const [addStudent,setAddStudent]=useState(false);
 const [levSec,setlevSec]=useState([]);
-const [students,seStudents]=useState()
-
-
-
-const handleEditStudent= ()=>{
-const updateForm= document.getElementById('second-formm');
-
-
-  updateForm&& window.scrollTo({ top: updateForm.offsetTop, behavior: "smooth" });
-  setAddStudent(false);
-  setEditStudent(true);
-  
-}
-
-
-const handleAddStudent= ()=>{
-  const addForm= document.getElementById('firstt-formm');
-  
-  addForm&& window.scrollTo({ top: addForm.offsetTop, behavior: "smooth" });
-  setEditStudent(false)
-  setAddStudent(true);
-
-
-}
+const [students,setStudents]=useState([]);
+const [studentCollection, postStudent] = useState("");
+const [value, setValue] = useState("student");
 
 useEffect(()=>{  
   loadLevelSEction()
      },[] )
 
+useEffect(()=>{
+  selectedStudent()
+},[])
+
+
+
+const handleEditStudent= async(e)=>{
+  e.preventDefault();
+  console.log("student",studentCollection);
+const updateForm= document.getElementById('second-formm');
+  updateForm&& window.scrollTo({ top: updateForm.offsetTop, behavior: "smooth" });
+  setAddStudent(false);
+  setEditStudent(true);
+  postStudent({ ...studentCollection, [e.target.name]: e.target.value });
+  let formData = new FormData();
+    formData = studentCollection;
+    console.log("nftcollection ", studentCollection)
+
+
+    const config = {
+      headers: { 'content-type': 'multipart/form-data' }
+    }
+  try {
+    const response = await axios.post("http://localhost:8000/api/userLMS", formData, config);
+    alert("You have add an Nft it!")
+    window.location.reload(true);
+    console.log("response ", response)
+  } catch (err) {
+    console.log("error", err);
+  }
+};
+  
+
+
+//delete student
+
+const deleteStudent = async (id) => {
+  console.log("id ", id)
+  const url = `http://localhost:8000/api/userLMS/${id}`;
+  console.log("url ",url)
+  try{
+    const response = await axios.delete(url)
+    console.log("reponse ",response);
+    selectedStudent();
+    alert("You have delete it!")
+    window.location.reload(true);
+  }
+  catch(error){
+    console.log("error ",error)
+  }
+}
+
+//get level section
 const loadLevelSEction=()=>{
   
-    axios.get('http://localhost:8000/api/levels')
-    .then((response)=> {
-              setlevSec(response.data);
-                  }) 
-                      .catch((error)=>{ 
-                               console.log(error);
-                                  })
+  axios.get('http://localhost:8000/api/levels')
+  .then((response)=> {
+            setlevSec(response.data);
+                }) 
+                    .catch((error)=>{ 
+                             console.log(error);
+                                })
 }
+
+const changingParams=(e)=>{
+  e.preventDefault();
+  postStudent({ ...studentCollection, [e.target.name]: e.target.value });
+}
+const handleAddStudent=async (e)=>{
+  e.preventDefault();
+  console.log("student",studentCollection);
+  const addForm= document.getElementById('firstt-formm');
+  
+  addForm&& window.scrollTo({ top: addForm.offsetTop, behavior: "smooth" });
+  setEditStudent(false)
+  setAddStudent(true);
+  
+  let formData = new FormData();
+    formData = studentCollection;
+    console.log("nftcollection ", studentCollection)
+
+
+    
+  try {
+    const response = await axios.post("http://localhost:8000/api/userLMS", formData);
+    alert("You have add an Nft it!")
+    window.location.reload(true);
+    console.log("response ", response)
+  } catch (err) {
+    console.log("error", err);
+  }
+
+
+}
+
+
+
 
 const selectedStudent = async(e,section_id, grade_id) => {
   e.preventDefault();
@@ -126,12 +135,13 @@ const selectedStudent = async(e,section_id, grade_id) => {
 
   setLevel(grade_id);
   setSection(section_id);
-    const res = await axios.get(`http://localhost:8000/listStudent/${grade_id}/${section_id}`)
-    console.log(res.data);
-    seStudents(res.data);
+    const res = await axios.get(`http://localhost:8000/api/listStudent/${grade_id}/${section_id}`)
+    console.log("dataaa ",res.data);
+    setStudents(res.data);
 
 
 }
+
 
 
 
@@ -194,9 +204,8 @@ const selectedStudent = async(e,section_id, grade_id) => {
                 {students.map((item, index) => {
                   // {console.log("temmm",item.levelName, item.sectionName)}
                   return (
-                    
-                    <div key={index}>
-                      
+                    item ? 
+                      <div key={index}>
 
                       <div className='infopart'>
                       <img className="student-img" src={student} alt="img" />
@@ -216,17 +225,21 @@ const selectedStudent = async(e,section_id, grade_id) => {
                        
                         Phone Number:
                         {item.phoneNumber}
+                       
                         <br/>
                         <br/>
                        </div>
                         
                         <button className='button collection-button' onClick={handleEditStudent}>Update</button>
                           <br/>
-                        <button className=' button collection-button' >Delete</button>
-    
+                          {console.log("id",item ? item.id :null)}
+                        <button className=' button collection-button' onClick={() => deleteStudent(item.id)} >Delete</button>
+                        
                       </div>
     
                     </div>
+                    : null
+                  
                   )
                 })}
               </div>
@@ -235,42 +248,52 @@ const selectedStudent = async(e,section_id, grade_id) => {
           <div  className='formm' >
             
           {addStudent &&(
-          <form className='firstt-formm' id='firstt-formm'>
+          <form className='firstt-formm' id='firstt-formm' onSubmit={handleAddStudent}>
           <br />
           <legend className='legendd'>Add Student Info</legend>
           <br />
 
-          <label className='alignForm'>First name:<input className='textForm' type='text' name="firstName" required></input></label>
+          <label className='alignForm'>First name:<input className='textForm' type='text' value={studentCollection.firstName} name="firstName" onChange={changingParams} required></input></label>
           <br/>
-          <label className='alignForm'>Last name <input className='textForm' type='text' name="lastName"  required></input></label>
+          <label className='alignForm'>Last name <input className='textForm' type='text' name="lastName" value={studentCollection.lastName} onChange={changingParams} required></input></label>
           <br />
-          <label className='alignForm'>Email <input className='textForm' type='email' name="email"  required></input></label>
+          <label className='alignForm'>Email <input className='textForm' type='email' name="email" value={studentCollection.email} onChange={changingParams} required></input></label>
           <br />
-          <label className='alignForm'>Password <input className='textForm' type='text' name="password"  required></input></label>
+          <label className='alignForm'>Password <input className='textForm' type='text' name="password" value={studentCollection.password} onChange={changingParams} required></input></label>
           <br />
-          <label className='alignForm'>Phone number <input className='textForm' type='text' name="phoneNumber"  required></input></label>
-          <br />
-          <label for="type" className='alignForm'>Choose Student Class:
+          <input type="text" name="role" value={studentCollection.role} onChange={changingParams}  required></input>
           
-          <select id="typee" name="levelName" className='textForm'>
-            <option selected></option>
-            <option value="art" >Grade 1</option>
-            <option value="sport">Grade 2</option>
-            <option value="photography">Grade 3</option>
-            <option value="pattern">Grade 4</option>
-          </select>
-          </label>
-          <br/>
-          <label for="type" className='alignForm' >Section:
-          <select id="typee" name="sectionName" className='textForm'>
-            <option selected></option>
-            <option value="art" >A</option>
-            <option value="sport">B</option>
-            <option value="photography">C</option>
-            <option value="pattern">D</option>
-          </select>
-          </label>
+          <label className='alignForm'>Phone number <input className='textForm' type='text' name="phoneNumber" value={studentCollection.phoneNumber} onChange={changingParams} required></input></label>
           <br />
+          <label for="type" className='alignForm'>Student Level:
+          <select id="typee" name="levelName" value={studentCollection.levelName} >
+          <option value="" selected></option>
+          {levSec.map((card, key) => (
+          <option key={key} value={card.id}>
+          {card.levelName} {card.id}
+           </option>
+           ))}
+        </select>
+      </label>
+          <br/>
+          <label for="type" className='alignForm'>Student Section:
+          <select id="typee" name="section" value={studentCollection.section}>
+  <option value="" selected></option>
+  {levSec.map((card, key) => (
+    card.sections.map((section, key2) => (
+      <option key={key2} value={section.id}>
+        {section.sectionName} {section.id}
+        {console.log("sec",{sectionName})}
+      </option>
+    ))
+  ))}
+</select>
+
+
+          </label>
+
+          <br />
+        
           
           <input type="submit" className='button colle-btn'></input>
           <input type="submit" value='close' onClick={()=>(window.location.reload())} className='button colle-btn'></input>

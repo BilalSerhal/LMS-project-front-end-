@@ -200,7 +200,7 @@ hr{
             display: flex;
             flex-direction: column;
             position: relative;
-            width:30%;
+            width:40%;
             z-index: 10;
             top: 1px;
             margin-left: -350px;
