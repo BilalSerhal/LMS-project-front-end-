@@ -113,7 +113,7 @@ const handleAddStudent=async (e)=>{
     
   try {
     const response = await axios.post("http://localhost:8000/api/userLMS", formData);
-    alert("You have add an Nft it!")
+    alert("You have add a Student!")
     window.location.reload(true);
     console.log("response ", response)
   } catch (err) {
@@ -277,7 +277,7 @@ const selectedStudent = async(e,section_id, grade_id) => {
       </label>
           <br/>
           <label for="type" className='alignForm'>Student Section:
-          <select id="typee" name="section" value={studentCollection.section}>
+          <select id="typee" name="section" value={studentCollection.sectionName}>
   <option value="" selected></option>
   {levSec.map((card, key) => (
     card.sections.map((section, key2) => (
