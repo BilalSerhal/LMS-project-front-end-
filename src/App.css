@@ -1,6 +1,6 @@
-.App {
+ .App {
   text-align: center;
-}
+} 
 
 .App-logo {
   height: 40vmin;
@@ -9,6 +9,7 @@
 .app-body{
   display:flex;
   flex-direction: row;
+  gap: 30px;
 }
 /** To Make The Scrolling Smooth */
 html{scroll-behavior:smooth}

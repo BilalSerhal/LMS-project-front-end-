@@ -1,9 +1,23 @@
 import './StudentSuperAdmin.css';
 import './images/student.png'
 import student from "./images/student.png"
+import  Dropdown from "react-multilevel-dropdown"
+import { Component, useState,useEffect } from "react";
+import axios from 'axios';
+
+
 function StudentSuperAdmin(){
 
+
+
+
+  const dropdownStyles = {
+    fontSize: "34px",
+    };
+  
+
     const data=[{
+        
         firstName:"Rasha",
         lastName:"Badran",
         email:"badran@gmail.com",
@@ -18,7 +32,7 @@ function StudentSuperAdmin(){
         email:"badran@gmail.com",
         phoneNumber:'012332',
         levelName:'Grade1',
-        sectionName:'A'
+        sectionName:'B'
     },
     {
         firstName:"Rasha",
@@ -26,7 +40,7 @@ function StudentSuperAdmin(){
         email:"badran@gmail.com",
         phoneNumber:'012332',
         levelName:'Grade1',
-        sectionName:'A'
+        sectionName:'B'
     },
     {
       firstName:"Rasha",
@@ -34,7 +48,7 @@ function StudentSuperAdmin(){
       email:"badran@gmail.com",
       phoneNumber:'012332',
       levelName:'Grade1',
-      sectionName:'A'
+      sectionName:'B'
   },
   {
     firstName:"Rasha",
@@ -49,63 +63,165 @@ function StudentSuperAdmin(){
   lastName:"Badran",
   email:"badran@gmail.com",
   phoneNumber:'012332',
-  levelName:'Grade1',
+  levelName:'Grade2',
   sectionName:'A'
 }
 ]
 
+
+ 
+
+
+const [levelName, setLevel] = useState('Grade1');
+const [sectionName, setSection] = useState('A');
+const [editStudent,setEditStudent]=useState(false);
+const [addStudent,setAddStudent]=useState(false);
+const [levSec,setlevSec]=useState([]);
+const [students,seStudents]=useState()
+
+
+
+const handleEditStudent= ()=>{
+const updateForm= document.getElementById('second-formm');
+
+
+  updateForm&& window.scrollTo({ top: updateForm.offsetTop, behavior: "smooth" });
+  setAddStudent(false);
+  setEditStudent(true);
+  
+}
+
+
+const handleAddStudent= ()=>{
+  const addForm= document.getElementById('firstt-formm');
+  
+  addForm&& window.scrollTo({ top: addForm.offsetTop, behavior: "smooth" });
+  setEditStudent(false)
+  setAddStudent(true);
+
+
+}
+
+useEffect(()=>{  
+  loadLevelSEction()
+     },[] )
+
+const loadLevelSEction=()=>{
+  
+    axios.get('http://localhost:8000/api/levels')
+    .then((response)=> {
+              setlevSec(response.data);
+                  }) 
+                      .catch((error)=>{ 
+                               console.log(error);
+                                  })
+}
+
+const selectedStudent = async(e,section_id, grade_id) => {
+  e.preventDefault();
+  
+  
+  console.log("section ",section_id);
+  console.log("course ",grade_id);
+
+  setLevel(grade_id);
+  setSection(section_id);
+    const res = await axios.get(`http://localhost:8000/listStudent/${grade_id}/${section_id}`)
+    console.log(res.data);
+    seStudents(res.data);
+
+
+}
+
+
+
+
+
+
+
+  
+
     return (
         <>
           
-           <div>
-           <button className='button  coll-btn' onClick={() => {
-                          let form = document.getElementById("firstt-formm");
-                          form && window.scrollTo({ top: form.offsetTop, behavior: "smooth" });
-                          }}>Add</button>
+           <div className='lol'>
+                <div className='first-buttons'>  
+                  <Dropdown
+                    className="dropdownSection button  coll-btn-select"
+                    title=" Select Sections"
+                    position="right"
+                    buttonVariant="primary"
+                    style={dropdownStyles}
+                    >
+                    {levSec.map((card,key) => (
+                      <Dropdown.Item key={key} style={dropdownStyles} className="childSection" value={card.id}>
+                       
+                        {card.levelName} {card.id}
+                      
+                    <Dropdown.Submenu position="right"   >
+                      {card.sections.map((section,key2)=>
+
+                    <Dropdown.Item key={key2} onClick={(e)=>selectedStudent(e,section.sectionName, card.levelName)} value={section.id}>
+                    <h3 name='sectionName'>Sections {section.sectionName} {section.id}</h3>
+                    </Dropdown.Item>)}
+                    </Dropdown.Submenu>
+                      </Dropdown.Item>
+                        ))}
+                      </Dropdown>
+
+                      <form className='searchStudentButton' action="/" method="get">
+        
+        <input
+            type="text"
+            id="header-search"
+            placeholder="Search for Student"
+            name="searchStudent" />
+        
+        <button type="submit"  className=' search-btns'>Search</button>
+        
+    </form>
+        
+          
+                       <button className='button  coll-btns' id='add-btn' onClick={handleAddStudent} 
+                          >Add</button>
          
-    
+                        </div>   
+
+              
               <div className='mappingdata'>
            
-              
-                {data.map((item, index) => {
-    
+                        
+                {students.map((item, index) => {
+                  // {console.log("temmm",item.levelName, item.sectionName)}
                   return (
-    
+                    
                     <div key={index}>
                       
 
                       <div className='infopart'>
                       <img className="student-img" src={student} alt="img" />
+                      <hr/>
                     <br />
-                        First Name:
+                    <div className='align-info'>
+                        Name:
                         {item.firstName}
-                        <br/>
-                        <br/>
-                        Last Name:
+                        {" "}
                         {item.lastName}
                         <br/>
-                        <br/>
+                        
                         Email:
                         {item.email}
                         
                         <br/>
-                        <br/>
+                       
                         Phone Number:
                         {item.phoneNumber}
                         <br/>
                         <br/>
-                        Level::
-                        {item.levelName}
-                        <br/>
-                        <br/>
-                        Section:
-                        {item.sectionName}
-                        <br/>
-                        <br/>
-                        <button className='button collection-button' onClick={() => {
-                          let form = document.getElementById("second-formm");
-                          form && window.scrollTo({ top: form.offsetTop, behavior: "smooth" });
-                          }}>Update</button>
+                       </div>
+                        
+                        <button className='button collection-button' onClick={handleEditStudent}>Update</button>
+                          <br/>
                         <button className=' button collection-button' >Delete</button>
     
                       </div>
@@ -114,75 +230,82 @@ function StudentSuperAdmin(){
                   )
                 })}
               </div>
-    
+              
+              
           <div  className='formm' >
+            
+          {addStudent &&(
           <form className='firstt-formm' id='firstt-formm'>
           <br />
           <legend className='legendd'>Add Student Info</legend>
           <br />
 
-          <label >Enter student first name:<br /><input type='text' name="firstName" required></input></label>
+          <label className='alignForm'>First name:<input className='textForm' type='text' name="firstName" required></input></label>
+          <br/>
+          <label className='alignForm'>Last name <input className='textForm' type='text' name="lastName"  required></input></label>
           <br />
-          <label >Enter student last name <br /><input type='text' name="lastName"  required></input></label>
+          <label className='alignForm'>Email <input className='textForm' type='email' name="email"  required></input></label>
           <br />
-          <label>Enter student Email <br /><input type='email' name="email"  required></input></label>
+          <label className='alignForm'>Password <input className='textForm' type='text' name="password"  required></input></label>
           <br />
-          <label>Enter student password <br /><input type='text' name="password"  required></input></label>
+          <label className='alignForm'>Phone number <input className='textForm' type='text' name="phoneNumber"  required></input></label>
           <br />
-          <label>Enter student phone number <br /><input type='text' name="phoneNumber"  required></input></label>
-          <br />
-          <label for="type">Choose Student Class:</label>
-          <br />
-          <select id="typee" name="levelName">
+          <label for="type" className='alignForm'>Choose Student Class:
+          
+          <select id="typee" name="levelName" className='textForm'>
             <option selected></option>
             <option value="art" >Grade 1</option>
             <option value="sport">Grade 2</option>
             <option value="photography">Grade 3</option>
             <option value="pattern">Grade 4</option>
           </select>
+          </label>
           <br/>
-          <label for="type">Choose Student Section:</label>
-          <select id="typee" name="sectionName">
+          <label for="type" className='alignForm' >Section:
+          <select id="typee" name="sectionName" className='textForm'>
             <option selected></option>
             <option value="art" >A</option>
             <option value="sport">B</option>
             <option value="photography">C</option>
             <option value="pattern">D</option>
           </select>
+          </label>
           <br />
-          <br />
+          
           <input type="submit" className='button colle-btn'></input>
+          <input type="submit" value='close' onClick={()=>(window.location.reload())} className='button colle-btn'></input>
           <br />
-        </form>
+        </form>)}
+        
 
-
-
+        {editStudent &&(
         <form className='second-formm' id='second-formm'>
           <br />
-          <legend className='legendd'>Update Student Info</legend>
+          <legend className='legendd' id='update-btn'>Update Student Info</legend>
           <br />
 
-          <label >Enter student first name:<br /><input type='text' name="firstName" required></input></label>
+          <label className='alignForm'>Enter student first name:<input type='text' name="firstName" required></input></label>
           <br />
-          <label >Enter student last name <br /><input type='text' name="lastName"  required></input></label>
+          <label className='alignForm'>Enter student last name <input type='text' name="lastName"  required></input></label>
           <br />
-          <label>Enter student Email <br /><input type='email' name="email"  required></input></label>
+          <label className='alignForm'>Enter student Email <input type='email' name="email"  required></input></label>
           <br />
-          <label>Enter student password <br /><input type='text' name="password"  required></input></label>
+          <label className='alignForm'>Enter student password <input type='text' name="password"  required></input></label>
           <br />
-          <label>Enter student phone number <br /><input type='text' name="phoneNumber"  required></input></label>
+          <label className='alignForm'>Enter student phone number <input type='text' name="phoneNumber"  required></input></label>
           <br />
-          <label for="type">Choose Student Class:</label>
+          <label for="type" className='alignForm'>Choose Student Class:
           <br />
-          <select id="typee" name="levelName">
+          <select id="typee" name="levelName" className='alignForm'>
             <option selected></option>
             <option value="art" >Grade 1</option>
             <option value="sport">Grade 2</option>
             <option value="photography">Grade 3</option>
             <option value="pattern">Grade 4</option>
           </select>
+          </label>
           <br/>
-          <label for="type">Choose Student Section:</label>
+          <label for="type" className='alignForm'>Choose Student Section:
           <select id="typee" name="sectionName">
             <option selected></option>
             <option value="art" >A</option>
@@ -190,11 +313,15 @@ function StudentSuperAdmin(){
             <option value="photography">C</option>
             <option value="pattern">D</option>
           </select>
+          </label>
           <br />
-          <br />
+          
           <input type="submit" className='button colle-btn'></input>
+          <input type="submit" value='close' onClick={()=>(window.location.reload())} className='button colle-btn'></input>
           <br />
+          
         </form>
+        )}
 
           </div>
             

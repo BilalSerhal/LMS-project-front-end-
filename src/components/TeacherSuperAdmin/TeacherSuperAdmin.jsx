@@ -116,7 +116,8 @@ function TeacherSuperAdmin(){
                           let form = document.getElementById("second-formms");
                           form && window.scrollTo({ top: form.offsetTop, behavior: "smooth" });
                           }}>Update</button>
-                        <button className=' button collection-button' >Delete</button>
+                          <br/> 
+                        <button className=' button collection-buttons' >Delete</button>
     
                       </div>
     

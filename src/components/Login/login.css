@@ -110,6 +110,9 @@
   .href-login a:hover {
     color: white;
   }
+  /* .collaborate{
+    display: none;
+  } */
   @media only screen and (max-width: 600px) {
     
   
@@ -149,4 +152,5 @@
       font-size: 16px;
       transition: all 0.5s ease;
     }
+ 
 }

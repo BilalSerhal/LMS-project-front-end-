@@ -9,10 +9,16 @@ import presentation from './image/presentation.png';
 import section from './image/sections.png';
 import course from './image/courses.png';
 import menu from "./image/Menu.png";
+import logo from "./image/logo.png"
 
 const Navbar = ({ setMenuBar, menubar }) => {
 return (
-    <div className='container'>
+    <div className='collaborate'>
+
+        <div className="main_logo">
+        <img className="logo" src={logo} alt="logo" />
+      </div>
+      <div className='container'>
         <div className='navbar-container'>
         <div className='navbar'>
             
@@ -60,6 +66,8 @@ return (
             </div>
         </div>
     </div>
+    <br/>
+    
     <div className='dashboard_main'>
         <div className='dashboard'>
             <img className='img_dashboard' src={power} alt=''/>
@@ -72,6 +80,7 @@ return (
 						<img src={menu} alt="menu" className="navmenu" onClick={() => setMenuBar(!menubar)}/>
 					</button>
 				</div>
+                </div>
  </div>
 );
 };

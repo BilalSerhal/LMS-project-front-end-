@@ -67,8 +67,8 @@
     cursor: pointer;
   }
   
-  .collection-button {
-    width: 70%;
+   .collection-buttons {
+    width: 150px;
     height: 7%;
     background: -webkit-linear-gradient(15deg, #AAC9FF,#77A7FF,#1877F2,#2851A3,#1D3C78);
     border-radius: 12px;
@@ -76,15 +76,12 @@
     color: rgba(255, 255, 255, 0.87);
     font-size: 20px;
     line-height: 30px;
-  }
+  } 
   
   
   
   
-  .collection-button{
-      width: 70%;
-      height: 7%;
-  }
+  
   
   
      .formms{
