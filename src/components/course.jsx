@@ -123,29 +123,27 @@ function Course() {
   aria-labelledby="parent-modal-title"
   aria-describedby="parent-modal-description"
 >
-<form style={{backgroundColor : "white",width : "50%",height : "50%", minHeight : 300, display : "flex",justifyContent : "center", alignItems : "center",gap : 20,borderRadius : 10}} id="post-form">
-  {/* <TextField
-  helperText="Please enter Course Name "
-  id="demo-helper-text-misaligned"
-  label=""
-/> */}
-  {/* <label for="subject" >Subject:</label> */}
+<form style={{backgroundColor : "white",width : "45%",height : "30%", minHeight : 300, display : "flex",justifyContent : "center", alignItems : "center",gap : 20,borderRadius : 10 , flexDirection:"column" ,textAlign:"center"}} id="post-form">
+
+<div className="placeholder">
   <TextField
   helperText="Please enter Course Name "
   id="demo-helper-text-misaligned"
   label="Subject"
-  onChange={(e)=>setSubject(e.target.value)} />
-  
-  <Button variant="outlined" onClick={submitHandler} >Submit</Button>
+  onChange={(e)=>setSubject(e.target.value)}/>
+  </div>
+  <div className="form-btns" style={{display :"flex", flexDirection:"row" , justifyContent:"space-between" , width:"30%"}}>
+  <Button  variant="outlined" onClick={submitHandler}  margin={5} >Submit</Button>  
   <Button variant="outlined"   onClick={(e) => {
     e.preventDefault();
     setShowModal(false);
   }}  >Cancel</Button>
+  </div>
 </form>
 </Modal>   
     </div>
 
-
+// className="form-btns" style={{display :"flex", flexDirection:"column" , justifyContent:"space-between" }}
   );
 }
 
