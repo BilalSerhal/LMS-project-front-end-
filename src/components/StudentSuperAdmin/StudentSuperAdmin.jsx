@@ -29,6 +29,7 @@ const [password,setPassword]=useState("");
 const [phoneNumber,setPhoneNumber]=useState("");
 const [updatee,postUpdate]=useState("");
 const [idd, setidd] = useState("");
+const [search,setSearch]=useState("");
 
 useEffect(()=>{  
   loadLevelSEction()
@@ -69,12 +70,13 @@ const handleEditStudent= async(id)=>{
    
  
 };
-  const SearchbyName=async(e,firstName)=>{
+  const SearchbyName=async(e,search)=>{
     e.preventDefault();
     try{
-      console.log("hii")
-      console.log("fn=",firstName)
-      const response=await axios.get(`http://localhost:8000/api/userLMS/getUserbyName/{firstName}`)
+      
+      console.log("fn=",search)
+      const response=await axios.get(`http://localhost:8000/api/userLMS/getUserbyName/{search}`)
+      console.log("searchresp",response)
     }
     catch(error){
       console.log(error)
@@ -227,9 +229,9 @@ const selectedStudent = async(e,section_id, grade_id) => {
             type="text"
             id="header-search"
             placeholder="Search for Student"
-            name="searchStudent" />
+            name="searchStudent" value={search} onChange={(e) => setSearch(e.target.value)}/>
         
-        <button type="submit"  className='button search-btns' onClick={(e)=>SearchbyName(e,firstName)}>Search</button>
+        <button type="submit"  className='button search-btns' onClick={(e)=>SearchbyName(e,search)}>Search</button>
         
     </form>
         
