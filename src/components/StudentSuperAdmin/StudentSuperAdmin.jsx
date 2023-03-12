@@ -22,7 +22,13 @@ const [addStudent,setAddStudent]=useState(false);
 const [levSec,setlevSec]=useState([]);
 const [students,setStudents]=useState([]);
 const [studentCollection, postStudent] = useState("");
-const [value, setValue] = useState("student");
+const [firstName,setFirstName]=useState("");
+const [lastName,setLastName]=useState("");
+const [email,setEmail]=useState("");
+const [password,setPassword]=useState("");
+const [phoneNumber,setPhoneNumber]=useState("");
+const [updatee,postUpdate]=useState("");
+const [idd, setidd] = useState("");
 
 useEffect(()=>{  
   loadLevelSEction()
@@ -32,45 +38,79 @@ useEffect(()=>{
   selectedStudent()
 },[])
 
+// useEffect(() => {
+//   loadStudentbyId()
+// }, []);
 
 
-const handleEditStudent= async(e)=>{
-  e.preventDefault();
+const handleEditStudent= async(id)=>{
+  // e.preventDefault();
   console.log("student",studentCollection);
-const updateForm= document.getElementById('second-formm');
+  const updateForm= document.getElementById('second-formm');
   updateForm&& window.scrollTo({ top: updateForm.offsetTop, behavior: "smooth" });
   setAddStudent(false);
   setEditStudent(true);
-  postStudent({ ...studentCollection, [e.target.name]: e.target.value });
-  let formData = new FormData();
-    formData = studentCollection;
-    console.log("nftcollection ", studentCollection)
+ 
+    const respond = await axios.get(`http://localhost:8000/api/userLMS/${id}`)
+   
+    console.log(respond);
+    
+    setFirstName(respond.data.message.firstName);
+   
+    setLastName(respond.data.message.lastName);
+    setEmail(respond.data.message.email);
+    setPassword(respond.data.message.password);
+    setPhoneNumber(respond.data.message.phoneNumber);
+    setidd(respond.data.message.id)
+   
+ 
 
 
-    const config = {
-      headers: { 'content-type': 'multipart/form-data' }
+   
+ 
+};
+  const SearchbyName=async(e,firstName)=>{
+    e.preventDefault();
+    try{
+      console.log("hii")
+      console.log("fn=",firstName)
+      const response=await axios.get(`http://localhost:8000/api/userLMS/getUserbyName/{firstName}`)
     }
+    catch(error){
+      console.log(error)
+    }
+  }
+
+const updateStudentINfo=async(e)=>{
+  e.preventDefault();
+  let postupdate = { firstName, lastName, email,password, phoneNumber };
+  console.log("nftcollection ", firstName, lastName, email,password, phoneNumber);
   try {
-    const response = await axios.post("http://localhost:8000/api/userLMS", formData, config);
-    alert("You have add an Nft it!")
+    console.log("iddd",idd)
+    const response = await axios.put(`http://localhost:8000/api/userLMS/${idd}`,{
+      firstName,
+      lastName,
+      email,
+      password,
+      phoneNumber
+    });
+    alert("You have updated the student info!")
     window.location.reload(true);
     console.log("response ", response)
   } catch (err) {
     console.log("error", err);
   }
-};
-  
-
+}
 
 //delete student
 
 const deleteStudent = async (id) => {
-  console.log("id ", id)
+  
   const url = `http://localhost:8000/api/userLMS/${id}`;
-  console.log("url ",url)
+  
   try{
     const response = await axios.delete(url)
-    console.log("reponse ",response);
+    
     selectedStudent();
     alert("You have delete it!")
     window.location.reload(true);
@@ -79,6 +119,8 @@ const deleteStudent = async (id) => {
     console.log("error ",error)
   }
 }
+
+
 
 //get level section
 const loadLevelSEction=()=>{
@@ -179,7 +221,7 @@ const selectedStudent = async(e,section_id, grade_id) => {
                         ))}
                       </Dropdown>
 
-                      <form className='searchStudentButton' action="/" method="get">
+                      <form className='searchStudentButton' action="/" method="get" >
         
         <input
             type="text"
@@ -187,7 +229,7 @@ const selectedStudent = async(e,section_id, grade_id) => {
             placeholder="Search for Student"
             name="searchStudent" />
         
-        <button type="submit"  className=' search-btns'>Search</button>
+        <button type="submit"  className='button search-btns' onClick={(e)=>SearchbyName(e,firstName)}>Search</button>
         
     </form>
         
@@ -230,9 +272,9 @@ const selectedStudent = async(e,section_id, grade_id) => {
                         <br/>
                        </div>
                         
-                        <button className='button collection-button' onClick={handleEditStudent}>Update</button>
+                        <button className='button collection-button' onClick={()=>handleEditStudent(item.id)}>Update</button>
                           <br/>
-                          {console.log("id",item ? item.id :null)}
+                          {console.log("idss",item ? item.id :null)}
                         <button className=' button collection-button' onClick={() => deleteStudent(item.id)} >Delete</button>
                         
                       </div>
@@ -302,44 +344,25 @@ const selectedStudent = async(e,section_id, grade_id) => {
         
 
         {editStudent &&(
-        <form className='second-formm' id='second-formm'>
+        <form className='second-formm' id='second-formm' >
           <br />
           <legend className='legendd' id='update-btn'>Update Student Info</legend>
           <br />
 
-          <label className='alignForm'>Enter student first name:<input type='text' name="firstName" required></input></label>
+          <label className='alignForm'>Enter student first name:<input type='text' value={firstName} name="firstName" onChange={(e) => setFirstName(e.target.value)} required></input></label>
           <br />
-          <label className='alignForm'>Enter student last name <input type='text' name="lastName"  required></input></label>
+          <label className='alignForm'>Enter student last name <input type='text' value={lastName} name="lastName" onChange={(e) => setLastName(e.target.value)} required></input></label>
           <br />
-          <label className='alignForm'>Enter student Email <input type='email' name="email"  required></input></label>
+          <label className='alignForm'>Enter student Email <input type='email' value={email} name="email" onChange={(e) => setEmail(e.target.value)} required></input></label>
           <br />
-          <label className='alignForm'>Enter student password <input type='text' name="password"  required></input></label>
+          <label className='alignForm'>Enter student password <input type='text' value={password} name="password" onChange={(e) => setPassword(e.target.value)} required></input></label>
           <br />
-          <label className='alignForm'>Enter student phone number <input type='text' name="phoneNumber"  required></input></label>
+          <label className='alignForm'>Enter student phone number <input type='text' value={phoneNumber} name="phoneNumber" onChange={(e) => setPhoneNumber(e.target.value)} required></input></label>
           <br />
-          <label for="type" className='alignForm'>Choose Student Class:
-          <br />
-          <select id="typee" name="levelName" className='alignForm'>
-            <option selected></option>
-            <option value="art" >Grade 1</option>
-            <option value="sport">Grade 2</option>
-            <option value="photography">Grade 3</option>
-            <option value="pattern">Grade 4</option>
-          </select>
-          </label>
-          <br/>
-          <label for="type" className='alignForm'>Choose Student Section:
-          <select id="typee" name="sectionName">
-            <option selected></option>
-            <option value="art" >A</option>
-            <option value="sport">B</option>
-            <option value="photography">C</option>
-            <option value="pattern">D</option>
-          </select>
-          </label>
-          <br />
+         
           
-          <input type="submit" className='button colle-btn'></input>
+          
+          <input type="submit"value="submit" className='button colle-btn' id="submit" onClick={updateStudentINfo}></input>
           <input type="submit" value='close' onClick={()=>(window.location.reload())} className='button colle-btn'></input>
           <br />
           
