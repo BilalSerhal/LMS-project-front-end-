@@ -129,10 +129,9 @@ width: 50%;
 }
 
 .button:hover{
-  background: -webkit-linear-gradient(-86deg,blue , #2599BD);
+  background:  #2599BD;
   border-radius: 10px;
   border-color: #050108eb ;
-  color: rgba(223, 210, 210, 0.904);
   font-size: 20px;
   line-height: 30px;
   cursor: pointer;
@@ -219,6 +218,22 @@ hr{
           top: 1px; 
           margin-left: -350px;
         
+          }
+          .levsecc{
+            display: flex;
+            background-color:#7dc9e1;
+            width:10%;
+            font-size: 30px;
+            font-family:  'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', 'sans-serif';
+            border-radius: 10px;
+            
+          }
+          .levelNa{
+            
+            background-color:#7dc9e1;
+    font-size: 20px;
+    font-family:  'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', 'sans-serif';
+    border-radius: 10px;
           }
 
 

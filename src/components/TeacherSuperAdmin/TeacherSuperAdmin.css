@@ -57,7 +57,7 @@
   width: 50%;
   }
   
-  .button:hover{
+  /* .button:hover{
     background: -webkit-linear-gradient(-15deg,blue , #2599BD);
     border-radius: 10px;
     border-color: #050108eb ;
@@ -65,7 +65,7 @@
     font-size: 20px;
     line-height: 30px;
     cursor: pointer;
-  }
+  } */
   
    .collection-buttons {
     width: 150px;

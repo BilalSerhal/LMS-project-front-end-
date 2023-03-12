@@ -15,8 +15,8 @@ function StudentSuperAdmin(){
     fontSize: "34px",
     };
 
-const [levelName, setLevel] = useState('Grade1');
-const [sectionName, setSection] = useState('A');
+const [levelName, setLevel] = useState('');
+const [sectionName, setSection] = useState('');
 const [editStudent,setEditStudent]=useState(false);
 const [addStudent,setAddStudent]=useState(false);
 const [levSec,setlevSec]=useState([]);
@@ -170,16 +170,16 @@ const handleAddStudent=async (e)=>{
 
 
 
-const selectedStudent = async(e,section_id, grade_id) => {
+const selectedStudent = async(e,sectionName, levelName) => {
   e.preventDefault();
   
   
-  console.log("section ",section_id);
-  console.log("course ",grade_id);
+  console.log("section ",sectionName);
+  console.log("course ",levelName);
 
-  setLevel(grade_id);
-  setSection(section_id);
-    const res = await axios.get(`http://localhost:8000/api/listStudent/${grade_id}/${section_id}`)
+  setLevel(levelName);
+  setSection(sectionName);
+    const res = await axios.get(`http://localhost:8000/api/listStudent/${levelName}/${sectionName}`)
     console.log("dataaa ",res.data);
     setStudents(res.data);
 
@@ -200,6 +200,7 @@ const selectedStudent = async(e,section_id, grade_id) => {
           
            <div className='lol'>
                 <div className='first-buttons'>  
+
                   <Dropdown
                     className="dropdownSection button  coll-btn-select"
                     title=" Select Sections"
@@ -208,9 +209,10 @@ const selectedStudent = async(e,section_id, grade_id) => {
                     style={dropdownStyles}
                     >
                     {levSec.map((card,key) => (
-                      <Dropdown.Item key={key} style={dropdownStyles} className="childSection" value={card.id}>
+                      <Dropdown.Item key={key} style={dropdownStyles} name={levelName} className="childSection" value={card.id}>
                        
-                        {card.levelName} {card.id}
+                       
+                        {card.levelName} 
                       
                     <Dropdown.Submenu position="right"   >
                       {card.sections.map((section,key2)=>
@@ -222,6 +224,8 @@ const selectedStudent = async(e,section_id, grade_id) => {
                       </Dropdown.Item>
                         ))}
                       </Dropdown>
+                      
+                      
 
                       <form className='searchStudentButton' action="/" method="get" >
         
@@ -240,10 +244,12 @@ const selectedStudent = async(e,section_id, grade_id) => {
                           >Add</button>
          
                         </div>   
-
-              
+                          <div className='levsecc'>
+                        {levelName}{sectionName}
+                        
+                        </div>
               <div className='mappingdata'>
-           
+              
                         
                 {students.map((item, index) => {
                   // {console.log("temmm",item.levelName, item.sectionName)}
