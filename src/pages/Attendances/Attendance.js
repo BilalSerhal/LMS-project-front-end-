@@ -14,7 +14,7 @@ const dropdownStyles =
 const [data, setData] = useState([]);
 const [students, setStudents] = useState([]);
 
-// const [levelSection, setLevelSection] = useState([]);
+const [buttonStatus, setButtonStatus] = useState({});
 
 
 
@@ -41,6 +41,8 @@ const handleStatus = async (id, status) => {
     );
     console.log(response.data);
     setAttendanceStatus(`${status} ${id}`)
+    setButtonStatus(prevState => ({ ...prevState, [id]: status }));
+
     console.log(response.data);
     } 
     catch (error) {
@@ -107,9 +109,12 @@ tableMood && (
             {students.map ((student)=>
             <ul key={student.id}>
             <li>{student.firstName} {student.lastName}</li>
-            <button className='present' onClick={() => handleStatus(student.id, 'Present')} >Present</button>
-            <button className='absent'  onClick={() => handleStatus(student.id, 'Absent')}  >Absent</button>
-            <button className='late'    onClick={() => handleStatus(student.id, 'Late')}    >Late</button>
+            <button className='present' onClick={() => handleStatus(student.id, 'Present')} 
+                    style={{backgroundColor: buttonStatus[student.id] === 'Present' ? 'green' : ''}} >Present</button>
+            <button className='absent'  onClick={() => handleStatus(student.id, 'Absent')}  
+             style={{backgroundColor: buttonStatus[student.id] === 'Absent' ? 'red' : ''}}>Absent</button>
+            <button className='late'    onClick={() => handleStatus(student.id, 'Late')}    
+             style={{backgroundColor: buttonStatus[student.id] === 'Late' ? 'yellow' : ''}}>Late</button>
         </ul>
         )}
             
