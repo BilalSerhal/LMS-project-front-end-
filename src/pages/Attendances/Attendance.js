@@ -13,8 +13,9 @@ const dropdownStyles =
 
 const [data, setData] = useState([]);
 const [students, setStudents] = useState([]);
-
 const [buttonStatus, setButtonStatus] = useState({});
+const [selectedLevel, setSelectedLevel] = useState("");
+const [selectedSection, setSelectedSection] = useState("");
 
 
 
@@ -61,7 +62,8 @@ const handleGetStudent = (levelName, sectionName) => {
     .catch((error) => {
         console.log(error)
     })
-
+    setSelectedLevel(levelName);
+    setSelectedSection(sectionName);
     setTableMood(true);
 
 }
@@ -70,7 +72,7 @@ return (
 <div className="section">
 <Dropdown
 className="dropdownSection"
-title=" Select Sections"
+title=" Select Grade"
 position="right"
 buttonVariant="primary"
 style={dropdownStyles}
@@ -82,7 +84,8 @@ style={dropdownStyles}
 {card.sections.map((section)=>
 
 <Dropdown.Item key={section.id}>
-<h3 onClick={ ()=> handleGetStudent(card.levelName, section.sectionName)}
+<h3 onClick={ ()=> handleGetStudent(card.levelName, section.sectionName)
+}
 >Section {section.sectionName}</h3>
 </Dropdown.Item>)}
 </Dropdown.Submenu>
@@ -96,8 +99,8 @@ style={dropdownStyles}
 tableMood && (
 <div className='createAttendance'>
         <div className='gradeAndSection'>
-            <div className='gradeAttendance'>Grade 1</div>
-            <div className='sectionAttendance'>Section A</div>
+            <div className='gradeAttendance'>{selectedLevel}</div>
+            <div className='sectionAttendance'>Section {selectedSection}</div>
         </div>
         <div className='table'>
             <ul>
