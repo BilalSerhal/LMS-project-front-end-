@@ -4,7 +4,8 @@ import student from "./images/student.png"
 import  Dropdown from "react-multilevel-dropdown"
 import { Component, useState,useEffect } from "react";
 import axios from 'axios';
-
+import {Multiselect} from "multiselect-react-dropdown";
+import { Select } from '@material-ui/core';
 
 function StudentSuperAdmin(){
 
@@ -27,22 +28,66 @@ const [lastName,setLastName]=useState("");
 const [email,setEmail]=useState("");
 const [password,setPassword]=useState("");
 const [phoneNumber,setPhoneNumber]=useState("");
+const [role,setRole]=useState("student");
 const [updatee,postUpdate]=useState("");
 const [idd, setidd] = useState("");
 const [search,setSearch]=useState("");
+const [options, setOptions] = useState([]);
+const [optionsLevel, setOptionsLevel] = useState([]);
+const [selectedValues, setSelectedValues] = useState([]);
+const [selectedValuesLevel, setSelectedValuesLevel] = useState([]);
+
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/sections")
+      .then((response) => {
+        setOptions(response.data); // assuming response is an array of objects with a name property
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/levels")
+      .then((response) => {
+        setOptionsLevel(response.data); // assuming response is an array of objects with a name property
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
 
 useEffect(()=>{  
   loadLevelSEction()
-     },[] )
+     },[] );
+
 
 useEffect(()=>{
   selectedStudent()
-},[])
+},[]);
 
-// useEffect(() => {
-//   loadStudentbyId()
-// }, []);
 
+
+const onSelectLevel = (selectedListLevel, selectedItem) => {
+  setSelectedValuesLevel(selectedListLevel);
+};
+
+const onRemoveLevel = (selectedListLevel, removedItem) => {
+  setSelectedValuesLevel(selectedListLevel);
+};
+
+const onSelect = (selectedList, selectedItem) => {
+  setSelectedValues(selectedList);
+};
+
+const onRemove = (selectedList, removedItem) => {
+  setSelectedValues(selectedList);
+};
 
 const handleEditStudent= async(id)=>{
   // e.preventDefault();
@@ -64,12 +109,10 @@ const handleEditStudent= async(id)=>{
     setPhoneNumber(respond.data.message.phoneNumber);
     setidd(respond.data.message.id)
    
- 
-
-
-   
- 
 };
+
+
+
   const SearchbyName=async(e,search)=>{
     e.preventDefault();
     try{
@@ -83,6 +126,7 @@ const handleEditStudent= async(id)=>{
     }
   }
 
+  
 const updateStudentINfo=async(e)=>{
   e.preventDefault();
   let postupdate = { firstName, lastName, email,password, phoneNumber };
@@ -148,22 +192,35 @@ const handleAddStudent=async (e)=>{
   addForm&& window.scrollTo({ top: addForm.offsetTop, behavior: "smooth" });
   setEditStudent(false)
   setAddStudent(true);
+
+  const form = e.target;
+    const formData = new FormData(form);
   
-  let formData = new FormData();
-    formData = studentCollection;
-    console.log("nftcollection ", studentCollection)
+    const newUser = {
+      firstName: formData.get("firstName"),
+      lastName: formData.get("lastName"),
+      email: formData.get("email"),
+      password: formData.get("password"),
+      role: "student",
+      phoneNumber: formData.get("phoneNumber"),
+      levelName: selectedValuesLevel[0].levelName,
+      sectionName: selectedValues[0].sectionName,
+    };
 
-
-    
-  try {
-    const response = await axios.post("http://localhost:8000/api/userLMS", formData);
-    alert("You have add a Student!")
-    window.location.reload(true);
-    console.log("response ", response)
-  } catch (err) {
-    console.log("error", err);
-  }
-
+    console.log("userbody ",newUser);
+  
+    axios
+      .post("http://localhost:8000/api/userLMS", newUser)
+      .then((response) => {
+        console.log("New student added: ", response.data);
+        setStudents([...students, response.data]);
+        setAddStudent(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  
+ 
 
 }
 
@@ -282,7 +339,7 @@ const selectedStudent = async(e,sectionName, levelName) => {
                         
                         <button className='button collection-button' onClick={()=>handleEditStudent(item.id)}>Update</button>
                           <br/>
-                          {console.log("idss",item ? item.id :null)}
+                          {/* {console.log("idss",item ? item.id :null)} */}
                         <button className=' button collection-button' onClick={() => deleteStudent(item.id)} >Delete</button>
                         
                       </div>
@@ -303,49 +360,45 @@ const selectedStudent = async(e,sectionName, levelName) => {
           <legend className='legendd'>Add Student Info</legend>
           <br />
 
-          <label className='alignForm'>First name:<input className='textForm' type='text' value={studentCollection.firstName} name="firstName" onChange={changingParams} required></input></label>
+          <label className='alignForm'>First name:<input className='textForm alignForm' type='text' value={studentCollection.firstName} name="firstName" onChange={changingParams} required></input></label>
           <br/>
-          <label className='alignForm'>Last name <input className='textForm' type='text' name="lastName" value={studentCollection.lastName} onChange={changingParams} required></input></label>
+          <label className='alignForm'>Last name <input className='textForm alignForm' type='text' name="lastName" value={studentCollection.lastName} onChange={changingParams} required></input></label>
           <br />
-          <label className='alignForm'>Email <input className='textForm' type='email' name="email" value={studentCollection.email} onChange={changingParams} required></input></label>
+          <label className='alignForm'>Email <input className='textForm alignForm' type='email' name="email" value={studentCollection.email} onChange={changingParams} required></input></label>
           <br />
-          <label className='alignForm'>Password <input className='textForm' type='text' name="password" value={studentCollection.password} onChange={changingParams} required></input></label>
+          <label className='alignForm'>Password <input className='textForm alignForm' type='text' name="password" value={studentCollection.password} onChange={changingParams} required></input></label>
           <br />
-          <input type="text" name="role" value={studentCollection.role} onChange={changingParams}  required></input>
           
-          <label className='alignForm'>Phone number <input className='textForm' type='text' name="phoneNumber" value={studentCollection.phoneNumber} onChange={changingParams} required></input></label>
+          
+          <label className='alignForm'>Phone number <input className='textForm alignForm' type='text' name="phoneNumber" value={studentCollection.phoneNumber} onChange={changingParams} required></input></label>
           <br />
           <label for="type" className='alignForm'>Student Level:
-          <select id="typee" name="levelName" value={studentCollection.levelName} >
-          <option value="" selected></option>
-          {levSec.map((card, key) => (
-          <option key={key} value={card.id}>
-          {card.levelName} {card.id}
-           </option>
-           ))}
-        </select>
+
+          <Multiselect id="typee" name="levelName"  options={optionsLevel} selectedValues={selectedValuesLevel[0]} onSelect={onSelectLevel}
+          onRemove={onRemoveLevel}
+          displayValue="levelName"
+        ></Multiselect>
+        {console.log("level",selectedValuesLevel[0])}
+
+          
       </label>
           <br/>
           <label for="type" className='alignForm'>Student Section:
-          <select id="typee" name="section" value={studentCollection.sectionName}>
-  <option value="" selected></option>
-  {levSec.map((card, key) => (
-    card.sections.map((section, key2) => (
-      <option key={key2} value={section.id}>
-        {section.sectionName} {section.id}
-        {console.log("sec",{sectionName})}
-      </option>
-    ))
-  ))}
-</select>
+          {console.log("sections",sectionName)}
+          <Multiselect id="typee" name="sectionName"  options={options} selectedValues={selectedValues[0]} onSelect={onSelect}
+          onRemove={onRemove}
+          displayValue="sectionName" selectionLimit={1}
+        ></Multiselect>
+        {console.log("sectionn",selectedValues[0])}
+        </label>
 
 
-          </label>
+          
 
           <br />
         
           
-          <input type="submit" className='button colle-btn'></input>
+          <input type="submit" className='button colle-btn'  ></input>
           <input type="submit" value='close' onClick={()=>(window.location.reload())} className='button colle-btn'></input>
           <br />
         </form>)}
