@@ -1,0 +1,153 @@
+.main-container-login{
+   
+    background-image: url("./school.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 61rem;
+    /* background-repeat: no-repeat; */
+    background-size: cover;
+    background-position: center center;
+    
+    object-fit: cover;
+    /* filter: brightness(50%); */
+  
+    
+}
+
+.adminlogin-box-container {
+
+    width: 500px;
+    height:350px;
+    margin: 60px auto;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px #017F94 ;
+    background-color:#2599db;
+    text-align: center;
+    filter: brightness(80%);
+  
+    border: 1em #EE8B3A;
+
+    
+}
+
+.title-login {
+    font-size: 30px;
+    margin-bottom: 1em;
+    margin-top: 0.2em;
+    color: #EE8B3A;
+    text-shadow: 0 0 5px;
+    text-align: center;
+  }
+  
+  .label-login{
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    display: block;
+    text-align: left;
+    color: #EE8B3A;
+    font-size: 20px;
+    font-weight: 800;
+  }
+  
+  .input-login[type="text"],
+  .input-login[type="email"],
+  .input-login[type="password"] {
+    width: 80%;
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 5px;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    font-size: 20px;
+    color: #EE8B3A;
+    background-color: white;
+  
+  }
+  
+  .input-login[type="email"]:focus,
+  .input-login[type="text"]:focus,
+  .input-login[type="password"]:focus {
+    border-bottom: 2px solid #EE8B3A;
+    outline: none;
+  }
+  
+  .button-login[type="submit"] {
+    width: 50%;
+    padding: 1em;
+    background-color: #EE8B3A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.5s ease;
+    margin-top: 1em;
+  }
+  
+  .button-login[type="submit"] :hover {
+    background-color: white;
+    border: 1px solid #EE8B3A;
+    border-radius: 5px;
+    color: #EE8B3A;
+  }
+  .btn-login{
+    text-align: right;
+  }
+  
+  .href-login {
+    text-align: right;
+    margin-top: 1em;
+    font-size: 16px;
+    color: #EE8B3A;
+  }
+  
+  .href-login a {
+    color: #EE8B3A;
+    transition: all 0.5s ease;
+  }
+  
+  .href-login a:hover {
+    color: white;
+  }
+  @media only screen and (max-width: 600px) {
+    
+  
+    .title-login {
+      font-size: 30px;
+      margin-bottom: 2em;
+    }
+  
+    .label-login {
+      font-weight: bold;
+      margin-bottom: 0.5em;
+      display: block;
+    }
+  
+    .input-login[type="email"],
+    .input-login[type="password"] {
+      width: 100%;
+      padding: 1em;
+      margin-bottom: 1em;
+      border-radius: 5px;
+      border: none;
+      border-bottom: 2px solid #ddd;
+      font-size: 16px;
+    }
+  
+    .input-login[type="email"]:focus,
+    .input-login[type="password"]:focus {
+      outline: none;
+    }
+  
+    .button-login[type="submit"] {
+      width: 100%;
+      padding: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.5s ease;
+    }
+}

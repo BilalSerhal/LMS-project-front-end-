@@ -1,5 +1,9 @@
+
 .class-body{
+  margin-left: 100px;
   width: 90%;
+  margin-top: -50px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .class-headline{
     text-align: center;
@@ -13,6 +17,7 @@
   font-size: 30px;
 }
 .class-form{
+  
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -22,7 +27,20 @@
   padding: 5px;
   margin: 5px;
   border-radius: 15px;
+  border: 0.5px solid 
 }
+.class-inputR{
+ width: 98%;
+ padding-left: 10px;
+}
+.class-button-close{
+  background-color: transparent;
+  border: none;
+  padding-top:10px ;
+  
+
+}
+
 .class-section {
   overflow:auto;
     width: 100%;
@@ -54,6 +72,15 @@
     border: none;
     cursor: pointer;
     border-radius: 15px;
+  }
+  .class-buttonRR{
+    padding: 5px;
+    background-color: #2599bd;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+    margin-left: 150px;
+    margin-top: 5px;
   }
 
   
@@ -111,108 +138,14 @@
   .row {
     height: 60px;
   }
-  /* .edit-icon{
-      width: 2.5rem;
-  }
-  .edit-section{
-    width:70% ;
-    padding-left: 500px;
-  }
-  
-  .edit-section input {
-    border: none;
-    outline: none;
-    height: 45px;
-    width: 100%;
-    margin: 10px 0;
-    -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.25);
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.25);
-    padding-left: 15px;
-  }
-  
-  
-  .edit-section input::-webkit-input-placeholder {
-    color: #ac9784;
-    text-transform: uppercase;
-    font-size: 16px;
-  }
-  
-  .edit-section input:-ms-input-placeholder {
-    color: #ac9784;
-    text-transform: uppercase;
-    font-size: 16px;
-  }
-  
-  .edit-section input::-ms-input-placeholder {
-    color: #ac9784;
-    text-transform: uppercase;
-    font-size: 16px;
-  }
-  
-  .edit-section input::placeholder {
-    color: #ac9784;
-    text-transform: uppercase;
-    font-size: 16px;
-  }
-  
-  
-  .edit-section .btn-contact {
-    border: none;
-    border-radius: 30px;
-    background-color: #ef4444;
-  
-    cursor: pointer;
-    color: #fff;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: 700;
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-      Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
-      Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-    text-transform: uppercase;
-    text-align: center;
-    margin-top: 25px;
-    margin-bottom: 25px;
-  }
-  .csub_button {
-    text-align: center;
-  }
-  .btn-contact:hover {
-    background-color: #ff0000;
-  }
-  
-  .btn-contact:active {
-    background-color: #b70909;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-  }
-  .edit-section label {
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-      Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
-      Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-    font-weight: 700;
-    font-size: 16px;
-  } */
  
- 
-  
-  @media screen and (max-width: 1024px) {
-    .name {
-      padding-left: 10px;
-      width: 50%;
-      text-align: left;
-    }
-    /* .edit-section{
-      width:90% ;
-      padding-left: 150px;
-    } */
     .class-table {
       width: 80%;
       border: 1px solid white;
       margin: 50px;
       
     }
-  }
+  
   @media (max-width: 768px) {
      .class-headline{
       font-size: 30px;
@@ -234,7 +167,7 @@
     }
     .class-input{
       padding: 5px;
-      margin: 5px;
+      margin-left: 70px;
     }
     
     .class-image{
@@ -243,6 +176,13 @@
     .class-td{
       font-size: 15px;
     }
-  
+    .class-buttonRR{
+      margin-left: 133px;
+    }
+    .class-body{
+      margin-top: 0;
+      margin-left: 0px;
+    }
+   
    
 }

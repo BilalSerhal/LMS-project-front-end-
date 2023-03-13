@@ -32,7 +32,7 @@ return (
         <div className='dashboard_main'>
           <div className='dashboard'>
             <img className='img_dashboard' src={presentation} alt=''/>
-            <div className='text'><Link to="/teachers">Students</Link></div>
+            <div className='text'><Link to="/StudentSuperAdmin">Students</Link></div>
         </div>
         </div>
         <div className='dashboard_main'>
@@ -50,13 +50,13 @@ return (
         <div className='dashboard_main'>
         <div className='dashboard'>
             <img className='img_dashboard' src={course} alt=''/>
-            <div className='text'><Link to="/courses">Courses</Link></div>
+            <div className='text'><Link to="/Course">Courses</Link></div>
             </div>
         </div>
         <div className='dashboard_main'>
         <div className='dashboard'>
             <img className='img_dashboard' src={attendance} alt=''/>
-            <div className='text'><Link to="/attendence">Attendances</Link></div>
+            <div className='text'><Link to="/attendances">Attendances</Link></div>
             </div>
         </div>
     </div>
@@ -86,7 +86,7 @@ const MenuBar = ({ menubar }) => {
 				<Link to="/">Teachers</Link>
 			</button>
             <button className="navmenu-menu">
-				<Link to="/">Students</Link>
+				<Link to="/StudentSuperAdmin">Students</Link>
 			</button>
 			<button className="navmenu-menu">
 				<Link to="/levels">Classes</Link>
@@ -95,7 +95,10 @@ const MenuBar = ({ menubar }) => {
 				<Link to="/sections">Sections</Link>
 			</button>
 			<button className="navmenu-menu">
-				<Link to="/contact">Courses</Link>
+				<Link to="/Course">Courses</Link>
+			</button>
+            <button className="navmenu-menu">
+				<Link to="/attendances">Attendances</Link>
 			</button>
 		</div>
 	);

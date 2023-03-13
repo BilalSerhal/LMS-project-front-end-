@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Multiselect } from "multiselect-react-dropdown";
 import "./sections.css";
 import delet from "./image/icons8-trash-can-30.png";
-import search from "./image/icons8-search-50.png";
-import close from "./image/icons8-close-window-48.png";
 import edit from "./image/icons8-pencil-64.png";
 import add from "./image/icons8-add-new-64.png";
+import close from "./image/icons8-close-window-48.png";
 import axios from "axios";
+import Header from "../../components/Header/Header";
+import { Navbar, MenuBar } from "../../components/NavBar/Navbar";
+
 
 const Sections = () => {
+  const [menubar, setMenuBar] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [addMode, setAddMode] = useState(false);
   const [data, setData] = useState([]);
@@ -16,6 +20,9 @@ const Sections = () => {
 
   const [formData, setFormData] = useState({
     sectionName: "",
+    capacity: "",
+    levelIds: [],
+    
      });
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -62,7 +69,7 @@ const Sections = () => {
   };
   
   const handleAdd = () => {
-    setAddMode(!addMode);
+    setAddMode(true);
   };
 
   const handleUpdate = async (event) => {
@@ -78,8 +85,62 @@ const Sections = () => {
       console.error(error);
     }
   };
+   
+  const [options, setOptions] = useState([]);
+  const [selectedValues, setSelectedValues] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/levels")
+      .then((response) => {
+        setOptions(response.data); // assuming response is an array of objects with a name property
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+  const onSelect = (selectedList, selectedItem) => {
+    setSelectedValues(selectedList);
+  };
+
+  const onRemove = (selectedList, removedItem) => {
+    setSelectedValues(selectedList);
+  };
+
+  const handleAddItem = async (event) => {
+    event.preventDefault();
+    const levelIds = selectedValues.map((level) => level.id);
+    console.log(levelIds);
+    const { sectionName, capacity } = formData;
+
+    try {
+      const response = await axios.post(`${url}`, {
+        sectionName,
+        capacity,
+        levelIds,
+      });
+      
+      setData([...data, response.data]);
+      setFormData({ sectionName: "", capacity: "" });
+      setSelectedValues([]);
+      setAddMode(false);
+      window.location.reload(); 
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const handleClose = () => {
+    setAddMode(false);
+    setEditMode(false);
+  };
+  
 
   return (
+    <>
+    <div>
+        <Header />
+        <div className="app-body">
+          <Navbar setMenuBar={setMenuBar} menubar={menubar} />
+          <MenuBar menubar={menubar} />
     <div className="section-body">
       <h1 className="section-headline">Sections</h1>
       <div className="head-div">
@@ -91,15 +152,51 @@ const Sections = () => {
         </div>
       </div>
       <div className='section-form'>
-          {/* <form ref={form} >
-          <input className='class-input' type='text'placeholder='Class Name'/>
-          </form> */}
+      {addMode && (
+          <form onSubmit={handleAddItem} ref={form}>
+            <input
+              className="section-input"
+              type="text"
+              placeholder="Section Name"
+              name="sectionName"
+              value={formData.sectionName}
+              onChange={handleChange}
+            ></input>
+            <input
+              className="section-input"
+              type="text"
+              placeholder="Capacity"
+              name="capacity"
+              value={formData.capacity}
+              onChange={handleChange}
+            ></input>
+
+            <Multiselect
+              className="section-inputR"
+              options={options}
+              selectedValues={selectedValues}
+              onSelect={onSelect}
+              onRemove={onRemove}
+              displayValue="levelName"
+             
+            />
+            <button type="submit" className="section-buttonRR">
+              SAVE
+            </button>
+            <button className="class-button-close" onClick={handleClose} >
+              <img src={close} alt="" className="class-image" />
+              </button>
+          </form>
+          )}
            {editMode && (
           <form onSubmit={handleUpdate} ref={form} >
-          <input className='section-input' type='text' placeholder='Class Name' name="sectionName" value={formData.sectionName}
+          <input className='section-input' type='text' placeholder='Section Name' name="sectionName" value={formData.sectionName}
                 onChange={handleChange}></input>
                 <button type="submit" className="section-buttonR">
                   SAVE
+                </button>
+                <button className="class-button-close" onClick={handleClose} >
+                 <img src={close} alt="" className="class-image" />
                 </button>
           </form>   
            )}
@@ -139,26 +236,12 @@ const Sections = () => {
         </table>
       </div>
     </div>
+    </div>
+    </div>
+    </>
   );
 };
 
 export default Sections;
 
-// const cards = [
-//   {
-//     id: 1,
-//     sectionName :"A"
-//   },
-//   {
-//     id: 2,
-//     sectionName :"B"
-//   },
-//   {
-//     id: 3,
-//     sectionName :"C"
-//   },
-//   {
-//     id: 4,
-//     sectionName :"D"
-//   },
-// ]
+
