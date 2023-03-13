@@ -9,16 +9,10 @@ import presentation from './image/presentation.png';
 import section from './image/sections.png';
 import course from './image/courses.png';
 import menu from "./image/Menu.png";
-import logo from "./image/logo.png"
 
 const Navbar = ({ setMenuBar, menubar }) => {
 return (
-    <div className='collaborate'>
-
-        <div className="main_logo">
-        <img className="logo" src={logo} alt="logo" />
-      </div>
-      <div className='container'>
+    <div className='container'>
         <div className='navbar-container'>
         <div className='navbar'>
             
@@ -38,7 +32,7 @@ return (
         <div className='dashboard_main'>
           <div className='dashboard'>
             <img className='img_dashboard' src={presentation} alt=''/>
-            <div className='text'><Link to="/teachers">Students</Link></div>
+            <div className='text'><Link to="/StudentSuperAdmin">Students</Link></div>
         </div>
         </div>
         <div className='dashboard_main'>
@@ -56,18 +50,16 @@ return (
         <div className='dashboard_main'>
         <div className='dashboard'>
             <img className='img_dashboard' src={course} alt=''/>
-            <div className='text'><Link to="/courses">Courses</Link></div>
+            <div className='text'><Link to="/Course">Courses</Link></div>
             </div>
         </div>
         <div className='dashboard_main'>
         <div className='dashboard'>
             <img className='img_dashboard' src={attendance} alt=''/>
-            <div className='text'><Link to="/attendence">Attendances</Link></div>
+            <div className='text'><Link to="/attendances">Attendances</Link></div>
             </div>
         </div>
     </div>
-    <br/>
-    
     <div className='dashboard_main'>
         <div className='dashboard'>
             <img className='img_dashboard' src={power} alt=''/>
@@ -80,7 +72,6 @@ return (
 						<img src={menu} alt="menu" className="navmenu" onClick={() => setMenuBar(!menubar)}/>
 					</button>
 				</div>
-                </div>
  </div>
 );
 };
@@ -92,19 +83,22 @@ const MenuBar = ({ menubar }) => {
 				<Link to="/">Dashboard</Link>
 			</button>
 			<button className="navmenu-menu">
-				<Link to="/services">Teachers</Link>
+				<Link to="/">Teachers</Link>
 			</button>
             <button className="navmenu-menu">
-				<Link to="/services">Students</Link>
+				<Link to="/StudentSuperAdmin">Students</Link>
 			</button>
 			<button className="navmenu-menu">
-				<Link to="/projects">classes</Link>
+				<Link to="/levels">Classes</Link>
 			</button>
 			<button className="navmenu-menu">
-				<Link to="/clients">Sections</Link>
+				<Link to="/sections">Sections</Link>
 			</button>
 			<button className="navmenu-menu">
-				<Link to="/contact">Courses</Link>
+				<Link to="/Course">Courses</Link>
+			</button>
+            <button className="navmenu-menu">
+				<Link to="/attendances">Attendances</Link>
 			</button>
 		</div>
 	);

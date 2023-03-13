@@ -170,28 +170,72 @@ hr{
         gap: 20px;
         width: 100%;
         justify-content: center;
-        background-color:rgba(0, 0, 0, 0.749) !important; 
+        background-color:rgba(0, 0, 0, 0.749); 
         z-index: 10000;
         top:150px;
+        margin-top: -150px;
         
-        
+        margin-left: -302px;
 }  
 
-    .textForm{
+  #typee{
+border-radius: 10px;
+background-color: white;
+color: black!important;
+
+  }
+    .textForm1{
      width: 150px;
      border-color:#0a4d61 ;
      height:20px;
      border-radius: 10px;
+     color:rgba(255, 255, 255, 0.962)!important; 
+     
     }
+    .textForm2{
+      width: 150px;
+      border-color:#0a4d61 ;
+      height:20px;
+      border-radius: 10px;
+      color:rgba(255, 255, 255, 0.962)!important; 
+      
+     }
+     .textForm3{
+      width: 150px;
+      border-color:#0a4d61 ;
+      height:20px;
+      margin-left: 45px;
+      border-radius: 10px;
+      color:rgba(255, 255, 255, 0.962)!important; 
+      
+     }
+     .textForm4{
+      width: 150px;
+      border-color:#0a4d61 ;
+      height:20px;
+      margin-left: 10px;
+      border-radius: 10px;
+      color:rgba(255, 255, 255, 0.962)!important; 
+      
+     }
+     .textForm5{
+      width: 150px;
+      border-color:#0a4d61 ;
+      height:20px;
+      border-radius: 10px;
+      color:rgba(255, 255, 255, 0.962)!important; 
+      
+     }
 
       .alignForm{
         align-self: self-start;
         margin-left: 150px;
          color:rgba(255, 255, 255, 0.962)!important; 
       }
+
       .firstt-formm{
-        margin-top: 120px;
-        margin-bottom: 150px;
+         margin-top: 150px; 
+        
            
             border-radius: 10px;
             background-color: #14738f;
@@ -199,12 +243,11 @@ hr{
             display: flex;
             flex-direction: column;
             position: relative;
-            width:40%;
+            width:30%;
             z-index: 10;
             top: 1px;
-            margin-left: -350px;
-            
-            /* display: none;  */
+            margin-bottom: 250px;
+           
         } 
         .second-formm{
           border-radius: 10px;
@@ -216,7 +259,11 @@ hr{
           width:40%;
            z-index: 10;
           top: 1px; 
-          margin-left: -350px;
+          margin-top: 150px;
+          margin-left: -30px;
+          margin-bottom: 500px;
+
+          
         
           }
           .levsecc{
@@ -238,18 +285,58 @@ hr{
 
 
 @media screen and (max-width: 768px) {
+  
+    .lol{
+      margin-left: 25px;
+    }
 
+     .childSection{
+      font-size: 15px!important;
+      width: 27%;
+     }
  
+    .first-buttons{
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
 
+    .coll-btn-select{
+      width:100% !important;
+      align-items: center;
+      
+    }
+
+    .coll-btns{
+      width: 45%;
+    }
+
+    .formm{
+      font-size: 25px;
+      position: fixed;
+      line-height: 30px;
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      /* justify-content: center; */
+      background-color:rgba(0, 0, 0, 0.749); 
+      z-index: 100;
+      top:150px;
+      /* margin-top: -150px;*/
+      
+      margin-left: -30px; 
+}  
 
 
     .mappingdata{
         display: grid;
-        gap: 40px ;
+        /* gap: 40px ; */
         grid-template-columns: 1fr ;
         padding: 10px;
         margin: auto auto;
-        width: 95%;
+        width: 30%;
+        margin:0px;
       }
       .formm{
 
@@ -265,20 +352,67 @@ hr{
       
       .firstt-formm{
         /* margin-left: 1%; */
-        width: 100%;
+        width: 80%;
         /* margin-left: 80%; */
     
     
     }
     .second-formm{
-         /* margin-left: 1%; */
-         width: 100%;
+         display: flex;
+         flex-direction: column;
+         width: 75%;
+         margin-left: 30px;
         
         }
-        
-    .coll-btn-select{
-      width:80%;
-    }
+        .alignForm{
+          margin-left: 3%;
+        }
+        .afterAlign{
+          
+        }
+        .textForm1{
+          width: 150px;
+          border-color:#0a4d61 ;
+          height:20px;
+          border-radius: 10px;
+          color:rgba(255, 255, 255, 0.962)!important; 
+         
+         }
+         .textForm2{
+           width: 150px;
+           border-color:#0a4d61 ;
+           height:20px;
+           border-radius: 10px;
+           color:rgba(255, 255, 255, 0.962)!important; 
+           
+          }
+          .textForm3{
+           width: 150px;
+           border-color:#0a4d61 ;
+           height:20px;
+           border-radius: 10px;
+           color:rgba(255, 255, 255, 0.962)!important; 
+           
+          }
+          .textForm4{
+           width: 150px;
+           border-color:#0a4d61 ;
+           height:20px;
+           margin-left: 10px;
+           border-radius: 10px;
+           color:rgba(255, 255, 255, 0.962)!important; 
+           
+          }
+          .textForm5{
+           width: 150px;
+           border-color:#0a4d61 ;
+           height:20px;
+           border-radius: 10px;
+           color:rgba(255, 255, 255, 0.962)!important; 
+           
+          
+          }
+  
     .searchStudentButton{
       display: none;
     }

@@ -26,7 +26,7 @@
     text-align: center;
     filter: brightness(80%);
   
-    border: 1em #EE8B3A;
+    border: 1em #036ca9;
 
     
 }
@@ -35,7 +35,7 @@
     font-size: 30px;
     margin-bottom: 1em;
     margin-top: 0.2em;
-    color: #EE8B3A;
+    color: #093957;
     text-shadow: 0 0 5px;
     text-align: center;
   }
@@ -60,7 +60,7 @@
     border: none;
     border-bottom: 2px solid #ddd;
     font-size: 20px;
-    color: #EE8B3A;
+    color: #093957;
     background-color: white;
   
   }
@@ -68,28 +68,30 @@
   .input-login[type="email"]:focus,
   .input-login[type="text"]:focus,
   .input-login[type="password"]:focus {
-    border-bottom: 2px solid #EE8B3A;
+    border-bottom: 2px solid #dce4e9;
+    color: #093957;
     outline: none;
   }
   
   .button-login[type="submit"] {
     width: 50%;
     padding: 1em;
-    background-color: #EE8B3A;
+    background-color:#093957;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    transition: all 0.5s ease;
+    
     margin-top: 1em;
   }
   
-  .button-login[type="submit"] :hover {
-    background-color: white;
-    border: 1px solid #EE8B3A;
+  .button-login[type="submit"]:hover {
+    background-color:#98d4e6!important;
+    border: 1px solid blue;
     border-radius: 5px;
-    color: #EE8B3A;
+    color: white;
+    cursor: pointer;
   }
   .btn-login{
     text-align: right;
@@ -129,7 +131,7 @@
   
     .input-login[type="email"],
     .input-login[type="password"] {
-      width: 100%;
+      width: 80%;
       padding: 1em;
       margin-bottom: 1em;
       border-radius: 5px;
@@ -144,7 +146,7 @@
     }
   
     .button-login[type="submit"] {
-      width: 100%;
+      width: 50%;
       padding: 1em;
       border: none;
       border-radius: 5px;
@@ -153,4 +155,13 @@
       transition: all 0.5s ease;
     }
  
+}
+
+@media screen and (max-width: 768px) {
+  .adminlogin-box-container {
+    width: 300px;
+  }
+  /* .label-login{
+    width: 150px;
+  } */
 }

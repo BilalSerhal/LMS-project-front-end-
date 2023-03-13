@@ -6,15 +6,15 @@ import { Component, useState,useEffect } from "react";
 import axios from 'axios';
 import {Multiselect} from "multiselect-react-dropdown";
 import { Select } from '@material-ui/core';
+import Header from "../../components/Header/Header";
+import { Navbar, MenuBar } from "../../components/NavBar/Navbar";
 
 function StudentSuperAdmin(){
 
 
+  const [menubar, setMenuBar] = useState(false);
 
-
-  const dropdownStyles = {
-    fontSize: "34px",
-    };
+  
 
 const [levelName, setLevel] = useState('');
 const [sectionName, setSection] = useState('');
@@ -75,7 +75,7 @@ useEffect(()=>{
 
 
 const onSelectLevel = (selectedListLevel, selectedItem) => {
-  setSelectedValuesLevel(selectedListLevel);
+  setSelectedValuesLevel(selectedListLevel[0]);
 };
 
 const onRemoveLevel = (selectedListLevel, removedItem) => {
@@ -83,7 +83,7 @@ const onRemoveLevel = (selectedListLevel, removedItem) => {
 };
 
 const onSelect = (selectedList, selectedItem) => {
-  setSelectedValues(selectedList);
+  setSelectedValues(selectedList[0]);
 };
 
 const onRemove = (selectedList, removedItem) => {
@@ -269,6 +269,11 @@ const selectedStudent = async(e,sectionName, levelName) => {
     return (
         <>
           
+      <div>
+        <Header />
+        <div className="app-body">
+          <Navbar setMenuBar={setMenuBar} menubar={menubar} />
+          <MenuBar menubar={menubar} />
            <div className='lol'>
                 <div className='first-buttons'>  
 
@@ -277,10 +282,10 @@ const selectedStudent = async(e,sectionName, levelName) => {
                     title=" Select Sections"
                     position="right"
                     buttonVariant="primary"
-                    style={dropdownStyles}
+                    
                     >
                     {levSec.map((card,key) => (
-                      <Dropdown.Item key={key} style={dropdownStyles} name={levelName} className="childSection" value={card.id}>
+                      <Dropdown.Item key={key}  name={levelName} className="childSection" value={card.id}>
                        
                        
                         {card.levelName} 
@@ -288,7 +293,7 @@ const selectedStudent = async(e,sectionName, levelName) => {
                     <Dropdown.Submenu position="right"   >
                       {card.sections.map((section,key2)=>
 
-                    <Dropdown.Item key={key2} onClick={(e)=>selectedStudent(e,section.sectionName, card.levelName)} value={section.id}>
+                    <Dropdown.Item className="childSection" key={key2} onClick={(e)=>selectedStudent(e,section.sectionName, card.levelName)} value={section.id}>
                     <h3 name='sectionName'>Sections {section.sectionName} {section.id}</h3>
                     </Dropdown.Item>)}
                     </Dropdown.Submenu>
@@ -375,23 +380,23 @@ const selectedStudent = async(e,sectionName, levelName) => {
           <legend className='legendd'>Add Student Info</legend>
           <br />
 
-          <label className='alignForm'>First name:<input className='textForm alignForm' type='text' value={studentCollection.firstName} name="firstName" onChange={changingParams} required></input></label>
+          <label className='alignForm'>First name:<input className='textForm1 ' type='text' value={studentCollection.firstName} name="firstName" onChange={changingParams} required></input></label>
           <br/>
-          <label className='alignForm'>Last name <input className='textForm alignForm' type='text' name="lastName" value={studentCollection.lastName} onChange={changingParams} required></input></label>
+          <label className='alignForm'>Last name <input className='textForm2 ' type='text' name="lastName" value={studentCollection.lastName} onChange={changingParams} required></input></label>
           <br />
-          <label className='alignForm'>Email <input className='textForm alignForm' type='email' name="email" value={studentCollection.email} onChange={changingParams} required></input></label>
+          <label className='alignForm'>Email <input className='textForm3 ' type='email' name="email" value={studentCollection.email} onChange={changingParams} required></input></label>
           <br />
-          <label className='alignForm'>Password <input className='textForm alignForm' type='text' name="password" value={studentCollection.password} onChange={changingParams} required></input></label>
+          <label className='alignForm'>Password <input className='textForm4 ' type='text' name="password" value={studentCollection.password} onChange={changingParams} required></input></label>
           <br />
           
           
-          <label className='alignForm'>Phone number <input className='textForm alignForm' type='text' name="phoneNumber" value={studentCollection.phoneNumber} onChange={changingParams} required></input></label>
+          <label className='alignForm'>Phone num <input className='textForm5 ' type='text' name="phoneNumber" value={studentCollection.phoneNumber} onChange={changingParams} required></input></label>
           <br />
           <label for="type" className='alignForm'>Student Level:
-
+            
           <Multiselect id="typee" name="levelName"  options={optionsLevel} selectedValues={selectedValuesLevel[0]} onSelect={onSelectLevel}
           onRemove={onRemoveLevel}
-          displayValue="levelName"
+          displayValue="levelName" selectionLimit={1}
         ></Multiselect>
         {console.log("level",selectedValuesLevel[0])}
 
@@ -403,7 +408,7 @@ const selectedStudent = async(e,sectionName, levelName) => {
           <Multiselect id="typee" name="sectionName"  options={options} selectedValues={selectedValues[0]} onSelect={onSelect}
           onRemove={onRemove}
           displayValue="sectionName" selectionLimit={1}
-        ></Multiselect>
+        >-</Multiselect>
         {console.log("sectionn",selectedValues[0])}
         </label>
 
@@ -425,15 +430,15 @@ const selectedStudent = async(e,sectionName, levelName) => {
           <legend className='legendd' id='update-btn'>Update Student Info</legend>
           <br />
 
-          <label className='alignForm'>Enter student first name:<input type='text' value={firstName} name="firstName" onChange={(e) => setFirstName(e.target.value)} required></input></label>
+          <label className='alignForm'>Enter student first name:<input className="afterAlign"type='text' value={firstName} name="firstName" onChange={(e) => setFirstName(e.target.value)} required></input></label>
           <br />
-          <label className='alignForm'>Enter student last name <input type='text' value={lastName} name="lastName" onChange={(e) => setLastName(e.target.value)} required></input></label>
+          <label className='alignForm'>Enter student last name <input type='text' className="afterAlign" value={lastName} name="lastName" onChange={(e) => setLastName(e.target.value)} required></input></label>
           <br />
-          <label className='alignForm'>Enter student Email <input type='email' value={email} name="email" onChange={(e) => setEmail(e.target.value)} required></input></label>
+          <label className='alignForm'>Enter student Email <input type='email' className="afterAlign" value={email} name="email" onChange={(e) => setEmail(e.target.value)} required></input></label>
           <br />
-          <label className='alignForm'>Enter student password <input type='text' value={password} name="password" onChange={(e) => setPassword(e.target.value)} required></input></label>
+          <label className='alignForm'>Enter student password <input type='text' className="afterAlign" value={password} name="password" onChange={(e) => setPassword(e.target.value)} required></input></label>
           <br />
-          <label className='alignForm'>Enter student phone number <input type='text' value={phoneNumber} name="phoneNumber" onChange={(e) => setPhoneNumber(e.target.value)} required></input></label>
+          <label className='alignForm'>Enter student phone number <input type='text' className="afterAlign" value={phoneNumber} name="phoneNumber" onChange={(e) => setPhoneNumber(e.target.value)} required></input></label>
           <br />
          
           
@@ -450,7 +455,8 @@ const selectedStudent = async(e,sectionName, levelName) => {
     
     
               </div>
-          
+          </div>
+          </div>
         </>
       )
     
