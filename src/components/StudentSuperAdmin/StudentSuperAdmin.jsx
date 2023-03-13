@@ -64,6 +64,7 @@ const [selectedValuesLevel, setSelectedValuesLevel] = useState([]);
 
 useEffect(()=>{  
   loadLevelSEction()
+  
      },[] );
 
 
@@ -115,12 +116,13 @@ const handleEditStudent= async(id)=>{
 
   const SearchbyName=async(e,search)=>{
     e.preventDefault();
+   
     try{
-      
-      console.log("fn=",search)
-      const response=await axios.get(`http://localhost:8000/api/userLMS/getUserbyName/{search}`)
-      console.log("searchresp",response)
-    }
+     
+     
+      }
+    
+  
     catch(error){
       console.log(error)
     }
@@ -178,6 +180,18 @@ const loadLevelSEction=()=>{
                     .catch((error)=>{ 
                              console.log(error);
                                 })
+}
+
+
+
+const getterbyname=async(name)=>{
+ const response= await axios.get(`http://localhost:8000/api/userLMS/getUserbyName/${name}`)
+ console.log( response.data)
+ setStudents(response.data)
+
+
+
+
 }
 
 const changingParams=(e)=>{
@@ -284,17 +298,18 @@ const selectedStudent = async(e,sectionName, levelName) => {
                       
                       
 
-                      <form className='searchStudentButton' action="/" method="get" >
+                      
         
         <input
             type="text"
             id="header-search"
             placeholder="Search for Student"
-            name="searchStudent" value={search} onChange={(e) => setSearch(e.target.value)}/>
+            name="searchStudent" value={search} onChange={(e) => setSearch(e.target.value)}
+            />
         
-        <button type="submit"  className='button search-btns' onClick={(e)=>SearchbyName(e,search)}>Search</button>
+        <button type="submit"  className='button search-btns' onClick={()=>getterbyname(search)}>Search</button>
         
-    </form>
+  
         
           
                        <button className='button  coll-btns' id='add-btn' onClick={handleAddStudent} 
