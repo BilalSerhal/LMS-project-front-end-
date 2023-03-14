@@ -1,5 +1,5 @@
 import React from 'react';
-import './Navbar.css';
+import './Navbar-pages.css';
 import { Link } from "react-router-dom";
 import attendance from './image/attendance.png';
 import classroom from './image/classroom.png';
@@ -10,7 +10,12 @@ import section from './image/sections.png';
 import course from './image/courses.png';
 import menu from "./image/Menu.png";
 
+
+
+
+
 const Navbar = ({ setMenuBar, menubar }) => {
+    
 return (
     <div className='container'>
         <div className='navbar-container'>
@@ -19,7 +24,7 @@ return (
         <div className='dashboard_main'>
             <div className='dashboard'>
             <img  className='img_dashboard' src={monitor}alt=''/>
-            <div className='text'><Link to="/">Dashboard</Link></div>
+            <div className='text'><Link to="/home">Dashboard</Link></div>
             </div>
            
         </div>
@@ -32,7 +37,7 @@ return (
         <div className='dashboard_main'>
           <div className='dashboard'>
             <img className='img_dashboard' src={presentation} alt=''/>
-            <div className='text'><Link to="/StudentSuperAdmin">Students</Link></div>
+            <div className='text'><Link to="/students">Students</Link></div>
         </div>
         </div>
         <div className='dashboard_main'>
@@ -54,16 +59,16 @@ return (
             </div>
         </div>
         <div className='dashboard_main'>
-        <div className='dashboard'>
+          <div className='dashboard'>
             <img className='img_dashboard' src={attendance} alt=''/>
             <div className='text'><Link to="/attendances">Attendances</Link></div>
             </div>
+         </div>
         </div>
-    </div>
-    <div className='dashboard_main'>
-        <div className='dashboard'>
-            <img className='img_dashboard' src={power} alt=''/>
-            <div className='text'><Link to="/">Log out</Link></div>
+       <div className='dashboard_main'>
+          <div className='dashboard'>
+             <img className='img_dashboard' src={power} alt=''/>
+            <div className='text'><Link to="/login">Log out</Link></div>
             </div>
         </div>
         </div>
@@ -80,13 +85,13 @@ const MenuBar = ({ menubar }) => {
 	return (
 		<div className={!menubar ? "navhidden_hidden" : "navhidden_show"} menubar>
 			<button className="navmenu-menu">
-				<Link to="/">Dashboard</Link>
+				<Link to="/home">Dashboard</Link>
 			</button>
 			<button className="navmenu-menu">
-				<Link to="/">Teachers</Link>
+				<Link to="/teachers">Teachers</Link>
 			</button>
             <button className="navmenu-menu">
-				<Link to="/StudentSuperAdmin">Students</Link>
+				<Link to="/students">Students</Link>
 			</button>
 			<button className="navmenu-menu">
 				<Link to="/levels">Classes</Link>
@@ -97,8 +102,11 @@ const MenuBar = ({ menubar }) => {
 			<button className="navmenu-menu">
 				<Link to="/Course">Courses</Link>
 			</button>
-            <button className="navmenu-menu">
+      <button className="navmenu-menu">
 				<Link to="/attendances">Attendances</Link>
+			</button>
+      <button className="navmenu-menu">
+				<Link to="/login">logout</Link>
 			</button>
 		</div>
 	);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Header from "../../components/Header/Header";
-import { Navbar, MenuBar } from "../../components/NavBar/Navbar";
+import { Navbar, MenuBar } from "../../components/NavBar-pages/Navbar-pages";
 import { Multiselect } from "multiselect-react-dropdown";
 import "./levels.css";
 import delet from "./image/icons8-trash-can-30.png";

@@ -1,18 +1,19 @@
-.section{
-    margin-left: 4rem;
-    }
+
     
     .dropdownSection{
+        margin-left: 4rem;
     width: 12rem;
     background-color: #2599BD;
     border: 2px solid #2599BD;
     border-radius: 15px;
     color:white;
+    
     }
     
     
     .childSection{
     width:14rem;
+    font-size: 20px !important;
     }
 
     .attendances{
@@ -21,79 +22,24 @@
         justify-content: center;
     }
 
-
-    .table ul {
-        display: flex;
-        flex-direction: row;
-        width: 72rem;
-        justify-content: center;
-    }
-    .table li {
-        font-weight: bold;
-    
-        width: 24rem;
-        font-size: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid #2599bd;
-        height: 3rem;
-    }
-    .table {
-        width: 100rem;
-        display: flex;
-        justify-content: center;
-        height: 3rem;
-        margin-bottom: 16px;
-    }
-    
-    .tableStudent button {
-        width: 8rem;
-        cursor: pointer;
-    }
     .present {
         border :1px solid #2599bd;
         border-radius: 6px;
+        padding: 10px;
     }
     
     .absent {
         border :1px solid #2599bd;
         border-radius: 6px;
+        padding: 10px;
     }
     
     .late {
         border :1px solid #2599bd;
         border-radius: 6px;
+        padding: 10px;
     }
-    .table ul li {
-        background-color: #2599bd ;
-        color:white;
-    }
-    
-    .tableStudent ul {
-        display: flex;
-        flex-direction: row;
-        width: 72rem;
-        margin: 0;
-        justify-content: center;
-    }
-    .tableStudent li {
-        width: 24rem;
-        font-size: 18px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid #2599bd ;
-        height: 2rem;
-       
-    }
-    .tableStudent {
-        width: 100rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
+   
     .gradeAndSection{
         width: 26rem;
         display: flex;
@@ -134,8 +80,112 @@
         flex-direction: column;
         align-items: center;
     }
+    .attendance-section {
+        /* overflow:auto; */
+          width: 100%;
+          height: 100%;
+          /* margin: 50px; */
+          font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+            Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+            Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+          font-size: 20px;
+        }
+        .attendance-table {
+          width: 90%;
+          border: 1px solid white;
+          margin: 70px;
+          
+        }
+        .icon {
+          padding: 10px;
+        }
     
-    .tableStudent button:hover{
-        background-color: #2599bd;
+  .nameR1 {
+    padding-left: 40px;
+   }
+  .attendance-th {
+    border: 2px solid white;
+    background-color: #2599BD;
+    color: white;
+   
+    height: 40px;
+   
+  }
+  
+  .row1 :hover {
+    background-color: #98d4e6;
+  }
+  .attendance-tr {
+    border: 1px solid white;
+    
+  }
+  .attendance-td {
+    border: 2px solid white;
+    background-color: #ededed;
+    border-radius: 15px;
+    text-align: center;
+  }
+  .nameR {
+    padding-left: 10px;
+    width: 40% ;
+    text-align:center;
+  }
+  .nameRR{
+    width:10%;
+    text-align: center;
+  }
+ 
+ 
+  .row {
+    height: 60px;
+  }
+  @media screen and (max-width: 1024px) {
+    .nameR {
+      padding-left: 10px;
+      width: 50%;
+      text-align: left;
     }
     
+    .attendance-table {
+      width: 50%;
+      border: 1px solid white;
+      margin-top: 10rem;
+     margin-left: -10rem;
+      
+    }
+  }
+  @media (max-width: 768px) {
+   
+     .attendance-section {
+      padding-right: 20px;
+     }
+   
+    .nameR1{
+      padding-left: 65px;
+    }
+    .dropdownSection{
+       
+    width: 18rem;
+    background-color: #2599BD;
+    border: 2px solid #2599BD;
+    border-radius: 15px;
+    color:white;
+    margin-right: 3rem;
+        }
+        .attendances{
+            
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+    .createAttendance{
+        margin-top: 5rem;
+    }    
+    .attendance-table {
+        width: 50%;
+        border: 1px solid white;
+       margin-top: 10px;
+       margin-left: -15rem;
+        
+      }
+}

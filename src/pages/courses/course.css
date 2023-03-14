@@ -1,0 +1,13 @@
+.course-body{
+    margin-left: 100px;
+}
+.btn-course{
+    margin-top: 200px;
+}
+@media (max-width: 768px) {
+    .course-body{
+        margin-left: 10px;
+    }
+  
+  
+}

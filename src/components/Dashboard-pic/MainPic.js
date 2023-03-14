@@ -2,8 +2,8 @@ import React from "react";
 import "./MainPic.css";
 import mainPic from "./image/mainPic.jpg";
 import Header from "../../components/Header/Header";
-import { Navbar, MenuBar } from "../../components/NavBar/Navbar";
-import { useEffect, useState } from "react";
+import { Navbar, MenuBar } from "../NavBar-pages/Navbar-pages";
+import { useState } from "react";
 
 const MainPic = () => {
   const [menubar, setMenuBar] = useState(false);

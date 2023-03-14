@@ -7,7 +7,7 @@ import add from "./image/icons8-add-new-64.png";
 import close from "./image/icons8-close-window-48.png";
 import axios from "axios";
 import Header from "../../components/Header/Header";
-import { Navbar, MenuBar } from "../../components/NavBar/Navbar";
+import { Navbar, MenuBar } from "../../components/NavBar-pages/Navbar-pages";
 
 
 const Sections = () => {

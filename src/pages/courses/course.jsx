@@ -3,13 +3,8 @@ import { Delete  } from "@mui/icons-material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
-import { Navbar, MenuBar } from "../../components/NavBar/Navbar";
-
-
-
-
-
-
+import { Navbar, MenuBar } from "../../components/NavBar-pages/Navbar-pages";
+import './course.css';
 
 function Course() {
   const [menubar, setMenuBar] = useState(false);
@@ -48,7 +43,7 @@ function Course() {
   const coursePost = async () => {
     try{
       const response = await axios.post('http://localhost:8000/api/course',{subject});
-      if(response.statusText == "Created") {
+      if(response.statusText === "Created") {
         const newCourse = [...course,subject];
         setCourse(newCourse);
         setShowModal(false);
@@ -83,13 +78,13 @@ function Course() {
         <Navbar setMenuBar={setMenuBar} menubar={menubar} />
         <MenuBar menubar={menubar} />
 
-     
+     <div className="course-body">
     <div >
       
     <Container>
-    <Button onClick={e => setShowModal(true)} sx={{backgroundColor: '#2599BD' }}variant="contained" disableElevation>
+    <Button  onClick={e => setShowModal(true)} sx={{backgroundColor: '#2599BD' }}variant="contained" disableElevation>
     Add Course
-</Button>
+   </Button>
 
 
       <Grid container spacing={3} style={{ marginTop: "120px" }}>
@@ -152,7 +147,7 @@ function Course() {
 </form>
 </Modal>   
     </div>
-   
+    </div>
     </div>
     </div>
     </>

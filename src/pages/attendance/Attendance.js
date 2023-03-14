@@ -3,7 +3,7 @@ import "./Attendance.css";
 import Dropdown from "react-multilevel-dropdown";
 import axios from "axios";
 import Header from "../../components/Header/Header";
-import { Navbar, MenuBar } from "../../components/NavBar/Navbar";
+import { Navbar, MenuBar } from "../../components/NavBar-pages/Navbar-pages";
 
 function Attendance() {
   const [menubar, setMenuBar] = useState(false);
@@ -37,12 +37,12 @@ function Attendance() {
         console.log(error);
       });
   };
- 
+
   const [attendanceStatus, setAttendanceStatus] = useState([]);
   const handleStatus = async (id, status) => {
     console.log(id);
     console.log(status);
-  
+
     try {
       const response = await axios.post(
         `http://localhost:8000/api/attendance/createAttendance/${id}`,
@@ -52,7 +52,7 @@ function Attendance() {
           date: new Date().toISOString().slice(0, 10), // set current date
         }
       );
-  
+
       console.log(response.data);
       setAttendanceStatus(`${status} recorded for student ${id}`);
       console.log(response.data);
@@ -60,10 +60,6 @@ function Attendance() {
       console.log(error);
     }
   };
-  
-  
-
-
 
   return (
     <>
@@ -72,64 +68,94 @@ function Attendance() {
         <div className="app-body">
           <Navbar setMenuBar={setMenuBar} menubar={menubar} />
           <MenuBar menubar={menubar} />
-    <div className="attendances">
-      <div className="section">
-        <Dropdown
-          className="dropdownSection"
-          title=" Select Sections"
-          position="right"
-          buttonVariant="primary"
-          style={dropdownStyles}
-        >
-          {data.map((card) => (
-            <Dropdown.Item
-              key={card.id}
-              style={dropdownStyles}
-              className="childSection"
-            >
-              {card.levelName}
-              <Dropdown.Submenu position="right">
-                {card.sections.map((section) => (
-                  <Dropdown.Item key={card.id}>
-                    <h3 onClick={() => handleGetStudent(card.levelName, section.sectionName)}>
-                      Section {section.sectionName}
-                    </h3>
+          <div className="attendances">
+            <div className="section">
+              <Dropdown
+                className="dropdownSection"
+                title=" Select Sections"
+                position="right"
+                buttonVariant="primary"
+                style={dropdownStyles}
+              >
+                {data.map((card) => (
+                  <Dropdown.Item key={card.id} className="childSection">
+                    {card.levelName}
+                    <Dropdown.Submenu position="right">
+                      {card.sections.map((section) => (
+                        <Dropdown.Item key={card.id}>
+                          <h3
+                            onClick={() =>
+                              handleGetStudent(
+                                card.levelName,
+                                section.sectionName
+                              )
+                            }
+                          >
+                            Section {section.sectionName}
+                          </h3>
+                        </Dropdown.Item>
+                      ))}
+                    </Dropdown.Submenu>
                   </Dropdown.Item>
                 ))}
-              </Dropdown.Submenu>
-            </Dropdown.Item>
-          ))}
-        </Dropdown>
-      </div>
-      {tableMood && (
-        <div className="createAttendance">
-          <div className="gradeAndSection">
-            <div className="gradeAttendance">Grade 1</div>
-            <div className="sectionAttendance">Section A</div>
-          </div>
-          <div className="table">
-            <ul>
-              <li>Student Name</li>
-              <li>Attendance</li>
-            </ul>
-          </div>
-          <div className="tableStudent">
-            {students.map((student) => (
-              <ul key={student.id}>
-                <li>
-                  {student.firstName} {student.lastName}
-                </li>
-                <button className="present" onClick={() => handleStatus(student.id, 'present')} >Present</button>
-                <button className="absent" onClick={() => handleStatus(student.id, 'absent')} >Absent</button>
-                <button className="late" onClick={() => handleStatus(student.id, 'late')} >Late</button>
-              </ul>
-            ))}
+              </Dropdown>
+            </div>
+            {tableMood && (
+              <div className="createAttendance">
+                
+                <div className="attendance-section">
+                  <table className="attendance-table">
+                    <thead>
+                      <tr className="attendance-tr">
+                        <th className="attendance-th nameR">Student Name</th>
+                        <th className="attendance-th nameRR">Attendance</th>
+                        <th className="attendance-th nameRR">Attendance</th>
+                        <th className="attendance-th nameRR">Attendance</th>
+                      </tr>
+                    </thead>
+                    {students.map((student) => (
+                      <tbody key={student.id}>
+                        <tr className="attendance-tr row row1">
+                          <td className="attendance-td nameR1">
+                            {student.firstName} {student.lastName}
+                          </td>
+
+                          <td className="attendance-td icon">
+                            <button
+                              className="present"
+                              onClick={() =>
+                                handleStatus(student.id, "present")
+                              }
+                            >
+                              Present
+                            </button>
+                          </td>
+                          <td className="attendance-td icon">
+                            <button
+                              className="absent"
+                              onClick={() => handleStatus(student.id, "absent")}
+                            >
+                              Absent
+                            </button>
+                          </td>
+                          <td className="attendance-td icon">
+                            <button
+                              className="late"
+                              onClick={() => handleStatus(student.id, "late")}
+                            >
+                              Late
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    ))}
+                  </table>
+                </div>
+              </div>
+            )}
           </div>
         </div>
-      )}
-    </div>
-    </div>
-    </div>
+      </div>
     </>
   );
 }
