@@ -1,235 +1,471 @@
  import './TeacherSuperAdmin.css';
 import './images/student.png'
 import teacher from "./images/teacher.png"
+import  Dropdown from "react-multilevel-dropdown"
+import { Component, useState,useEffect } from "react";
+import axios from 'axios';
+import {Multiselect} from "multiselect-react-dropdown";
+import { Select } from '@material-ui/core';
+import Header from "../../components/Header/Header";
+import { Navbar, MenuBar } from "../../components/NavBar/Navbar";
+import { useNavigate } from "react-router-dom";
+
 function TeacherSuperAdmin(){
 
-    const data=[{
-        firstName:"Rasha",
-        lastName:"Badran",
-        email:"badran@gmail.com",
-        phoneNumber:'012332',
-        levelName:'Grade1',
-        sectionName:'A',
-        subject:'English'
-        
-    },
-    {
-        firstName:"Rasha",
-        lastName:"Badran",
-        email:"badran@gmail.com",
-        phoneNumber:'012332',
-        levelName:'Grade1',
-        sectionName:'A',
-        subject:'English'
-    },
-    {
-        firstName:"Rasha",
-        lastName:"Badran",
-        email:"badran@gmail.com",
-        phoneNumber:'012332',
-        levelName:'Grade1',
-        sectionName:'A',
-        subject:'English'
-    },
-    {
-      firstName:"Rasha",
-      lastName:"Badran",
-      email:"badran@gmail.com",
-      phoneNumber:'012332',
-      levelName:'Grade1',
-      sectionName:'A',
-      subject:'English'
-  },
-  {
-    firstName:"Rasha",
-    lastName:"Badran",
-    email:"badran@gmail.com",
-    phoneNumber:'012332',
-    levelName:'Grade1',
-    sectionName:'A',
-    subject:'English'
-},
-{
-  firstName:"Rasha",
-  lastName:"Badran",
-  email:"badran@gmail.com",
-  phoneNumber:'012332',
-  levelName:'Grade1',
-  sectionName:'A',
-  subject:'English'
+
+  const token = localStorage.getItem('token');
+
+  const [menubar, setMenuBar] = useState(false);
+  const [levSec,setlevSec]=useState([]);
+  const [levelName, setLevel] = useState('');
+  const [sectionName, setSection] = useState('');
+  const [search,setSearch]=useState("");
+  const [editTeacher,setEditTeacher]=useState(false);
+  const [addTeacher,setAddTeacher]=useState(false);
+  const [teachers,setTeachers]=useState([]);
+  const [teacherCollection, postTeacher] = useState("");
+const [firstName,setFirstName]=useState("");
+const [lastName,setLastName]=useState("");
+const [email,setEmail]=useState("");
+const [password,setPassword]=useState("");
+const [phoneNumber,setPhoneNumber]=useState("");
+const [role,setRole]=useState("student");
+const [idd, setidd] = useState("");
+const [options, setOptions] = useState([]);
+const [optionsLevel, setOptionsLevel] = useState([]);
+const [optionsSubject, setOptionsSubject] = useState([]);
+const [selectedValuesSubject, setSelectedValuesSubject] = useState([]);
+const [selectedValues, setSelectedValues] = useState([]);
+const [selectedValuesLevel, setSelectedValuesLevel] = useState([]);
+const[subject,setSubject]=useState("");
+
+const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem('token') && window.location.pathname !== '/') {
+      navigate('/');
+    }
+  }, []);
+
+const config2= {
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${token}`,
+  }
 }
-]
+
+
+
+  const getterbyname=async(name)=>{
+    const response= await axios.get(`http://localhost:8000/api/userLMS/getUserbyName/${name}`)
+    console.log( response.data)
+   if(response.data.role==="teacher"){
+    setTeachers(response.data)}
+    else{
+      alert("This teacher doesn't exist")
+    }
+   }
+
+   useEffect(()=>{
+    selectedTeacher()
+  },[]);
+  useEffect(()=>{  
+    loadLevelSEction()
+    
+       },[] );
+
+
+       useEffect(() => {
+        axios
+          .get("http://localhost:8000/api/sections")
+          .then((response) => {
+            setOptions(response.data); // assuming response is an array of objects with a name property
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }, []);
+
+      useEffect(() => {
+        axios
+          .get("http://localhost:8000/api/levels")
+          .then((response) => {
+            setOptionsLevel(response.data); // assuming response is an array of objects with a name property
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      },[]);
+
+      useEffect(() => {
+        axios
+          .get("http://localhost:8000/api/course")
+          .then((response) => {
+            setOptionsSubject(response.data); // assuming response is an array of objects with a name property
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }, []);
+
+      
+
+  const loadLevelSEction=(()=>{
+  
+    axios.get('http://localhost:8000/api/levels')
+    .then((response)=> {
+              setlevSec(response.data);
+                  }) 
+                      .catch((error)=>{ 
+                               console.log(error);
+                                  })
+  });
+
+
+  const handleEditTeacher= async(id)=>{
+    // e.preventDefault();
+    console.log("student",teacherCollection);
+    const updateForm= document.getElementById('second-formm1');
+    updateForm&& window.scrollTo({ top: updateForm.offsetTop, behavior: "smooth" });
+    setAddTeacher(false);
+    setEditTeacher(true);
+   
+      const respond = await axios.get(`http://localhost:8000/api/userLMS/${id}`)
+     
+      console.log(respond);
+      
+      setFirstName(respond.data.message.firstName);
+     
+      setLastName(respond.data.message.lastName);
+      setEmail(respond.data.message.email);
+      setPassword(respond.data.message.password);
+      setPhoneNumber(respond.data.message.phoneNumber);
+      setidd(respond.data.message.id)
+     
+  };
+
+  const updateTeacherINfo=async(e)=>{
+    e.preventDefault();
+    let postupdate = { firstName, lastName, email,password, phoneNumber };
+    console.log("nftcollection ", firstName, lastName, email,password, phoneNumber);
+    try {
+      console.log("iddd",idd)
+      const response = await axios.put(`http://localhost:8000/api/userLMS/${idd}`,{
+        firstName,
+        lastName,
+        email,
+        password,
+        phoneNumber
+      },config2);
+      alert("You have updated the student info!")
+      window.location.reload(true);
+      console.log("response ", response)
+    } catch (err) {
+      console.log("error", err);
+    }
+   }
+
+  const handleAddTeacher=async (e)=>{
+    e.preventDefault();
+    console.log("teacher",teacherCollection);
+    const addForm= document.getElementById('firstt-formm1');
+    
+    addForm&& window.scrollTo({ top: addForm.offsetTop, behavior: "smooth" });
+    setEditTeacher(false)
+    setAddTeacher(true);
+  
+    const form = e.target;
+      const formData = new FormData(form);
+    {console.log("subb",selectedValuesSubject.subject)}
+    {console.log("sec",selectedValues.sectionName)}
+    {console.log("lev",selectedValuesLevel.levelName)}
+      const newUser = {
+        
+        firstName: formData.get("firstName"),
+        lastName: formData.get("lastName"),
+        email: formData.get("email"),
+        password: formData.get("password"),
+        role: "teacher",
+        phoneNumber: formData.get("phoneNumber"),
+        levelName: selectedValuesLevel.levelName,
+        sectionName: selectedValues.sectionName,
+        subject:selectedValuesSubject.subject,
+      };
+  
+      console.log("userbody ",newUser);
+    
+      axios
+        .post("http://localhost:8000/api/userLMS", newUser,config2)
+        .then((response) => {
+          console.log("New student added: ", response.data);
+          setTeachers([...teachers, response.data]);
+          setAddTeacher(false);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    
+   
+  
+  }
+
+  const changingParams=(e)=>{
+    e.preventDefault();
+    postTeacher({ ...teacherCollection, [e.target.name]: e.target.value });
+  }
+
+  const onSelectLevel = (selectedListLevel, selectedItem) => {
+    setSelectedValuesLevel(selectedListLevel[0]);
+  };
+  
+  const onRemoveLevel = (selectedListLevel, removedItem) => {
+    setSelectedValuesLevel(selectedListLevel);
+  };
+  const onSelectSubject = (selectedListSubject, selectedItem) => {
+    setSelectedValuesSubject(selectedListSubject[0]);
+  };
+  
+  const onRemoveSubject = (selectedListSubject, removedItem) => {
+    setSelectedValuesSubject(selectedListSubject);
+  };
+  
+  const onSelect = (selectedList, selectedItem) => {
+    setSelectedValues(selectedList[0]);
+  };
+  
+  const onRemove = (selectedList, removedItem) => {
+    setSelectedValues(selectedList);
+  };
+
+   const selectedTeacher = async(e,sectionName, levelName) => {
+    e.preventDefault();
+    
+    
+    console.log("section ",sectionName);
+    console.log("course ",levelName);
+  
+    setLevel(levelName);
+    setSection(sectionName);
+      const res = await axios.get(`http://localhost:8000/api/listTeacher/${levelName}/${sectionName}`)
+      console.log("dataaa ",res.data);
+      setTeachers(res.data);
+  
+  
+  }
+
+  const deleteTeacher = async (id) => {
+  
+    const url = `http://localhost:8000/api/userLMS/${id}`;
+    
+    try{
+      const response = await axios.delete(url,config2)
+      
+      selectedTeacher();
+      alert("You have delete it!")
+      window.location.reload(true);
+    }
+    catch(error){
+      console.log("error ",error)
+    }
+  }
+
+
+
 
     return (
         <>
           
-           <div>
-           <button className='button  coll-btn' onClick={() => {
-                          let form = document.getElementById("firstt-formms");
-                          form && window.scrollTo({ top: form.offsetTop, behavior: "smooth" });
-                          }}>Add</button>
-         
-    
-              <div className='mappingdatas'>
-           
-              
-                {data.map((item, index) => {
-    
-                  return (
-    
-                    <div key={index}>
-                      
+          <div>
+        <Header />
+        <div className="app-body">
+          <Navbar setMenuBar={setMenuBar} menubar={menubar} />
+          <MenuBar menubar={menubar} />
+          <div className='lol'>
+          <div className='first-buttons'>  
 
-                      <div className='infoparts'>
-                      <img className="teacher-img" src={teacher} alt="img" />
-                    <br />
-                        First Name:
-                        {item.firstName}
-                        <br/>
-                        <br/>
-                        Last Name:
-                        {item.lastName}
-                        <br/>
-                        <br/>
-                        Email:
-                        {item.email}
+<Dropdown
+  className="dropdownSection button1  coll-btn-select1"
+  title=" Select Sections"
+  position="right"
+  buttonVariant="primary"
+  
+  >
+  {levSec.map((card,key) => (
+  
+    <Dropdown.Item key={key}  name={levelName} className="childSection1" value={card.id}>
+     {console.log("levSec",levSec)}
+     {console.log("lev",card.levelName)}
+      {card.levelName} 
+    
+  <Dropdown.Submenu position="right">
+    {card.sections.map((section,key2)=>
+
+  <Dropdown.Item className="childSection" key={key2} onClick={(e)=>selectedTeacher(e,section.sectionName, card.levelName)} value={section.id}>
+  <h3 name='sectionName'>Sections {section.sectionName} {section.id}</h3>
+  
+  {console.log("sec",section.sectionName, section.id)}
+  </Dropdown.Item>)}
+  </Dropdown.Submenu>
+    </Dropdown.Item>
+      ))}
+    </Dropdown>
+
+
+    <input
+            type="text"
+            id="header-search1"
+            placeholder="Search for Teacher"
+            name="searchStudent" value={search} onChange={(e) => setSearch(e.target.value)}
+            />
+        
+        <button type="submit"  className='button1 search-btns1' onClick={()=>getterbyname(search)}>Search</button>
+        <button className='button1  coll-btns1' id='add-btn'  onClick={handleAddTeacher}
+                          >Add</button>
+    
+    </div>
+    <div className='levsecc'>
+                        {levelName}{sectionName}
                         
+                        </div>
+
+
+                        <div className='mappingdata'>
+              
+                        
+              {teachers.map((item, index) => {
+                 {console.log("temmm",teachers)}
+                return (
+                  item ? 
+                    <div key={index}>
+
+                    <div className='infopart'>
+                    <img className="teacher-img" src={teacher} alt="img" />
+                    <hr/>
+                  <br />
+                  <div className='align-info'>
+                      Name:
+                      {item.firstName}
+                      {" "}
+                      {item.lastName}
+                      <br/>
+                      
+                      Email:
+                      {item.email}
+                      
+                      <br/>
+                     
+                      Phone Number:
+                      {item.phoneNumber}
+
+                      
+                     
+                      <br/>
+                      <br/>
+                     </div>
+                      
+                      <button className='button1 collection-button' onClick={()=>handleEditTeacher(item.id)} >Update</button>
                         <br/>
-                        <br/>
-                        Phone Number:
-                        {item.phoneNumber}
-                        <br/>
-                        <br/>
-                        Level::
-                        {item.levelName}
-                        <br/>
-                        <br/>
-                        Section:
-                        {item.sectionName}
-                        <br/>
-                        <br/>
-                        Subject:
-                        {item.subject}
-                        <br/>
-                        <br/>
-                        <button className='button collection-button' onClick={() => {
-                          let form = document.getElementById("second-formms");
-                          form && window.scrollTo({ top: form.offsetTop, behavior: "smooth" });
-                          }}>Update</button>
-                          <br/> 
-                        <button className=' button collection-buttons' >Delete</button>
-    
-                      </div>
-    
+                        {/* {console.log("idss",item ? item.id :null)} */}
+                      <button className=' button1 collection-button' onClick={() => deleteTeacher(item.id)} >Delete</button>
+                      
                     </div>
-                  )
-                })}
-              </div>
+  
+                  </div>
+                  : null
+                
+                )
+              })}
+            </div>
     
-          <div  className='formms' >
-          <form className='firstt-formms' id='firstt-formms'>
-          <br />
-          <legend className='legendds'>Add Student Info</legend>
-          <br />
-
-          <label >Enter student first name:<br /><input type='text' name="firstName" required></input></label>
-          <br />
-          <label >Enter student last name <br /><input type='text' name="lastName"  required></input></label>
-          <br />
-          <label>Enter student Email <br /><input type='email' name="email"  required></input></label>
-          <br />
-          <label>Enter student password <br /><input type='text' name="password"  required></input></label>
-          <br />
-          <label>Enter student phone number <br /><input type='text' name="phoneNumber"  required></input></label>
-          <br />
-          <label for="type">Choose Student Class:</label>
-          <br />
-          <select id="typee" name="levelName">
-            <option selected></option>
-            <option value="art" >Grade 1</option>
-            <option value="sport">Grade 2</option>
-            <option value="photography">Grade 3</option>
-            <option value="pattern">Grade 4</option>
-          </select>
-          <br/>
-          <label for="type">Choose Student Section:</label>
-          <select id="typee" name="sectionName">
-            <option selected></option>
-            <option value="art" >A</option>
-            <option value="sport">B</option>
-            <option value="photography">C</option>
-            <option value="pattern">D</option>
-          </select>
-          <br />
-          <br />
-          <label for="type">Choose subjct the teacher teach:</label>
-          <select id="typee" name="subject">
-            <option selected></option>
-            <option value="art" >English</option>
-            <option value="sport">Arabic</option>
-            <option value="photography">Math</option>
-            <option value="pattern">Science</option>
-          </select>
-          <br/>
-          <input type="submit" className='button colle-btn'></input>
-          <br />
-        </form>
-
-
-
-        <form className='second-formms' id='second-formms'>
-          <br />
-          <legend className='legendd'>Update Student Info</legend>
-          <br />
-
-          <label >Enter teacher first name:<br /><input type='text' name="firstName" required></input></label>
-          <br />
-          <label >Enter teacher last name <br /><input type='text' name="lastName"  required></input></label>
-          <br />
-          <label>Enter teacher Email <br /><input type='email' name="email"  required></input></label>
-          <br />
-          <label>Enter teacher password <br /><input type='text' name="password"  required></input></label>
-          <br />
-          <label>Enter teacher phone number <br /><input type='text' name="phoneNumber"  required></input></label>
-          <br />
-          <label for="type">Choose Teacher Class:</label>
-          <br />
-          <select id="typee" name="levelName">
-            <option selected></option>
-            <option value="art" >Grade 1</option>
-            <option value="sport">Grade 2</option>
-            <option value="photography">Grade 3</option>
-            <option value="pattern">Grade 4</option>
-          </select>
-          <br/>
-          <label for="type">Choose Teacher Section:</label>
-          <select id="typee" name="sectionName">
-            <option selected></option>
-            <option value="art" >A</option>
-            <option value="sport">B</option>
-            <option value="photography">C</option>
-            <option value="pattern">D</option>
-          </select>
-          <br />
-          <br />
-          <label for="type">Choose subjct the teacher teach:</label>
-          <select id="typee" name="subject">
-            <option selected></option>
-            <option value="art" >English</option>
-            <option value="sport">Arabic</option>
-            <option value="photography">Math</option>
-            <option value="pattern">Science</option>
-          </select>
-          <br />
-          <input type="submit" className='button colle-btn'></input>
-          <br />
-        </form>
-
-          </div>
+            <div  className='formm' >
             
-    
-    
-              </div>
+            {addTeacher &&(
+            <form className='firstt-formm1' id='firstt-formm1' onSubmit={handleAddTeacher}>
+            <br />
+            <legend className='legendd'>Add Student Info</legend>
+            <br />
+  
+            <label className='alignForm'>First name:<input className='textForm1 ' type='text' value={teacherCollection.firstName} name="firstName" onChange={changingParams} required></input></label>
+            <br/>
+            <label className='alignForm'>Last name <input className='textForm2 ' type='text' name="lastName" value={teacherCollection.lastName} onChange={changingParams} required></input></label>
+            <br />
+            <label className='alignForm'>Email <input className='textForm3 ' type='email' name="email" value={teacherCollection.email} onChange={changingParams} required></input></label>
+            <br />
+            <label className='alignForm'>Password <input className='textForm4 ' type='text' name="password" value={teacherCollection.password} onChange={changingParams} required></input></label>
+            <br />
+            
+            <label className='alignForm'>Phone num <input className='textForm5 ' type='text' name="phoneNumber" value={teacherCollection.phoneNumber} onChange={changingParams} required></input></label>
+            <br />
+            <label for="type" className='alignForm'>Teacher Level:
+            {console.log("level",selectedValuesLevel)}
+            <Multiselect id="typee" name="levelName"  options={optionsLevel} selectedValues={selectedValuesLevel} onSelect={onSelectLevel}
+            onRemove={onRemoveLevel}
+            displayValue="levelName" selectionLimit={1}
+          ></Multiselect>
+          
+  
+            
+        </label>
+            <br/>
+            <label for="type" className='alignForm'>Teacher Section:
+            {console.log("sections",selectedValues)}
+            <Multiselect id="typee" name="sectionName"  options={options} selectedValues={selectedValues} onSelect={onSelect}
+            onRemove={onRemove}
+            displayValue="sectionName" selectionLimit={1}
+          >-</Multiselect>
+          {console.log("sectionn",selectedValues[0])}
+          </label>
+  
+          <br/>
+            <label for="type" className='alignForm'>Subject:
+            {console.log("sections",selectedValuesSubject)}
+            <Multiselect id="typee" name="subject"  options={optionsSubject} selectedValues={selectedValuesSubject} onSelect={onSelectSubject}
+            onRemove={onRemoveSubject}
+            displayValue="subject" selectionLimit={1}
+          >-</Multiselect>
+          
+          </label>
+  
+            
+  
+            <br />
+          
+            
+            <input type="submit" className='button1 colle-btn'  ></input>
+            <input type="submit" value='close' onClick={()=>(window.location.reload())} className='button colle-btn'></input>
+            <br />
+          </form>)}
+
+
+          {editTeacher &&(
+        <form className='second-formm1' id='second-formm1' >
+          <br />
+          <legend className='legendd' id='update-btn'>Update Student Info</legend>
+          <br />
+
+          <label className='alignForm'>Enter student first name:<input className="afterAlign"type='text' value={firstName} name="firstName" onChange={(e) => setFirstName(e.target.value)} required></input></label>
+          <br />
+          <label className='alignForm'>Enter student last name <input type='text' className="afterAlign" value={lastName} name="lastName" onChange={(e) => setLastName(e.target.value)} required></input></label>
+          <br />
+          <label className='alignForm'>Enter student Email <input type='email' className="afterAlign" value={email} name="email" onChange={(e) => setEmail(e.target.value)} required></input></label>
+          <br />
+          <label className='alignForm'>Enter student password <input type='text' className="afterAlign" value={password} name="password" onChange={(e) => setPassword(e.target.value)} required></input></label>
+          <br />
+          <label className='alignForm'>Enter student phone number <input type='text' className="afterAlign" value={phoneNumber} name="phoneNumber" onChange={(e) => setPhoneNumber(e.target.value)} required></input></label>
+          <br />
+         
+          
+          
+          <input type="submit"value="submit" className='button1 colle-btn' id="submit" onClick={updateTeacherINfo}></input>
+          <input type="submit" value='close' onClick={()=>(window.location.reload())} className='button1 colle-btn'></input>
+          <br />
+          
+        </form>
+        )}
+          </div>
+          </div>
+        </div>
+        
+        </div>
           
         </>
       )

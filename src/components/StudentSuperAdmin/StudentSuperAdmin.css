@@ -189,7 +189,7 @@ color: black!important;
      border-color:#0a4d61 ;
      height:20px;
      border-radius: 10px;
-     color:rgba(255, 255, 255, 0.962)!important; 
+      
      
     }
     .textForm2{
@@ -197,7 +197,7 @@ color: black!important;
       border-color:#0a4d61 ;
       height:20px;
       border-radius: 10px;
-      color:rgba(255, 255, 255, 0.962)!important; 
+      
       
      }
      .textForm3{
@@ -206,7 +206,7 @@ color: black!important;
       height:20px;
       margin-left: 45px;
       border-radius: 10px;
-      color:rgba(255, 255, 255, 0.962)!important; 
+      
       
      }
      .textForm4{
@@ -215,7 +215,7 @@ color: black!important;
       height:20px;
       margin-left: 10px;
       border-radius: 10px;
-      color:rgba(255, 255, 255, 0.962)!important; 
+      
       
      }
      .textForm5{
@@ -223,7 +223,7 @@ color: black!important;
       border-color:#0a4d61 ;
       height:20px;
       border-radius: 10px;
-      color:rgba(255, 255, 255, 0.962)!important; 
+       
       
      }
 
@@ -367,15 +367,13 @@ color: black!important;
         .alignForm{
           margin-left: 3%;
         }
-        .afterAlign{
-          
-        }
+        
         .textForm1{
           width: 150px;
           border-color:#0a4d61 ;
           height:20px;
           border-radius: 10px;
-          color:rgba(255, 255, 255, 0.962)!important; 
+          
          
          }
          .textForm2{
@@ -383,7 +381,7 @@ color: black!important;
            border-color:#0a4d61 ;
            height:20px;
            border-radius: 10px;
-           color:rgba(255, 255, 255, 0.962)!important; 
+            
            
           }
           .textForm3{
@@ -391,7 +389,7 @@ color: black!important;
            border-color:#0a4d61 ;
            height:20px;
            border-radius: 10px;
-           color:rgba(255, 255, 255, 0.962)!important; 
+          
            
           }
           .textForm4{
@@ -400,7 +398,7 @@ color: black!important;
            height:20px;
            margin-left: 10px;
            border-radius: 10px;
-           color:rgba(255, 255, 255, 0.962)!important; 
+           
            
           }
           .textForm5{
@@ -408,7 +406,9 @@ color: black!important;
            border-color:#0a4d61 ;
            height:20px;
            border-radius: 10px;
-           color:rgba(255, 255, 255, 0.962)!important; 
+           
+
+        
            
           
           }

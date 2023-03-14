@@ -9,8 +9,18 @@ import presentation from './image/presentation.png';
 import section from './image/sections.png';
 import course from './image/courses.png';
 import menu from "./image/Menu.png";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ setMenuBar, menubar }) => {
+    const navigate = useNavigate();
+
+    const logOut = () => {
+        window.location.href = "/";
+        window.localStorage.clear();
+        localStorage.removeItem("token");
+        navigate("/");
+      };
+
 return (
     <div className='container'>
         <div className='navbar-container'>
@@ -26,7 +36,7 @@ return (
         <div className='dashboard_main'>
           <div className='dashboard'>
             <img className='img_dashboard' src={presentation} alt=''/>
-            <div className='text'><Link to="/teachers">Teachers</Link></div>
+            <div className='text'><Link to="/TeacherSuperAdmin">Teachers</Link></div>
         </div>
         </div>
         <div className='dashboard_main'>
@@ -63,7 +73,7 @@ return (
     <div className='dashboard_main'>
         <div className='dashboard'>
             <img className='img_dashboard' src={power} alt=''/>
-            <div className='text'><Link to="/">Log out</Link></div>
+            <div className='text' onClick={logOut}><Link>Log out</Link></div>
             </div>
         </div>
         </div>
@@ -80,10 +90,10 @@ const MenuBar = ({ menubar }) => {
 	return (
 		<div className={!menubar ? "navhidden_hidden" : "navhidden_show"} menubar>
 			<button className="navmenu-menu">
-				<Link to="/">Dashboard</Link>
+				<Link to="/Home">Dashboard</Link>
 			</button>
 			<button className="navmenu-menu">
-				<Link to="/">Teachers</Link>
+				<Link to="/TeacherSuperAdmin">Teachers</Link>
 			</button>
             <button className="navmenu-menu">
 				<Link to="/StudentSuperAdmin">Students</Link>

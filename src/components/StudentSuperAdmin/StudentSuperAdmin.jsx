@@ -8,12 +8,12 @@ import {Multiselect} from "multiselect-react-dropdown";
 import { Select } from '@material-ui/core';
 import Header from "../../components/Header/Header";
 import { Navbar, MenuBar } from "../../components/NavBar/Navbar";
-
+import { useNavigate } from "react-router-dom";
 function StudentSuperAdmin(){
 
 
   const [menubar, setMenuBar] = useState(false);
-
+  const token = localStorage.getItem('token');
   
 
 const [levelName, setLevel] = useState('');
@@ -37,7 +37,12 @@ const [optionsLevel, setOptionsLevel] = useState([]);
 const [selectedValues, setSelectedValues] = useState([]);
 const [selectedValuesLevel, setSelectedValuesLevel] = useState([]);
 
-
+const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem('token') && window.location.pathname !== '/') {
+      navigate('/');
+    }
+  }, []);
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/sections")
@@ -72,10 +77,18 @@ useEffect(()=>{
   selectedStudent()
 },[]);
 
+const config1= {
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${token}`,
+  }
+}
+
 
 
 const onSelectLevel = (selectedListLevel, selectedItem) => {
   setSelectedValuesLevel(selectedListLevel[0]);
+  console.log("ppp",selectedValuesLevel[0])
 };
 
 const onRemoveLevel = (selectedListLevel, removedItem) => {
@@ -114,19 +127,7 @@ const handleEditStudent= async(id)=>{
 
 
 
-  const SearchbyName=async(e,search)=>{
-    e.preventDefault();
-   
-    try{
-     
-     
-      }
-    
   
-    catch(error){
-      console.log(error)
-    }
-  }
 
   
 const updateStudentINfo=async(e)=>{
@@ -141,7 +142,7 @@ const updateStudentINfo=async(e)=>{
       email,
       password,
       phoneNumber
-    });
+    },config1);
     alert("You have updated the student info!")
     window.location.reload(true);
     console.log("response ", response)
@@ -157,7 +158,7 @@ const deleteStudent = async (id) => {
   const url = `http://localhost:8000/api/userLMS/${id}`;
   
   try{
-    const response = await axios.delete(url)
+    const response = await axios.delete(url,config1)
     
     selectedStudent();
     alert("You have delete it!")
@@ -187,8 +188,12 @@ const loadLevelSEction=()=>{
 const getterbyname=async(name)=>{
  const response= await axios.get(`http://localhost:8000/api/userLMS/getUserbyName/${name}`)
  console.log( response.data)
- setStudents(response.data)
-
+ if(response.data.role==="student"){
+  setStudents(response.data)}
+ 
+else{
+  alert("This student doesn't exist")
+}
 
 
 
@@ -224,7 +229,7 @@ const handleAddStudent=async (e)=>{
     console.log("userbody ",newUser);
   
     axios
-      .post("http://localhost:8000/api/userLMS", newUser)
+      .post("http://localhost:8000/api/userLMS", newUser,config1)
       .then((response) => {
         console.log("New student added: ", response.data);
         setStudents([...students, response.data]);

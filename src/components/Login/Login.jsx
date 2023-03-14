@@ -44,7 +44,7 @@ function Login(){
      
       const response=axios(config)
       .then(function (response) {
-        // console.log("zeinab ",JSON.stringify(response.data.token));
+        
       if (response) {
         alert("login successful");
         window.localStorage.setItem("token", response.data.token);
