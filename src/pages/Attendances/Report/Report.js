@@ -53,7 +53,7 @@ useEffect(() => {
         })
     }
 
-    setPieChartData({labels:['Present','Absent','Late'],'datasets':[{label:'Pie Chart',data:[present,absent,late],backgroundColor:['#00FF00','#FF0000','#FF00FF']}]})
+    setPieChartData({labels:['Present','Absent','Late'],'datasets':[{label:'Pie Chart',data:[present,absent,late],backgroundColor:['#2599BD','#FF0000','#FF00FF']}]})
 
     if(present || late || absent){
         setIsPieChartVisible(true)
@@ -89,9 +89,9 @@ return (
     <div className="report">
         <div className="status">
         {
-            name !== null && name.length ? 
+            name !== null && name.length  ? 
             name.filter((Name) => {
-                if (compare === "") {
+                if (compare === "" || Name.role === 'teacher') {
                     return null;
                 } else if (Name.firstName.toLowerCase().includes(compare.toLowerCase())) {
                     return name;
