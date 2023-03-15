@@ -2,6 +2,8 @@ import { Button, Card, CardActions, CardContent, Typography,Container, Grid, Mod
 import { Delete  } from "@mui/icons-material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Header from "../components/Header/Header";
+import { Navbar,MenuBar} from "../components/NavBar/Navbar";
 
 
 
@@ -9,9 +11,10 @@ import React, { useEffect, useState } from "react";
 
 
 function Course() {
-
+  const [menubar, setMenuBar] = useState(false);
   const [course, setCourse] = useState([]);
   const [subject, setSubject] = useState("");
+  const [description, setDescription] = useState("");
   const [showModal,setShowModal] = useState(false);
 
 
@@ -22,6 +25,7 @@ function Course() {
       const data = await response.data;
       console.log(data);
       setCourse(data);
+      // setDescription(data);
     } catch (err) {
       console.log(err);
     }
@@ -33,6 +37,7 @@ function Course() {
     try{
       const response = await axios.delete(`http://localhost:8000/api/course/${id}`);
       setCourse(response.data);
+      // setDescription(response.data);
     }
     catch(error){
       console.log("error ",error)
@@ -44,9 +49,9 @@ function Course() {
 
   const coursePost = async () => {
     try{
-      const response = await axios.post('http://localhost:8000/api/course',{subject});
+      const response = await axios.post('http://localhost:8000/api/course',{subject,description});
       if(response.statusText == "Created") {
-        const newCourse = [...course,subject];
+        const newCourse = [...course,subject,description];
         setCourse(newCourse);
         setShowModal(false);
       };
@@ -73,7 +78,15 @@ function Course() {
  
 
   return (
-      
+    <>
+<div>
+    <Header/>
+    <div className="app-body">
+    <Navbar setMenuBar={setMenuBar} menuBar={menubar}/>
+    <MenuBar menubar={menubar}/>
+     
+
+
     <div>
       
     <Container>
@@ -82,29 +95,27 @@ function Course() {
 </Button>
 
 
-      <Grid container spacing={3} style={{ marginTop: "120px" }}>
+      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {course && course.map((item, index) => {
 
         return (
-          <Grid item xs={12} md={12} lg={4} key={course.id}>
+          <Grid item   key={course.id}>
 
-<Card key={index} sx={{ maxWidth: 300, backgroundColor: '#2599BD', border: '1px solid #ccc', padding: '16px' }}>
-
-
-
-              <CardContent>
-                <Typography  sx={{ color: 'white' }} gutterBottom variant="h5" component="div">
-                  {item.subject}
-                </Typography>
-                <Typography  sx={{ color: 'white' }} variant="body2" color="text.secondary">
-                  Tap to enter course details
-                </Typography>
-              </CardContent>
-              <CardActions>
-                {/* <Button sx={{ color: 'white' }} size="small">Edit</Button> */}
-                <Button  variant="outlined" startIcon={<Delete />} sx={{ color: 'white' }} size="small" value={item.id} onClick={(event) => courseDelete(event.target.value)}>Delete</Button>
-              </CardActions>
-            </Card>
+<Card key={index} sx={{ width: "300px", height: "30px", minHeight: "200px", backgroundColor: 'white', border: '1px solid #ccc', marginTop:'120px', padding: '16px'}}>
+  <CardContent >
+    <Typography sx={{ color: '#2599BD' , maxHeight:'35px'}} alignSelf="center" gutterBottom variant="h5" component="div">
+      {item.subject}
+    </Typography>
+    <Typography sx={{ color: '#2599BD' , maxHeight:'35px',overflow :'hidden' }} variant="body2" color="text.secondary">
+      {item.description}
+    </Typography>
+  </CardContent>
+  <CardActions>
+  {/* style={{position:'fixed',
+    marginTop:'15vh' }}  */}
+    <Button variant="outlined" startIcon={<Delete />} sx={{ color: '#2599BD' }} size="small" value={item.id} style={{marginTop:'30px'}} onClick={(event) => courseDelete(event.target.value)}>Delete</Button>
+  </CardActions>
+</Card>
           </Grid>)
         })}
       </Grid>
@@ -125,7 +136,16 @@ function Course() {
 >
 <form style={{backgroundColor : "white",width : "45%",height : "30%", minHeight : 300, display : "flex",justifyContent : "center", alignItems : "center",gap : 20,borderRadius : 10 , flexDirection:"column" ,textAlign:"center"}} id="post-form">
 
-<div className="placeholder">
+<div className="placeholder-description">
+  <TextField
+  helperText="Please enter Course Description "
+  id="demo-helper-text-misaligned"
+  label="Description"
+  onChange={(e)=>setDescription(e.target.value)}/>
+  </div>
+
+
+<div className="placeholder-subject">
   <TextField
   helperText="Please enter Course Name "
   id="demo-helper-text-misaligned"
@@ -142,6 +162,9 @@ function Course() {
 </form>
 </Modal>   
     </div>
+    </div>
+    </div>
+    </>
 
 // className="form-btns" style={{display :"flex", flexDirection:"column" , justifyContent:"space-between" }}
   );
