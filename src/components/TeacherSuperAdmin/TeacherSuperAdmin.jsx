@@ -56,10 +56,10 @@ const config2= {
 
 
   const getterbyname=async(name)=>{
-    const response= await axios.get(`http://localhost:8000/api/userLMS/getUserbyName/${name}`)
-    console.log( response.data)
-   if(response.data.role==="teacher"){
-    setTeachers(response.data)}
+    const responsew= await axios.get(`http://localhost:8000/api/userLMS/getUserbyName/${name}`)
+    console.log( responsew.data[0])
+   if(responsew.data[0].role==="teacher"){
+    setTeachers(responsew.data)}
     else{
       alert("This teacher doesn't exist")
     }
@@ -186,15 +186,15 @@ const config2= {
         password: formData.get("password"),
         role: "teacher",
         phoneNumber: formData.get("phoneNumber"),
-        levelName: selectedValuesLevel.levelName,
-        sectionName: selectedValues.sectionName,
-        subject:selectedValuesSubject.subject,
+        levelName: selectedValuesLevel[0].levelName,
+        sectionName: selectedValues[0].sectionName,
+        subject:selectedValuesSubject[0].subject,
       };
   
       console.log("userbody ",newUser);
     
       axios
-        .post("http://localhost:8000/api/userLMS", newUser,config2)
+        .post("http://localhost:8000/api/userLMS", newUser)
         .then((response) => {
           console.log("New student added: ", response.data);
           setTeachers([...teachers, response.data]);
@@ -205,7 +205,7 @@ const config2= {
         });
     
    
-  
+        window.location.reload(true);
   }
 
   const changingParams=(e)=>{
@@ -214,14 +214,14 @@ const config2= {
   }
 
   const onSelectLevel = (selectedListLevel, selectedItem) => {
-    setSelectedValuesLevel(selectedListLevel[0]);
+    setSelectedValuesLevel(selectedListLevel);
   };
   
   const onRemoveLevel = (selectedListLevel, removedItem) => {
     setSelectedValuesLevel(selectedListLevel);
   };
   const onSelectSubject = (selectedListSubject, selectedItem) => {
-    setSelectedValuesSubject(selectedListSubject[0]);
+    setSelectedValuesSubject(selectedListSubject);
   };
   
   const onRemoveSubject = (selectedListSubject, removedItem) => {
@@ -229,7 +229,7 @@ const config2= {
   };
   
   const onSelect = (selectedList, selectedItem) => {
-    setSelectedValues(selectedList[0]);
+    setSelectedValues(selectedList);
   };
   
   const onRemove = (selectedList, removedItem) => {
@@ -381,7 +381,7 @@ const config2= {
             {addTeacher &&(
             <form className='firstt-formm1' id='firstt-formm1' onSubmit={handleAddTeacher}>
             <br />
-            <legend className='legendd'>Add Student Info</legend>
+            <legend className='legendd'>Add Teacher Info</legend>
             <br />
   
             <label className='alignForm'>First name:<input className='textForm1 ' type='text' value={teacherCollection.firstName} name="firstName" onChange={changingParams} required></input></label>
@@ -417,7 +417,7 @@ const config2= {
   
           <br/>
             <label for="type" className='alignForm'>Subject:
-            {console.log("sections",selectedValuesSubject)}
+            {console.log("subject",selectedValuesSubject[0])}
             <Multiselect id="typee" name="subject"  options={optionsSubject} selectedValues={selectedValuesSubject} onSelect={onSelectSubject}
             onRemove={onRemoveSubject}
             displayValue="subject" selectionLimit={1}

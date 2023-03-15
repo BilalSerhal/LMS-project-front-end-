@@ -1,8 +1,8 @@
 import './login.css'
 import React from 'react';
-import { Component, useState } from "react";
+import { Component, useState , useEffect } from "react";
 import '../StudentSuperAdmin/StudentSuperAdmin'
-
+import swal from 'sweetalert'
 import axios from 'axios';
 import TeacherSuperAdmin from '../StudentSuperAdmin/StudentSuperAdmin';
 
@@ -24,68 +24,68 @@ function Login(){
 
 
 
-
-
   const handleSubmit = async (event) => {
-     event.preventDefault();
+    event.preventDefault();
     try {
-
-      const body = JSON.stringify({ email, password });
-  
-      var config = {
-        method: 'post',
-        url: 'http://localhost:8000/api/userLMS/login',
-        headers: { 
-          'Accept': 'application/json', 
-          'Content-Type': 'application/json',
+      const response = await fetch("http://localhost:8000/api/userLMS/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        data : body
-      };
-     
-      const response=axios(config)
-      .then(function (response) {
-        
-      if (response) {
-        alert("login successful");
-        window.localStorage.setItem("token", response.data.token);
-
-         window.location.href = "/TeacherSuperAdmin";
-       
-      } 
-      else {
-        alert(response.data.message);
-      }
-      })
-      .catch(function (error) {
-        console.log("error ",error);
+        body: JSON.stringify({
+          email,
+          password,
+        }),
       });
-      
-
-      
-      if (!email) {
-       setErrorMessage('Please enter email');
-
-       return;
+  
+      const data = await response.json();
+      if (response.ok) {
+        swal({
+          title: "Login successful",
+          icon: "success",
+        }).then(() => {
+          window.localStorage.setItem("token", data.token);
+          if (data.role === "teacher") {
+            window.location.href = "/StudentSuperAdmin";
+          } else if (data.role === "superadmin") {
+            window.location.href = "/TeacherSuperAdmin";
+          } else {
+            
+          }
+        });
+      } else {
+        swal({
+          title: "Login failed",
+          text: data.message,
+          icon: "error",
+        });
       }
-
-      if (!password) {
-         setErrorMessage('Please enter a password');
-        return ;
-      }
-
-      if (!response) {
-         setErrorMessage('Please enter a valid email or password');
-         return ;
-     }
-
-
-    
-
     } catch (error) {
-      setErrorMessage('wrong email or password', error);
-    
+      console.error(error);
     }
-  }
+  };
+
+  
+
+
+    /** Remove the error Message after 2 Sec */
+
+    useEffect(() => {
+      if (!errorMessage) {
+        return;
+      }
+  
+      const timeoutId = setTimeout(() => {
+        setErrorMessage("");
+      }, 2000);
+  
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }, [errorMessage]);
+  
+    
+
     return (
         <div className="main-container-login">
             <div className="adminlogin-box-container">
@@ -116,7 +116,7 @@ function Login(){
         </div>
 
         <div >
-        {errorMessage && <p className="login-error">{errorMessage}</p>}
+      
           <button className="button-login" type="submit"  >
            Log In
           </button>

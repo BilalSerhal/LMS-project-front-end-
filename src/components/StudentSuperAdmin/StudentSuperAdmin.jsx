@@ -43,6 +43,8 @@ const navigate = useNavigate();
       navigate('/');
     }
   }, []);
+
+
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/sections")
@@ -87,8 +89,8 @@ const config1= {
 
 
 const onSelectLevel = (selectedListLevel, selectedItem) => {
-  setSelectedValuesLevel(selectedListLevel[0]);
-  console.log("ppp",selectedValuesLevel[0])
+  setSelectedValuesLevel(selectedListLevel);
+ 
 };
 
 const onRemoveLevel = (selectedListLevel, removedItem) => {
@@ -96,7 +98,8 @@ const onRemoveLevel = (selectedListLevel, removedItem) => {
 };
 
 const onSelect = (selectedList, selectedItem) => {
-  setSelectedValues(selectedList[0]);
+  setSelectedValues(selectedList);
+  
 };
 
 const onRemove = (selectedList, removedItem) => {
@@ -185,11 +188,11 @@ const loadLevelSEction=()=>{
 
 
 
-const getterbyname=async(name)=>{
- const response= await axios.get(`http://localhost:8000/api/userLMS/getUserbyName/${name}`)
- console.log( response.data)
- if(response.data.role==="student"){
-  setStudents(response.data)}
+const getterbyname=async(firstName)=>{
+ const responsee= await axios.get(`http://localhost:8000/api/userLMS/getUserbyName/${firstName}`)
+//  console.log( responsee.data[0])
+ if(responsee.data[0].role==="student"){
+  setStudents(responsee.data)}
  
 else{
   alert("This student doesn't exist")
@@ -229,7 +232,7 @@ const handleAddStudent=async (e)=>{
     console.log("userbody ",newUser);
   
     axios
-      .post("http://localhost:8000/api/userLMS", newUser,config1)
+      .post("http://localhost:8000/api/userLMS", newUser)
       .then((response) => {
         console.log("New student added: ", response.data);
         setStudents([...students, response.data]);
@@ -398,23 +401,23 @@ const selectedStudent = async(e,sectionName, levelName) => {
           <label className='alignForm'>Phone num <input className='textForm5 ' type='text' name="phoneNumber" value={studentCollection.phoneNumber} onChange={changingParams} required></input></label>
           <br />
           <label for="type" className='alignForm'>Student Level:
-            
-          <Multiselect id="typee" name="levelName"  options={optionsLevel} selectedValues={selectedValuesLevel[0]} onSelect={onSelectLevel}
+          {console.log("levelll",selectedValuesLevel[0])}
+          <Multiselect id="typee" name="levelName"  options={optionsLevel} selectedValues={selectedValuesLevel} onSelect={onSelectLevel}
           onRemove={onRemoveLevel}
           displayValue="levelName" selectionLimit={1}
         ></Multiselect>
-        {console.log("level",selectedValuesLevel[0])}
+      
 
           
       </label>
           <br/>
           <label for="type" className='alignForm'>Student Section:
-          {console.log("sections",sectionName)}
-          <Multiselect id="typee" name="sectionName"  options={options} selectedValues={selectedValues[0]} onSelect={onSelect}
+          {console.log("sections",selectedValues[0])}
+          <Multiselect id="typee" name="sectionName"  options={options} selectedValues={selectedValues} onSelect={onSelect}
           onRemove={onRemove}
           displayValue="sectionName" selectionLimit={1}
         >-</Multiselect>
-        {console.log("sectionn",selectedValues[0])}
+        {/* {console.log("sectionn",selectedValues[0])} */}
         </label>
 
 

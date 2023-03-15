@@ -15,13 +15,8 @@ function App() {
       <div className='App'>
         <Routes>
           <Route path="/" element={<Login />} />
-        </Routes>
-         <Routes>
-          {/* <Route exact path="/" element={<MainPic />} />
-              <Route path="/levels" element={<Levels />} />
-              <Route path="/sections" element={<Sections />} />
-              <Route path="/teachers" element={<Teachers />} />
-              <Route path="/studants" element={<Students />} /> */}
+        
+         
 
           <Route path="/StudentSuperAdmin" element={<StudentSuperAdmin />} />
           <Route path="/TeacherSuperAdmin" element={<TeacherSuperAdmin />} />
@@ -34,5 +29,10 @@ function App() {
   );
 
 }
+ {/* <Route exact path="/" element={<MainPic />} />
+              <Route path="/levels" element={<Levels />} />
+              <Route path="/sections" element={<Sections />} />
+              <Route path="/teachers" element={<Teachers />} />
+              <Route path="/studants" element={<Students />} /> */}
 
 export default App;
