@@ -25,7 +25,7 @@ function Attendance() {
       });
   }, []);
 
-  const [attendanceStatus, setAttendanceStatus] = useState([]);
+  // const [attendanceStatus, setAttendanceStatus] = useState([]);
 
   const handleStatus = async (id, status) => {
     try {
@@ -37,7 +37,7 @@ function Attendance() {
         }
       );
       console.log(response.data);
-      setAttendanceStatus(`${status} ${id}`);
+      // setAttendanceStatus(`${status} ${id}`);
       setButtonStatus((prevState) => ({ ...prevState, [id]: status }));
 
       console.log(response.data);
