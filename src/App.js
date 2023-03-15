@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import {Routes ,Route} from 'react-router-dom';
 import './app.css';
 import Attendance from "./pages/Attendances/Attendance"
-import Report from "./pages/Attendances/Report/Report";
+import Report from "./pages/Report/Report";
 
 function App(onChange) {
   return (
