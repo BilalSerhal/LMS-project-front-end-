@@ -35,10 +35,11 @@
       margin-left: 100px;
       padding: 30px;
       /* color: white; */
-      background-color:#2599BD;
-      font-size: 20px;
+      background-color:#7dc9e1;
+      font-size: 18px;
       font-family:  'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', 'sans-serif';
       border-radius: 10px;
+      width:80%;
   }
   
   .student-img1{
@@ -47,7 +48,7 @@
   }
   .align-info1{
     text-align: left;
-    padding-left: 50px;
+    padding-left: 10px;
     
   }
 
@@ -55,13 +56,14 @@
   
   @media screen and (max-width: 768px) {
     .infopart-page1{
-      margin-left: 0;
       padding: 20px;
       /* color: white; */
-      background-color:#2599BD;
+      background-color:#7dc9e1;
       font-size: 20px;
       font-family:  'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', 'sans-serif';
       border-radius: 10px;
+      width: 90%;
+      margin-left: -4px;
   }
   
   .student-img1{
@@ -82,7 +84,7 @@
     border: 2px solid #2599BD;
     border-radius: 15px;
     color:white;
-    margin-left: 35px;
+    margin-left: 30px;
     
     }
     .student-drop-chid{
@@ -98,7 +100,18 @@
    grid-template-columns: 1fr ;
     width: 50%;
     margin-left: 15px;
+    margin-top: 5rem;
     }
+    .infopart-page1{
+      margin-left: 50px;
+      padding: 30px;
+      /* color: white; */
+      background-color:#7dc9e1;
+      font-size: 20px;
+      font-family:  'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', 'sans-serif';
+      border-radius: 10px;
+      width:70%;
+      }
 
 
 

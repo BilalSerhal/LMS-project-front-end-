@@ -1,7 +1,7 @@
 *{
     font-family:  'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', 'sans-serif';
   }
-  .student-drop{
+  .student-dropT{
     width:12rem;
     width: 18rem;
     background-color: #2599BD;
@@ -12,18 +12,18 @@
   
     
     }
-    .student-drop-chid{
+    .student-drop-chidT{
       width:14rem;
       font-size: 20px !important;
       }  
   
-  .lolol {
+  .lololT {
     width: min-content;
     display: flex;
     flex-direction: column;
     gap: 50px;
   }
-  .mappingdata-2{
+  .mappingdata-2T{
     display: grid;
     grid-template-columns: 33% 33% 33%;
     grid-gap: 20px;
@@ -31,51 +31,54 @@
   }
 
  
-  .infopart-page2{
-      margin-left: 100px;
-      padding: 30px;
-      /* color: white; */
-      background-color:#2599BD;
-      font-size: 20px;
-      font-family:  'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', 'sans-serif';
-      border-radius: 10px;
+  .infopart-page2T{
+    margin-left: 100px;
+    padding: 30px;
+    /* color: white; */
+    background-color:#7dc9e1;
+    font-size: 20px;
+    font-family:  'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', 'sans-serif';
+    border-radius: 10px;
+    width:80%;
+    
   }
   
-  .student-img2{
+  .student-img2T{
   width: 50%;
   
   }
-  .align-info2{
+  .align-info2T{
     text-align: left;
-    padding-left: 50px;
+    padding-left: 10px;
     
   }
 
 
   
   @media screen and (max-width: 768px) {
-    .infopart-page2{
-      margin-left: 0;
+    .infopart-page2T{
+    
       padding: 20px;
       /* color: white; */
-      background-color:#2599BD;
+      background-color:#7dc9e1;
       font-size: 20px;
       font-family:  'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', 'sans-serif';
       border-radius: 10px;
+      width: 80%;
   }
   
-  .student-img2{
+  .student-img2T{
   width: 40%;
   
   }
-  .mappingdata-2{
-   display: grid;
+  .mappingdata-2T{
+    display: grid;
     gap: 30px ;
   grid-template-columns: 1fr ;
    width: 50%;
    margin-left: 25px;
    }
-   .student-drop{
+   .student-dropT{
     width: 10rem;
     width: 18rem;
     background-color: #2599BD;
@@ -85,7 +88,7 @@
     margin-left: 35px;
     
     }
-    .student-drop-chid{
+    .student-drop-chidT{
       width:10rem;
       font-size: 20px !important;
       }  
@@ -93,7 +96,7 @@
             
  }
  @media screen and (max-width: 1024px)  {
-  .mappingdata-2{
+  .mappingdata-2T{
     display: grid;
      gap: 30px ;
    grid-template-columns: 1fr ;
@@ -101,4 +104,14 @@
     margin-left: 15px;
     margin-top: 5rem;
     }
+    .infopart-page2T{
+      margin-left: 50px;
+      padding: 30px;
+      /* color: white; */
+      background-color:#7dc9e1;
+      font-size: 20px;
+      font-family:  'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', 'sans-serif';
+      border-radius: 10px;
+      width:70%;
+      }
   }

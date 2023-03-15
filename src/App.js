@@ -8,7 +8,7 @@ import Sections from "../src/pages/sections/sections";
 import Attendances from "./pages/attendance/Attendance";
 import Students from "./pages/students/Student";
 import Teacheres from "./pages/teachers/Teacher";
-import Course from "./pages/courses/course";
+
 
 function App() {
  
@@ -20,7 +20,6 @@ function App() {
           <Route exact path="/" element={<MainPic />} />
           <Route path="/levels" element={<Levels />} />
           <Route path="/sections" element={<Sections />} />
-          <Route path="/Course" element={<Course />} />
           <Route path="/attendances" element={<Attendances />} />
           <Route path="/students" element={<Students />} />
           <Route path="/teachers" element={<Teacheres />} />

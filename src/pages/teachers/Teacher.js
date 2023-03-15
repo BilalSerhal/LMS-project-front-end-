@@ -49,11 +49,11 @@ function Teacher() {
         <div className="app-body">
           <Navbar setMenuBar={setMenuBar} menubar={menubar} />
           <MenuBar menubar={menubar} />
-          <div className="lolo1">
+          <div className="lololT">
             <div>
             <Dropdown
-                className="student-drop"
-                title=" Select Sections"
+                className="student-dropT"
+                title="Select Sections"
                 position="right"
                 buttonVariant="primary"
                 style={dropdownStyles}
@@ -81,16 +81,16 @@ function Teacher() {
                 ))}
               </Dropdown>
             </div>
-            <div className="mappingdata-2">
+            <div className="mappingdata-2T">
               {teachers.map((student) => {
                 // {console.log("temmm",item.levelName, item.sectionName)}
                 return (
                   <div key={student.id}>
-                    <div className="infopart-page2">
-                      <img className="student-img2" src={teache} alt="img" />
+                    <div className="infopart-page2T">
+                      <img className="student-img2T" src={teache} alt="img" />
                       <hr />
                       <br />
-                      <div className="align-info2">
+                      <div className="align-info2T">
                         Name:
                         {student.firstName} {student.lastName}
                         <br />

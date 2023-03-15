@@ -26,19 +26,41 @@
         border :1px solid #2599bd;
         border-radius: 6px;
         padding: 10px;
+        cursor: pointer;
+    }
+    .present:active {
+    
+      box-shadow: 0 5px #666;
+      transform: translateY(4px);
     }
     
     .absent {
         border :1px solid #2599bd;
         border-radius: 6px;
         padding: 10px;
+        cursor: pointer;
     }
+    .absent:active {
+    
+      box-shadow: 0 5px #666;
+      transform: translateY(4px);
+    }
+    
+    
     
     .late {
         border :1px solid #2599bd;
         border-radius: 6px;
         padding: 10px;
+        cursor: pointer;
     }
+    .late:active {
+    
+      box-shadow: 0 5px #666;
+      transform: translateY(4px);
+    }
+    
+   
    
     .gradeAndSection{
         width: 26rem;
@@ -125,12 +147,12 @@
     border-radius: 15px;
     text-align: center;
   }
-  .nameR {
+  .nameA {
     padding-left: 10px;
     width: 40% ;
     text-align:center;
   }
-  .nameRR{
+  .nameAA{
     width:10%;
     text-align: center;
   }
@@ -145,22 +167,31 @@
       width: 50%;
       text-align: left;
     }
+    .gradeAndSection{
+      width: 23rem;
+      display: flex;
+      justify-content: space-around;
+      margin-left: -55rem;
+      margin-top: 10rem;
+      
+      
+  }
     
     .attendance-table {
       width: 50%;
       border: 1px solid white;
-      margin-top: 10rem;
+      margin-top: 5rem;
      margin-left: -10rem;
       
     }
   }
   @media (max-width: 768px) {
-   
+      
      .attendance-section {
       padding-right: 20px;
      }
    
-    .nameR1{
+    .nameA1{
       padding-left: 65px;
     }
     .dropdownSection{
@@ -188,4 +219,12 @@
        margin-left: -15rem;
         
       }
+      .gradeAndSection{
+        width: 23rem;
+        display: flex;
+        justify-content: space-around;
+        margin-left: -24rem;
+        
+        
+    }
 }

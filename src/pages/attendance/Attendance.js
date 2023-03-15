@@ -10,6 +10,8 @@ function Attendance() {
   const [tableMood, setTableMood] = useState(false);
   const [data, setData] = useState([]);
   const [students, setStudents] = useState([]);
+  const [selectedLevel, setSelectedLevel] = useState("");
+  const [selectedSection, setSelectedSection] = useState("");
 
   const dropdownStyles = {
     fontSize: "24px",
@@ -31,6 +33,8 @@ function Attendance() {
       .get(`http://localhost:8000/api/listStudent/${levelName}/${sectionName}`)
       .then((response) => {
         setStudents(response.data);
+        setSelectedLevel(levelName);
+        setSelectedSection(sectionName);
         setTableMood(true);
       })
       .catch((error) => {
@@ -45,16 +49,16 @@ function Attendance() {
 
     try {
       const response = await axios.post(
-        `http://localhost:8000/api/attendance/createAttendance/${id}`,
+        `http://localhost:8000/api/attendance/createAttendance`,
         {
           studentId: id,
           status: status,
-          date: new Date().toISOString().slice(0, 10), // set current date
+          
         }
       );
-
       console.log(response.data);
       setAttendanceStatus(`${status} recorded for student ${id}`);
+     
       console.log(response.data);
     } catch (error) {
       console.log(error);
@@ -102,21 +106,24 @@ function Attendance() {
             </div>
             {tableMood && (
               <div className="createAttendance">
-                
+                 <div className='gradeAndSection'>
+                   <div className='gradeAttendance'>{selectedLevel}</div>
+                   <div className='sectionAttendance'>Section {selectedSection}</div>
+                 </div>
                 <div className="attendance-section">
                   <table className="attendance-table">
                     <thead>
                       <tr className="attendance-tr">
-                        <th className="attendance-th nameR">Student Name</th>
-                        <th className="attendance-th nameRR">Attendance</th>
-                        <th className="attendance-th nameRR">Attendance</th>
-                        <th className="attendance-th nameRR">Attendance</th>
+                        <th className="attendance-th nameA">Student Name</th>
+                        <th className="attendance-th nameAA">Attendance</th>
+                        <th className="attendance-th nameAA">Attendance</th>
+                        <th className="attendance-th nameAA">Attendance</th>
                       </tr>
                     </thead>
                     {students.map((student) => (
                       <tbody key={student.id}>
                         <tr className="attendance-tr row row1">
-                          <td className="attendance-td nameR1">
+                          <td className="attendance-td nameA1">
                             {student.firstName} {student.lastName}
                           </td>
 
@@ -125,7 +132,7 @@ function Attendance() {
                               className="present"
                               onClick={() =>
                                 handleStatus(student.id, "present")
-                              }
+                              } 
                             >
                               Present
                             </button>
@@ -133,7 +140,7 @@ function Attendance() {
                           <td className="attendance-td icon">
                             <button
                               className="absent"
-                              onClick={() => handleStatus(student.id, "absent")}
+                              onClick={() => handleStatus(student.id, "absent")} 
                             >
                               Absent
                             </button>
@@ -141,7 +148,7 @@ function Attendance() {
                           <td className="attendance-td icon">
                             <button
                               className="late"
-                              onClick={() => handleStatus(student.id, "late")}
+                              onClick={() => handleStatus(student.id, "late")} 
                             >
                               Late
                             </button>
