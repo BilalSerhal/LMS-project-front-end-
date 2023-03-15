@@ -122,12 +122,12 @@ function Attendance() {
                     </thead>
                     {students.map((student) => (
                       <tbody key={student.id}>
-                        <tr className="attendance-tr row row1">
+                        <tr className="attendance-tr rowR row1R">
                           <td className="attendance-td nameA1">
                             {student.firstName} {student.lastName}
                           </td>
 
-                          <td className="attendance-td icon">
+                          <td className="attendance-td icon1">
                             <button
                               className="present"
                               onClick={() =>
@@ -137,7 +137,7 @@ function Attendance() {
                               Present
                             </button>
                           </td>
-                          <td className="attendance-td icon">
+                          <td className="attendance-td icon1">
                             <button
                               className="absent"
                               onClick={() => handleStatus(student.id, "absent")} 
@@ -145,7 +145,7 @@ function Attendance() {
                               Absent
                             </button>
                           </td>
-                          <td className="attendance-td icon">
+                          <td className="attendance-td icon1">
                             <button
                               className="late"
                               onClick={() => handleStatus(student.id, "late")} 
