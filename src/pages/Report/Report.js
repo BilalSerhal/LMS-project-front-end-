@@ -132,17 +132,17 @@ return (
             
         </div>
 
-      </div>
-      {
+    </div>
+    {
     isPieChartVisible ? (
         <div className="pie">
             <Pie data={pieChartData} />
         </div>
     )
-     : null
+    : null
 }
     </div>
-  );
+);
 }
 
 export default Report;
