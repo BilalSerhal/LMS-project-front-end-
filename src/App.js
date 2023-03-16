@@ -7,22 +7,29 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 import Course from "./components/course";
+import { useState, useEffect } from 'react';
+import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
+import './components/Login/Login';
+import Login from './components/Login/Login';
+import StudentSuperAdmin from './components/StudentSuperAdmin/StudentSuperAdmin';
+import TeacherSuperAdmin from './components//TeacherSuperAdmin/TeacherSuperAdmin';
+
 
 function App() {
+
+  const [menubar, setMenuBar] = useState(false);
   
   return (
-    <div className="all">
-    <Router>
-      <Routes>
-        {/* <Route exact path="/" element={<Home/>}/> */}
-        {/* <Route path="/levels" element={<Levels/>}/> */}
-        <Route path="/Course" element={<Course/>}/>
-        {/* <Route path="/sections" element={<Sections/>}/> */}
-      </Routes>
-      
-    </Router>
+    <div >
+      Hello
     </div>
   );
+
   }
+ {/* <Route exact path="/" element={<MainPic />} />
+              <Route path="/levels" element={<Levels />} />
+              <Route path="/sections" element={<Sections />} />
+              <Route path="/teachers" element={<Teachers />} />
+              <Route path="/studants" element={<Students />} /> */}
 
 export default App;

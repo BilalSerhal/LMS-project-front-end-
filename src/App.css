@@ -1,15 +1,18 @@
-.App {
+ .App {
   text-align: center;
-}
+} 
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 .app-body{
-  display: flex;
+  display:flex;
   flex-direction: row;
+  gap: 30px;
 }
+/** To Make The Scrolling Smooth */
+html{scroll-behavior:smooth}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -38,11 +41,5 @@
   }
   to {
     transform: rotate(360deg);
-  }
-}
-@media (max-width:768px){
-  .app-body{
-    display: flex;
-    flex-direction: column;
   }
 }
