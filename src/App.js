@@ -16,7 +16,7 @@ import Sections from "../src/pages/sections/sections";
 import Attendances from "./pages/attendance/Attendance";
 import Students from "./pages/students/Student";
 import Teacheres from "./pages/teachers/Teacher";
-
+import Report from "./pages/Report/Report";
 
 function App() {
  
@@ -43,6 +43,7 @@ function App() {
           <Route path="/attendances" element={<Attendances />} />
           <Route path="/students" element={<Students />} />
           <Route path="/teachers" element={<Teacheres />} />
+          <Route path="/report"  element={<Report/>}/>
         </Routes>
       </Router>
     </div>
