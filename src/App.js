@@ -10,7 +10,17 @@ import StudentSuperAdmin from './components/StudentSuperAdmin/StudentSuperAdmin'
 import TeacherSuperAdmin from './components//TeacherSuperAdmin/TeacherSuperAdmin';
 import Course from "./components/course";
 
+import MainPic from "./components/Dashboard-pic/MainPic";
+import Levels from "../src/pages/levels/levels";
+import Sections from "../src/pages/sections/sections";
+import Attendances from "./pages/attendance/Attendance";
+import Students from "./pages/students/Student";
+import Teacheres from "./pages/teachers/Teacher";
+
+
 function App() {
+ 
+
   return (
     <BrowserRouter>
     <div className="all">
@@ -24,6 +34,17 @@ function App() {
       </Routes>
       
     </Router>
+   
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<MainPic />} />
+          <Route path="/levels" element={<Levels />} />
+          <Route path="/sections" element={<Sections />} />
+          <Route path="/attendances" element={<Attendances />} />
+          <Route path="/students" element={<Students />} />
+          <Route path="/teachers" element={<Teacheres />} />
+        </Routes>
+      </Router>
     </div>
     </BrowserRouter>
   );
