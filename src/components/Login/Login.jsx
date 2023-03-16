@@ -39,6 +39,7 @@ function Login(){
       });
   
       const data = await response.json();
+      
       if (response.ok) {
         swal({
           title: "Login successful",
@@ -61,6 +62,7 @@ function Login(){
         });
       }
     } catch (error) {
+     
       console.error(error);
     }
   };
