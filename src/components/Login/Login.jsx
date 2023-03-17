@@ -47,7 +47,7 @@ function Login(){
         }).then(() => {
           window.localStorage.setItem("token", data.token);
           if (data.role === "teacher") {
-            window.location.href = "/StudentSuperAdmin";
+            window.location.href = "/Home";
           } else if (data.role === "superadmin") {
             window.location.href = "/TeacherSuperAdmin";
           } else {

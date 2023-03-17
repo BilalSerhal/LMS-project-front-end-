@@ -10,7 +10,7 @@ import section from './image/sections.png';
 import course from './image/courses.png';
 import menu from "./image/Menu.png";
 import { useNavigate } from "react-router-dom";
-
+import repor from "./image/report.png"
 const Navbar = ({ setMenuBar, menubar }) => {
     const navigate = useNavigate();
 
@@ -51,20 +51,20 @@ return (
         <div className='dashboard_main'>
         <div className='dashboard'>
             <img className='img_dashboard' src={classroom} alt=''/>
-            <div className='text'><Link to="/levels">Classes</Link></div>
+            <div className='text'><Link to="/levelSuperAdmin">Classes</Link></div>
             </div>
         </div>
         <div className='dashboard_main'>
         <div className='dashboard'>
             <img className='img_dashboard' src={section} alt=''/>
-            <div className='text'><Link to="/sections">Sections</Link></div>
+            <div className='text'><Link to="/sectionsSuperAdmin">Sections</Link></div>
             </div>
         </div>
         <div className='dashboard_main'>
         <div className='dashboard'>
             <img className='img_dashboard' src={course} alt=''/>
 
-            <div className='text'><Link to="/courses">Courses</Link></div>
+            <div className='text'><Link to="/CourseSuperAdmin">Courses</Link></div>
 
             </div>
         </div>
@@ -72,11 +72,21 @@ return (
         <div className='dashboard'>
             <img className='img_dashboard' src={attendance} alt=''/>
 
-            <div className='text'><Link to="/attendances">Attendances</Link></div>
+            <div className='text'><Link to="/AttendanceSuperAdmin">Attendances</Link></div>
 
             </div>
         </div>
     </div>
+
+    <div className="dashboard_main">
+            <div className="dashboard">
+              <img className="img_dashboard" src={repor} alt="" />
+              <div className="text">
+                <Link to="/ReportSuperAdmin">Report</Link>
+              </div>
+            </div>
+          </div>
+        
     <div className='dashboard_main'>
         <div className='dashboard'>
             <img className='img_dashboard' src={power} alt=''/>
@@ -108,18 +118,22 @@ const MenuBar = ({ menubar }) => {
 				<Link to="/StudentSuperAdmin">Students</Link>
 			</button>
 			<button className="navmenu-menu">
-				<Link to="/levels">Classes</Link>
+				<Link to="/levelSuperAdmin">Classes</Link>
 			</button>
 			<button className="navmenu-menu">
-				<Link to="/sections">Sections</Link>
+				<Link to="/sectionsSuperAdmin">Sections</Link>
 			</button>
 			<button className="navmenu-menu">
 
-				<Link to="/courses">Courses</Link>
+				<Link to="/CourseSuperAdmin">Courses</Link>
 
 			</button>
             <button className="navmenu-menu">
-				<Link to="/attendances">Attendances</Link>
+				<Link to="/AttendanceSuperAdmin">Attendances</Link>
+
+			</button>
+            <button className="navmenu-menu">
+				<Link to="/ReportSuperAdmin">Report</Link>
 
 			</button>
 		</div>

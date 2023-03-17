@@ -80,10 +80,10 @@ function Course() {
   return (
     <>
 <div>
-    <Header/>
-    <div className="app-body">
-    <Navbar setMenuBar={setMenuBar} menuBar={menubar}/>
-    <MenuBar menubar={menubar}/>
+   <Header />
+        <div className="app-body">
+          <Navbar setMenuBar={setMenuBar} menubar={menubar} />
+          <MenuBar menubar={menubar} />
      
 
 
