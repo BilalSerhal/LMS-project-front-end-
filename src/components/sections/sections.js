@@ -18,6 +18,12 @@ const Sections = () => {
   const [data, setData] = useState([]);
   const [id, setId] = useState(null);
   const url = `http://localhost:8000/api/sections`;
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem('token') && window.location.pathname !== '/') {
+      navigate('/');
+    }
+  }, []);
 
   const [formData, setFormData] = useState({
     sectionName: "",

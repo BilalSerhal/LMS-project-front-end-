@@ -7,27 +7,33 @@ import { Navbar, MenuBar } from "../NavBar/Navbar";
 import { useNavigate } from "react-router-dom";
 
 function Attendance() {
-  const [menubar, setMenuBar] = useState(false);
+ const [menubar, setMenuBar] = useState(false);
   const [tableMood, setTableMood] = useState(false);
   const [data, setData] = useState([]);
+  const [buttonStatus, setButtonStatus] = useState({});
   const [students, setStudents] = useState([]);
   const [selectedLevel, setSelectedLevel] = useState("");
   const [selectedSection, setSelectedSection] = useState("");
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem('token') && window.location.pathname !== '/') {
+      navigate('/');
+    }
+  }, []);
 
   const dropdownStyles = {
     fontSize: "24px",
   };
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8000/api/levels`)
+   useEffect(() => {
+    axios.get(`http://localhost:8000/api/levels`)
       .then((response) => {
         setData(response.data);
       })
       .catch((error) => {
         console.log(error);
-      });
-  }, []);
+      })
+  },[]);
 
   const handleGetStudent = (levelName, sectionName) => {
     axios
@@ -37,6 +43,7 @@ function Attendance() {
         setSelectedLevel(levelName);
         setSelectedSection(sectionName);
         setTableMood(true);
+        console.log("Res",response)
       })
       .catch((error) => {
         console.log(error);
@@ -59,7 +66,8 @@ function Attendance() {
       );
       console.log(response.data);
       setAttendanceStatus(`${status} recorded for student ${id}`);
-     
+      setButtonStatus(prevState => ({ ...prevState, [id]: status }));
+    
       console.log(response.data);
     } catch (error) {
       console.log(error);
@@ -77,19 +85,20 @@ function Attendance() {
             <div className="section">
               <Dropdown
                 className="dropdownSection"
-                title=" Select Sections"
-                position="right"
+                title=" Select Grade"
+                position="button"
                 buttonVariant="primary"
                 style={dropdownStyles}
               >
                 {data.map((card) => (
-                  <Dropdown.Item key={card.id} className="childSection">
+                  <Dropdown.Item position='right'  key={card.id} className="childSection">
                     {card.levelName}
                     <Dropdown.Submenu position="right">
                       {card.sections.map((section) => (
-                        <Dropdown.Item key={card.id}>
+                        <Dropdown.Item key={card.id} position='right'>
                           <h3
                             onClick={() =>
+                            
                               handleGetStudent(
                                 card.levelName,
                                 section.sectionName
@@ -107,10 +116,10 @@ function Attendance() {
             </div>
             {tableMood && (
               <div className="createAttendance">
-                 <div className='gradeAndSection'>
-                   <div className='gradeAttendance'>{selectedLevel}</div>
-                   <div className='sectionAttendance'>Section {selectedSection}</div>
-                 </div>
+                <div className='gradeAndSection'>
+                  <div className='gradeAttendance'>{selectedLevel}</div>
+                  <div className='sectionAttendance'>Section {selectedSection}</div>
+                </div>
                 <div className="attendance-section">
                   <table className="attendance-table">
                     <thead>
@@ -132,8 +141,8 @@ function Attendance() {
                             <button
                               className="present"
                               onClick={() =>
-                                handleStatus(student.id, "present")
-                              } 
+                                handleStatus(student.id, "present")} 
+                                style={{backgroundColor: buttonStatus[student.id] === 'present' ? '#2599bd' : ''}}
                             >
                               Present
                             </button>
@@ -141,7 +150,10 @@ function Attendance() {
                           <td className="attendance-td icon1">
                             <button
                               className="absent"
-                              onClick={() => handleStatus(student.id, "absent")} 
+                              onClick={() => handleStatus(student.id, "absent")}
+                              style={{backgroundColor: buttonStatus[student.id] === 'absent' ? '#FF7235' : ''}}
+
+
                             >
                               Absent
                             </button>
@@ -150,6 +162,8 @@ function Attendance() {
                             <button
                               className="late"
                               onClick={() => handleStatus(student.id, "late")} 
+                              style={{backgroundColor: buttonStatus[student.id] === 'late' ? '#d6a982' : ''}}
+
                             >
                               Late
                             </button>

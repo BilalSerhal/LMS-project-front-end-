@@ -362,12 +362,12 @@ const selectedStudent = async(e,sectionName, levelName) => {
                         <br/>
                         <br/>
                        </div>
-                        
+                        <div className='add-updatebtn'>
                         <button className='button collection-button' onClick={()=>handleEditStudent(item.id)}>Update</button>
                           <br/>
                           {/* {console.log("idss",item ? item.id :null)} */}
-                        <button className=' button collection-button' onClick={() => deleteStudent(item.id)} >Delete</button>
-                        
+                        <button className=' button collection-button del' onClick={() => deleteStudent(item.id)} >Delete</button>
+                        </div>
                       </div>
     
                     </div>

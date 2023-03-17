@@ -39,6 +39,7 @@ function Login(){
       });
   
       const data = await response.json();
+      console.log(data)
       
       if (response.ok) {
         swal({
@@ -46,6 +47,7 @@ function Login(){
           icon: "success",
         }).then(() => {
           window.localStorage.setItem("token", data.token);
+          console.log("tok",data.token)
           if (data.role === "teacher") {
             window.location.href = "/Home";
           } else if (data.role === "superadmin") {

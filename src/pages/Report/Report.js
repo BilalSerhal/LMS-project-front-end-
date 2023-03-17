@@ -5,6 +5,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import Header from "../../components/Header/Header";
 import { Navbar, MenuBar } from "../../components/NavBar-pages/Navbar-pages";
+import { useNavigate } from "react-router-dom";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -17,7 +18,13 @@ const [section, setSection] = useState("");
 const [compare, setCompare] = useState("");
 const [pieChartData,setPieChartData]= useState({})
 const [isPieChartVisible,setIsPieChartVisible] = useState(false)
-
+const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem('token') && window.location.pathname !== '/') {
+      navigate('/');
+    }
+  }, []);
+  
 useEffect(() => {
     axios
     .get(`http://localhost:8000/api/getReport`)

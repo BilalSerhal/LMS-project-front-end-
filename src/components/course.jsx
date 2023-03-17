@@ -4,7 +4,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header/Header";
 import { Navbar,MenuBar} from "../components/NavBar/Navbar";
-
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -16,7 +16,12 @@ function Course() {
   const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("");
   const [showModal,setShowModal] = useState(false);
-
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem('token') && window.location.pathname !== '/') {
+      navigate('/');
+    }
+  }, []);
 
 
   const CourseFetch = async () => {

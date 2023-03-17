@@ -9,7 +9,7 @@ import edit from "./image/icons8-pencil-64.png";
 import add from "./image/icons8-add-new-64.png";
 import close from "./image/icons8-close-window-48.png";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 const Levels = () => {
   const [menubar, setMenuBar] = useState(false);
   const [editMode, setEditMode] = useState(false);
@@ -17,7 +17,12 @@ const Levels = () => {
   const [data, setData] = useState([]);
   const [id, setId] = useState(null);
   const url = `http://localhost:8000/api/levels`;
-
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem('token') && window.location.pathname !== '/') {
+      navigate('/');
+    }
+  }, []);
   const [formData, setFormData] = useState({
     levelName: "",
     capacity: "",

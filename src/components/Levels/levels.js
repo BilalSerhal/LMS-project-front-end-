@@ -16,6 +16,13 @@ const Levels = () => {
   const [addMode, setAddMode] = useState(false);
   const [data, setData] = useState([]);
   const [id, setId] = useState(null);
+   const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem('token') && window.location.pathname !== '/') {
+      navigate('/');
+    }
+  }, []);
+
   const url = `http://localhost:8000/api/levels`;
 
   const [formData, setFormData] = useState({

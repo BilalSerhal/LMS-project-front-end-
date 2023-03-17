@@ -4,7 +4,7 @@ import Dropdown from "react-multilevel-dropdown";
 import axios from "axios";
 import Header from "../../components/Header/Header";
 import { Navbar, MenuBar } from "../../components/NavBar-pages/Navbar-pages";
-
+import { useNavigate } from "react-router-dom";
 function Attendance() {
   const [menubar, setMenuBar] = useState(false);
   const [tableMood, setTableMood] = useState(false);
@@ -13,7 +13,12 @@ function Attendance() {
   const [students, setStudents] = useState([]);
   const [selectedLevel, setSelectedLevel] = useState("");
   const [selectedSection, setSelectedSection] = useState("");
-
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem('token') && window.location.pathname !== '/') {
+      navigate('/');
+    }
+  }, []);
   const dropdownStyles = {
     fontSize: "24px",
   };

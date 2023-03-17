@@ -1,4 +1,4 @@
-.search{
+.search {
     width: 100rem;
     display: flex;
     justify-content: space-around;
@@ -12,64 +12,64 @@
     width: 15rem;
     border: 2px solid #2599BD;
 
-    
+
 }
 
-.searchSection input{
+.searchSection input {
     padding: 10px;
-    width:15rem;
+    width: 15rem;
 }
 
-.statusByName{
+.statusByName {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 50rem;
 }
 
-.boxStatus h5{
+.boxStatus h5 {
     border: 1px solid black;
     padding: 4px;
     margin: 10px;
     width: 7rem;
-    
+
 }
 
-.boxStatus{
+.boxStatus {
     display: flex;
     margin-right: 8rem;
 }
 
-.searchSection{
+.searchSection {
     display: flex;
     justify-content: space-around;
 }
 
-.searchSection input{
+.searchSection input {
     border: 2px solid #2599BD;
 }
 
-.report{
+.report {
     display: flex;
     justify-content: space-between;
 }
 
-.boxStatus1 h5{
+.boxStatus1 h5 {
     border: 1px solid black;
     padding: 4px;
     margin: 10px;
     width: 15.3rem;
-    
+
 }
 
-.boxStatus1{
+.boxStatus1 {
     display: flex;
     margin-right: 8rem;
 }
 
-.pie{
+.pie {
     width: 20rem;
-    margin: 0 auto;
     padding: 1rem;
+    margin-left: 31rem;
 
 }

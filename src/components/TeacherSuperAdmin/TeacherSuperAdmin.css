@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   gap: 50px;
-  margin-left: 50px;
+  margin-left: 108px;
 }
 
 .coll-btn-select1 {
@@ -27,7 +27,8 @@
 
 }
 .teacher-img{
-  padding-left: 13%;
+  width: 200px;
+    padding-left: 60px;
 }
 .add-updatebtn{
   padding-left: 28%;
@@ -116,7 +117,7 @@
   border-color: #2599BD;
   margin-right: 0px;
   line-height: 30px;
-  width: 250px;
+  width: 186px;
   height: 50px;
   font-size: 20px !important;
 

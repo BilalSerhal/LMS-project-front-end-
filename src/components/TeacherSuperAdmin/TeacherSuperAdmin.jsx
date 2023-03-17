@@ -367,7 +367,7 @@ const config2= {
                       <button className='button1 collection-button' onClick={()=>handleEditTeacher(item.id)} >Update</button>
                         <br/>
                         {/* {console.log("idss",item ? item.id :null)} */}
-                      <button className=' button1 collection-button' onClick={() => deleteTeacher(item.id)} >Delete</button>
+                      <button className=' button1 collection-button del' onClick={() => deleteTeacher(item.id)} >Delete</button>
                       </div>
                     </div>
   
