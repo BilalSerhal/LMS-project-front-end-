@@ -4,28 +4,28 @@ import axios from "axios";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import Header from "../../components/Header/Header";
-import { Navbar, MenuBar } from "../../components/NavBar-pages/Navbar-pages";
+import { Navbar, MenuBar } from "../../components/NavBar/Navbar";
 import { useNavigate } from "react-router-dom";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function Report() {
-
-const [menubar, setMenuBar] = useState(false);
-const [name, setName] = useState([]);
-const [grade, setGrade] = useState("");
-const [section, setSection] = useState("");
-const [compare, setCompare] = useState("");
-const [pieChartData,setPieChartData]= useState({})
-const [isPieChartVisible,setIsPieChartVisible] = useState(false)
-const navigate = useNavigate();
+ 
+  const [menubar, setMenuBar] = useState(false);
+  const [name, setName] = useState([]);
+  const [grade, setGrade] = useState("");
+  const [section, setSection] = useState("");
+  const [compare, setCompare] = useState("");
+  const [pieChartData,setPieChartData]= useState({})
+  const [isPieChartVisible,setIsPieChartVisible] = useState(false)
+  const navigate = useNavigate();
   useEffect(() => {
     if (!localStorage.getItem('token') && window.location.pathname !== '/') {
       navigate('/');
     }
   }, []);
   
-useEffect(() => {
+  useEffect(() => {
     axios
     .get(`http://localhost:8000/api/getReport`)
     .then((response) => {
@@ -62,7 +62,7 @@ useEffect(() => {
         })
     }
 
-    setPieChartData({labels:['present','absent','late'],'datasets':[{label:'Pie Chart',data:[present,absent,late],backgroundColor:['#2599BD','#f96b00','#D6A982']}]})
+    setPieChartData({labels:['Present','Absent','Late'],'datasets':[{label:'Pie Chart',data:[present,absent,late],backgroundColor:['#2599BD','#f96b00','#D6A982']}]})
 
     if(present || late || absent){
         setIsPieChartVisible(true)

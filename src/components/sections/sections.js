@@ -6,9 +6,10 @@ import edit from "./image/icons8-pencil-64.png";
 import add from "./image/icons8-add-new-64.png";
 import close from "./image/icons8-close-window-48.png";
 import axios from "axios";
-import Header from "../../components/Header/Header";
-import { Navbar, MenuBar } from "../../components/NavBar-pages/Navbar-pages";
+import Header from "../Header/Header";
+import { Navbar, MenuBar } from "../NavBar/Navbar";
 import { useNavigate } from "react-router-dom";
+
 
 const Sections = () => {
   const [menubar, setMenuBar] = useState(false);
@@ -23,6 +24,7 @@ const Sections = () => {
       navigate('/');
     }
   }, []);
+
   const [formData, setFormData] = useState({
     sectionName: "",
     capacity: "",
@@ -128,10 +130,11 @@ const Sections = () => {
       setFormData({ sectionName: "", capacity: "" });
       setSelectedValues([]);
       setAddMode(false);
+      window.location.reload(); 
     } catch (error) {
       console.error(error);
     }
-    window.location.reload(); 
+    window.location.reload(true);
   };
   const handleClose = () => {
     setAddMode(false);
@@ -142,7 +145,7 @@ const Sections = () => {
   return (
     <>
     <div>
-        <Header />
+     <Header />
         <div className="app-body">
           <Navbar setMenuBar={setMenuBar} menubar={menubar} />
           <MenuBar menubar={menubar} />

@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import "./Attendance.css";
 import Dropdown from "react-multilevel-dropdown";
 import axios from "axios";
-import Header from "../../components/Header/Header";
-import { Navbar, MenuBar } from "../../components/NavBar-pages/Navbar-pages";
+import Header from "../Header/Header";
+import { Navbar, MenuBar } from "../NavBar/Navbar";
 import { useNavigate } from "react-router-dom";
+
 function Attendance() {
-  const [menubar, setMenuBar] = useState(false);
+ const [menubar, setMenuBar] = useState(false);
   const [tableMood, setTableMood] = useState(false);
   const [data, setData] = useState([]);
   const [buttonStatus, setButtonStatus] = useState({});
@@ -19,11 +20,12 @@ function Attendance() {
       navigate('/');
     }
   }, []);
+
   const dropdownStyles = {
     fontSize: "24px",
   };
 
-  useEffect(() => {
+   useEffect(() => {
     axios.get(`http://localhost:8000/api/levels`)
       .then((response) => {
         setData(response.data);
@@ -41,6 +43,7 @@ function Attendance() {
         setSelectedLevel(levelName);
         setSelectedSection(sectionName);
         setTableMood(true);
+        console.log("Res",response)
       })
       .catch((error) => {
         console.log(error);
@@ -95,6 +98,7 @@ function Attendance() {
                         <Dropdown.Item key={card.id} position='right'>
                           <h3
                             onClick={() =>
+                            
                               handleGetStudent(
                                 card.levelName,
                                 section.sectionName

@@ -175,9 +175,9 @@ const config2= {
   
     const form = e.target;
       const formData = new FormData(form);
-    // {console.log("subb",selectedValuesSubject.subject)}
-    // {console.log("sec",selectedValues.sectionName)}
-    // {console.log("lev",selectedValuesLevel.levelName)}
+    {console.log("subb",selectedValuesSubject[0].subject)}
+    {console.log("sec",selectedValues[0].sectionName)}
+    {console.log("lev",selectedValuesLevel[0].levelName)}
       const newUser = {
         
         firstName: formData.get("firstName"),
@@ -189,8 +189,10 @@ const config2= {
         levelName: selectedValuesLevel[0].levelName,
         sectionName: selectedValues[0].sectionName,
         subject:selectedValuesSubject[0].subject,
+
       };
-  
+      console.log("newleve",levelName)
+      console.log("newsec",sectionName)
       console.log("userbody ",newUser);
     
       axios
@@ -279,7 +281,7 @@ const config2= {
         <div className="app-body">
           <Navbar setMenuBar={setMenuBar} menubar={menubar} />
           <MenuBar menubar={menubar} />
-          <div className='lol'>
+          <div className='lolTeacher'>
           <div className='first-buttons'>  
 
 <Dropdown
@@ -361,12 +363,12 @@ const config2= {
                       <br/>
                       <br/>
                      </div>
-                      
+                      <div className='add-updatebtn'>
                       <button className='button1 collection-button' onClick={()=>handleEditTeacher(item.id)} >Update</button>
                         <br/>
                         {/* {console.log("idss",item ? item.id :null)} */}
-                      <button className=' button1 collection-button' onClick={() => deleteTeacher(item.id)} >Delete</button>
-                      
+                      <button className=' button1 collection-button del' onClick={() => deleteTeacher(item.id)} >Delete</button>
+                      </div>
                     </div>
   
                   </div>
@@ -396,7 +398,8 @@ const config2= {
             <label className='alignForm'>Phone num <input className='textForm5 ' type='text' name="phoneNumber" value={teacherCollection.phoneNumber} onChange={changingParams} required></input></label>
             <br />
             <label for="type" className='alignForm'>Teacher Level:
-            {console.log("level",selectedValuesLevel)}
+            {console.log("level",selectedValuesLevel.id)}
+            {console.log("levelid",selectedValuesLevel)}
             <Multiselect id="typee" name="levelName"  options={optionsLevel} selectedValues={selectedValuesLevel} onSelect={onSelectLevel}
             onRemove={onRemoveLevel}
             displayValue="levelName" selectionLimit={1}
@@ -412,7 +415,7 @@ const config2= {
             onRemove={onRemove}
             displayValue="sectionName" selectionLimit={1}
           >-</Multiselect>
-          {console.log("sectionn",selectedValues[0])}
+          
           </label>
   
           <br/>

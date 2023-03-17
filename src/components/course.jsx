@@ -3,8 +3,8 @@ import { Delete  } from "@mui/icons-material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header/Header";
-import { Navbar,MenuBar} from "../components/NavBar-pages/Navbar-pages";
-import "./course.css"
+import { Navbar,MenuBar} from "../components/NavBar/Navbar";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -16,7 +16,12 @@ function Course() {
   const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("");
   const [showModal,setShowModal] = useState(false);
-
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem('token') && window.location.pathname !== '/') {
+      navigate('/');
+    }
+  }, []);
 
 
   const CourseFetch = async () => {
@@ -80,10 +85,10 @@ function Course() {
   return (
     <>
 <div>
-    <Header/>
-    <div className="app-body">
-    <Navbar setMenuBar={setMenuBar} menuBar={menubar}/>
-    <MenuBar menubar={menubar}/>
+   <Header />
+        <div className="app-body">
+          <Navbar setMenuBar={setMenuBar} menubar={menubar} />
+          <MenuBar menubar={menubar} />
      
     <div className="class-body-c">
             <h2 className="class-headline-c">Courses</h2>

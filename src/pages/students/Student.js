@@ -6,13 +6,18 @@ import studen from "./image/student.png";
 import Dropdown from "react-multilevel-dropdown";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 
 function Student() {
   const [menubar, setMenuBar] = useState(false);
   const [data, setData] = useState([]);
   const [students, setStudents] = useState([]);
- 
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem('token') && window.location.pathname !== '/') {
+      navigate('/');
+    }
+  }, []);
   const dropdownStyles = {
     fontSize: "26px",
   };

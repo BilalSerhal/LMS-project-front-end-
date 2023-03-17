@@ -192,14 +192,12 @@ const getterbyname=async(firstName)=>{
  const responsee= await axios.get(`http://localhost:8000/api/userLMS/getUserbyName/${firstName}`)
 //  console.log( responsee.data[0])
  if(responsee.data[0].role==="student"){
-  setStudents(responsee.data)}
+  setStudents(responsee.data)
+}
  
 else{
   alert("This student doesn't exist")
 }
-
-
-
 }
 
 const changingParams=(e)=>{
@@ -242,7 +240,7 @@ const handleAddStudent=async (e)=>{
         console.log(error);
       });
   
- 
+ window.location.reload(true);
 
 }
 
@@ -364,12 +362,12 @@ const selectedStudent = async(e,sectionName, levelName) => {
                         <br/>
                         <br/>
                        </div>
-                        
+                        <div className='add-updatebtn'>
                         <button className='button collection-button' onClick={()=>handleEditStudent(item.id)}>Update</button>
                           <br/>
                           {/* {console.log("idss",item ? item.id :null)} */}
-                        <button className=' button collection-button' onClick={() => deleteStudent(item.id)} >Delete</button>
-                        
+                        <button className=' button collection-button del' onClick={() => deleteStudent(item.id)} >Delete</button>
+                        </div>
                       </div>
     
                     </div>
