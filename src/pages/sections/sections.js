@@ -123,10 +123,10 @@ const Sections = () => {
       setFormData({ sectionName: "", capacity: "" });
       setSelectedValues([]);
       setAddMode(false);
-      window.location.reload(); 
     } catch (error) {
       console.error(error);
     }
+    window.location.reload(); 
   };
   const handleClose = () => {
     setAddMode(false);

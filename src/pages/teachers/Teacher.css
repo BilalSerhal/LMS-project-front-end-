@@ -25,7 +25,7 @@
   }
   .mappingdata-2T{
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 20px;
     width: 100%;
   }
@@ -44,7 +44,7 @@
   }
   
   .student-img2T{
-  width: 50%;
+  width: 200px;
   
   }
   .align-info2T{

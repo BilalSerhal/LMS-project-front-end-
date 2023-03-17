@@ -3,8 +3,8 @@ import { Delete  } from "@mui/icons-material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header/Header";
-import { Navbar,MenuBar} from "../components/NavBar/Navbar";
-
+import { Navbar,MenuBar} from "../components/NavBar-pages/Navbar-pages";
+import "./course.css"
 
 
 
@@ -85,7 +85,8 @@ function Course() {
     <Navbar setMenuBar={setMenuBar} menuBar={menubar}/>
     <MenuBar menubar={menubar}/>
      
-
+    <div className="class-body-c">
+            <h2 className="class-headline-c">Courses</h2>
 
     <div>
       
@@ -161,6 +162,7 @@ function Course() {
   </div>
 </form>
 </Modal>   
+    </div>
     </div>
     </div>
     </div>

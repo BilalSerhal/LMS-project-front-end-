@@ -22,22 +22,16 @@ function App() {
  
 
   return (
-    <BrowserRouter>
+    <>
+   
     <div className="all">
     <Router>
       <Routes>
-      
-        <Route path="/Course" element={<Course/>}/>
-         <Route path="/" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route path="/StudentSuperAdmin" element={<StudentSuperAdmin />} />
           <Route path="/TeacherSuperAdmin" element={<TeacherSuperAdmin />} />
-      </Routes>
-      
-    </Router>
-   
-      <Router>
-        <Routes>
-          <Route exact path="/" element={<MainPic />} />
+          <Route path="/Course" element={<Course/>}/>
+          <Route path="/home" element={<MainPic />} />
           <Route path="/levels" element={<Levels />} />
           <Route path="/sections" element={<Sections />} />
           <Route path="/attendances" element={<Attendances />} />
@@ -47,7 +41,8 @@ function App() {
         </Routes>
       </Router>
     </div>
-    </BrowserRouter>
+   
+    </>
   );
 }
 

@@ -49,6 +49,8 @@ function Teacher() {
         <div className="app-body">
           <Navbar setMenuBar={setMenuBar} menubar={menubar} />
           <MenuBar menubar={menubar} />
+          <div className="class-body">
+            <h2 className="class-headline">Teachers</h2>
           <div className="lololT">
             <div>
             <Dropdown
@@ -107,6 +109,7 @@ function Teacher() {
                 );
               })}
             </div>
+          </div>
           </div>
         </div>
       </div>

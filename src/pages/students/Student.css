@@ -17,7 +17,7 @@
       font-size: 20px !important;
       }  
   
-  .lol {
+  .loll {
     width: min-content;
     display: flex;
     flex-direction: column;
@@ -25,7 +25,7 @@
   }
   .mappingdata1{
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 20px;
     width: 100%;
   }
@@ -43,7 +43,7 @@
   }
   
   .student-img1{
-  width: 50%;
+  width: 200px;
   
   }
   .align-info1{

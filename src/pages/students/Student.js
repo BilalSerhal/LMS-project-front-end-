@@ -47,7 +47,9 @@ function Student() {
         <div className="app-body">
           <Navbar setMenuBar={setMenuBar} menubar={menubar} />
           <MenuBar menubar={menubar} />
-          <div className="lol">
+          <div className="class-body">
+            <h2 className="class-headline">Students</h2>
+          <div className="loll">
             <div className="first-buttons">
             <Dropdown
                 className="student-drop"
@@ -105,6 +107,7 @@ function Student() {
                 );
               })}
             </div>
+          </div>
           </div>
         </div>
       </div>

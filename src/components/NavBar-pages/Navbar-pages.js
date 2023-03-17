@@ -86,7 +86,7 @@ const Navbar = ({ setMenuBar, menubar }) => {
           <div className="dashboard">
             <img className="img_dashboard" src={power} alt="" />
             <div className="text">
-              <Link to="/login">Log out</Link>
+              <Link to="/">Log out</Link>
             </div>
           </div>
         </div>
@@ -133,7 +133,7 @@ const MenuBar = ({ menubar }) => {
         <Link to="/report">Report</Link>
       </button>
       <button className="navmenu-menu">
-        <Link to="/login">logout</Link>
+        <Link to="/">logout</Link>
       </button>
     </div>
   );
