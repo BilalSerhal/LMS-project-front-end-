@@ -17,20 +17,20 @@ import Attendances from "./pages/attendance/Attendance";
 import Students from "./pages/students/Student";
 import Teacheres from "./pages/teachers/Teacher";
 import Report from "./pages/Report/Report";
+import Teacher from "./pages/teachers/Teacher";
 
 function App() {
  
 
   return (
-    <BrowserRouter>
     <div className="all">
     <Router>
       <Routes>
       
         <Route path="/Course" element={<Course/>}/>
-         <Route path="/" element={<Login />} />
-          <Route path="/StudentSuperAdmin" element={<StudentSuperAdmin />} />
-          <Route path="/TeacherSuperAdmin" element={<TeacherSuperAdmin />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/StudentSuperAdmin" element={<StudentSuperAdmin />} />
+        <Route path="/TeacherSuperAdmin" element={<TeacherSuperAdmin />} />
       </Routes>
       
     </Router>
@@ -47,7 +47,6 @@ function App() {
         </Routes>
       </Router>
     </div>
-    </BrowserRouter>
   );
 }
 

@@ -3,20 +3,22 @@ import "./Report.css";
 import axios from "axios";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
+import Header from "../../components/Header/Header";
+import { Navbar, MenuBar } from "../../components/NavBar-pages/Navbar-pages";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function Report() {
- 
 
-  const [name, setName] = useState([]);
-  const [grade, setGrade] = useState("");
-  const [section, setSection] = useState("");
-  const [compare, setCompare] = useState("");
-  const [pieChartData,setPieChartData]= useState({})
-  const [isPieChartVisible,setIsPieChartVisible] = useState(false)
+const [menubar, setMenuBar] = useState(false);
+const [name, setName] = useState([]);
+const [grade, setGrade] = useState("");
+const [section, setSection] = useState("");
+const [compare, setCompare] = useState("");
+const [pieChartData,setPieChartData]= useState({})
+const [isPieChartVisible,setIsPieChartVisible] = useState(false)
 
-  useEffect(() => {
+useEffect(() => {
     axios
     .get(`http://localhost:8000/api/getReport`)
     .then((response) => {
@@ -43,17 +45,17 @@ useEffect(() => {
                 return null
             }
         }).map((student,index) => {
-            if(student.status === 'Present'){
+            if(student.status === 'present'){
                 present += 1
-            }else if(student.status === 'Absent'){
+            }else if(student.status === 'absent'){
                 absent += 1
-            }else if(student.status === 'Late'){
+            }else if(student.status === 'late'){
                 late += 1
             }
         })
     }
 
-    setPieChartData({labels:['Present','Absent','Late'],'datasets':[{label:'Pie Chart',data:[present,absent,late],backgroundColor:['#2599BD','#FF0000','#FF00FF']}]})
+    setPieChartData({labels:['Present','Absent','Late'],'datasets':[{label:'Pie Chart',data:[present,absent,late],backgroundColor:['#2599BD','#f96b00','#D6A982']}]})
 
     if(present || late || absent){
         setIsPieChartVisible(true)
@@ -62,7 +64,13 @@ useEffect(() => {
 
 
 return (
+    <>
     <div>
+      <Header/>
+      <div className="app-body">
+        <Navbar setMenuBar={setMenuBar} menubar={menubar} />
+        <MenuBar menubar={menubar} />
+    <div className="background">
     <div className="search">
         <div className="searchName">
         <input
@@ -110,7 +118,6 @@ return (
             : null
         }
         </div>
-        
         <div className='status'>
             {name.filter((Attendance) => {
                 if(grade === '' || section === '' || grade === null || section === null || Attendance.grade === '' || Attendance.section === '' || Attendance.grade === null || Attendance.section === null){
@@ -142,6 +149,9 @@ return (
     : null
 }
     </div>
+    </div>
+    </div>
+    </>
 );
 }
 
