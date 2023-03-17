@@ -16,27 +16,32 @@ import Attendances from "./pages/attendance/Attendance";
 import Students from "./pages/students/Student";
 import Teacheres from "./pages/teachers/Teacher";
 import Report from "./pages/Report/Report";
-
+import ReportSuperAdmin from "./components/Report/Report"
+import SectionSuperAdmin from "./components/sections/sections"
+import LevelSuperAdmin from "./components/Levels/levels"
+import AttendanceSuperAdmin from "./components/attendance/Attendance";
 function App() {
  
 
   return (
-    <BrowserRouter>
+    
     <div className="all">
     <Router>
       <Routes>
-      
-        <Route path="/Course" element={<Course/>}/>
-         <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/CourseSuperAdmin" element={<Course/>}/>
           <Route path="/StudentSuperAdmin" element={<StudentSuperAdmin />} />
           <Route path="/TeacherSuperAdmin" element={<TeacherSuperAdmin />} />
-      </Routes>
-      
-    </Router>
-   
-      <Router>
-        <Routes>
-          <Route exact path="/" element={<MainPic />} />
+          <Route path="/ReportSuperAdmin" element={<ReportSuperAdmin/>}/>
+          <Route path="/sectionsSuperAdmin" element={<SectionSuperAdmin/>}/>
+          <Route path="/levelSuperAdmin" element={<LevelSuperAdmin/>}/>
+          <Route path="/AttendanceSuperAdmin" element={<AttendanceSuperAdmin/>}/>
+
+          
+
+     
+        
+          <Route exact path="/Home" element={<MainPic />} />
           <Route path="/levels" element={<Levels />} />
           <Route path="/sections" element={<Sections />} />
           <Route path="/attendances" element={<Attendances />} />
@@ -47,7 +52,7 @@ function App() {
       </Router>
       
     </div>
-    </BrowserRouter>
+    
   );
 }
 
