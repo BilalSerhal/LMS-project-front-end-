@@ -107,7 +107,7 @@ const Navbar = ({ setMenuBar, menubar }) => {
 
 const MenuBar = ({ menubar }) => {
   return (
-    <div className={!menubar ? "navhidden_hidden" : "navhidden_show"} menubar>
+    <div className={!menubar ? "navhidden_hidden" : "navhidden_show"}>
       <button className="navmenu-menu">
         <Link to="/home">Dashboard</Link>
       </button>

@@ -302,7 +302,7 @@ const selectedStudent = async(e,sectionName, levelName) => {
                       {card.sections.map((section,key2)=>
 
                     <Dropdown.Item className="childSection" key={key2} onClick={(e)=>selectedStudent(e,section.sectionName, card.levelName)} value={section.id}>
-                    <h3 name='sectionName'>Sections {section.sectionName} {section.id}</h3>
+                    <h3 name='sectionName'>Sections {section.sectionName}</h3>
                     </Dropdown.Item>)}
                     </Dropdown.Submenu>
                       </Dropdown.Item>

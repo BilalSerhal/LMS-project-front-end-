@@ -17,6 +17,7 @@ import Attendances from "./pages/attendance/Attendance";
 import Students from "./pages/students/Student";
 import Teacheres from "./pages/teachers/Teacher";
 import Report from "./pages/Report/Report";
+import Teacher from "./pages/teachers/Teacher";
 
 function App() {
  

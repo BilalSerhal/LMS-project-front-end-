@@ -66,7 +66,7 @@ const config2= {
    }
 
    useEffect(()=>{
-    selectedTeacher()
+    // selectedTeacher()
   },[]);
   useEffect(()=>{  
     loadLevelSEction()
@@ -175,9 +175,9 @@ const config2= {
   
     const form = e.target;
       const formData = new FormData(form);
-    {console.log("subb",selectedValuesSubject.subject)}
-    {console.log("sec",selectedValues.sectionName)}
-    {console.log("lev",selectedValuesLevel.levelName)}
+    // {console.log("subb",selectedValuesSubject.subject)}
+    // {console.log("sec",selectedValues.sectionName)}
+    // {console.log("lev",selectedValuesLevel.levelName)}
       const newUser = {
         
         firstName: formData.get("firstName"),
@@ -240,8 +240,8 @@ const config2= {
     e.preventDefault();
     
     
-    console.log("section ",sectionName);
-    console.log("course ",levelName);
+    // console.log("section ",sectionName);
+    // console.log("course ",levelName);
   
     setLevel(levelName);
     setSection(sectionName);
