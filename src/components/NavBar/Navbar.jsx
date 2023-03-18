@@ -25,14 +25,15 @@ const Navbar = ({ setMenuBar, menubar }) => {
     <div className="container1">
       <div className="navbar-container">
         <div className="navbar">
-          
+            
+
+            
           <div className="dashboard_main">
             <div className="dashboard">
               <img className="img_dashboard" src={presentation} alt="" />
-
-              <div className="text">
+               <div className="text">
                 <Link to="/TeacherSuperAdmin">Teachers</Link>
-              </div>
+               </div>
             </div>
           </div>
           <div className="dashboard_main">
