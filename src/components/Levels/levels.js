@@ -21,7 +21,7 @@ const Levels = () => {
     if (!localStorage.getItem('token') && window.location.pathname !== '/') {
       navigate('/');
     }
-  }, []);
+  },[]);
 
   const url = `http://localhost:8000/api/levels`;
 

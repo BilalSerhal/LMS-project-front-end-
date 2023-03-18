@@ -145,13 +145,17 @@
       margin: 50px;
       
     }
-  
-  @media (max-width: 768px) {
+    
+    @media (max-width: 768px) {
+    .class-body{
+      margin-top: 0;
+      margin-left: 0px;
+    }
      .class-headline{
       font-size: 30px;
       padding-left: 30px;
-     }
-     .class-headline1{
+    }
+    .class-headline1{
       font-size: 20px;
      }
      .class-section {
@@ -178,10 +182,6 @@
     }
     .class-buttonRR{
       margin-left: 133px;
-    }
-    .class-body{
-      margin-top: 0;
-      margin-left: 0px;
     }
    
    

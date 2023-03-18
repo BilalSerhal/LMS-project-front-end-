@@ -1,6 +1,18 @@
 *{
     font-family:  'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', 'sans-serif';
   }
+  .class-body-s{
+    margin-left: 100px;
+    width: 90%;
+    margin-top:5px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  .class-headline-s{
+      text-align: center;
+      color: #2599bd;
+      font-size: 50px;
+      
+  }
   .student-drop{
     width:12rem;
     width: 18rem;
@@ -91,6 +103,14 @@
       width:10rem;
       font-size: 20px !important;
       }  
+      .class-body-s{
+        margin-top: 0;
+        margin-left: 0px;
+      }
+       .class-headline-s{
+        font-size: 30px;
+        padding-left: 30px;
+      }
        
     }       
     @media screen and (max-width: 1024px)  {

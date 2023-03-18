@@ -12,17 +12,16 @@ function Teacher() {
   const [menubar, setMenuBar] = useState(false);
   const [data, setData] = useState([]);
   const [teachers, setTeachers] = useState([]);
- const navigate = useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
-    if (!localStorage.getItem('token') && window.location.pathname !== '/') {
-      navigate('/');
+    if (!localStorage.getItem("token") && window.location.pathname !== "/") {
+      navigate("/");
     }
   }, []);
   const dropdownStyles = {
     fontSize: "26px",
   };
 
-  
   useEffect(() => {
     axios
       .get(`http://localhost:8000/api/levels`)
@@ -34,13 +33,11 @@ function Teacher() {
       });
   }, []);
 
-
   const handleGetStudent = (levelName, sectionName) => {
     axios
       .get(`http://localhost:8000/api/listTeacher/${levelName}/${sectionName}`)
       .then((response) => {
         setTeachers(response.data);
-        
       })
       .catch((error) => {
         console.log(error);
@@ -54,67 +51,67 @@ function Teacher() {
         <div className="app-body">
           <Navbar setMenuBar={setMenuBar} menubar={menubar} />
           <MenuBar menubar={menubar} />
-          <div className="class-body">
-            <h2 className="class-headline">Teachers</h2>
-          <div className="lololT">
-            <div>
-            <Dropdown
-                className="student-dropT"
-                title="Select Sections"
-                position="right"
-                buttonVariant="primary"
-                style={dropdownStyles}
-              >
-                {data.map((card) => (
-                  <Dropdown.Item key={card.id} className="student-drop-chid">
-                    {card.levelName}
-                    <Dropdown.Submenu position="right">
-                      {card.sections.map((section) => (
-                        <Dropdown.Item key={card.id}>
-                          <h3
-                            onClick={() =>
-                              handleGetStudent(
-                                card.levelName,
-                                section.sectionName
-                              )
-                            }
-                          >
-                            Section {section.sectionName}
-                          </h3>
-                        </Dropdown.Item>
-                      ))}
-                    </Dropdown.Submenu>
-                  </Dropdown.Item>
-                ))}
-              </Dropdown>
-            </div>
-            <div className="mappingdata-2T">
-              {teachers.map((student) => {
-                // {console.log("temmm",item.levelName, item.sectionName)}
-                return (
-                  <div key={student.id}>
-                    <div className="infopart-page2T">
-                      <img className="student-img2T" src={teache} alt="img" />
-                      <hr />
-                      <br />
-                      <div className="align-info2T">
-                        Name:
-                        {student.firstName} {student.lastName}
+          <div className="class-body-t">
+            <h2 className="class-headline-t">Teachers</h2>
+            <div className="lololT">
+              <div>
+                <Dropdown
+                  className="student-dropT"
+                  title="Select Sections"
+                  position="right"
+                  buttonVariant="primary"
+                  style={dropdownStyles}
+                >
+                  {data.map((card) => (
+                    <Dropdown.Item key={card.id} className="student-drop-chid">
+                      {card.levelName}
+                      <Dropdown.Submenu position="right">
+                        {card.sections.map((section) => (
+                          <Dropdown.Item key={card.id}>
+                            <h3
+                              onClick={() =>
+                                handleGetStudent(
+                                  card.levelName,
+                                  section.sectionName
+                                )
+                              }
+                            >
+                              Section {section.sectionName}
+                            </h3>
+                          </Dropdown.Item>
+                        ))}
+                      </Dropdown.Submenu>
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown>
+              </div>
+              <div className="mappingdata-2T">
+                {teachers.map((student) => {
+                  // {console.log("temmm",item.levelName, item.sectionName)}
+                  return (
+                    <div key={student.id}>
+                      <div className="infopart-page2T">
+                        <img className="student-img2T" src={teache} alt="img" />
+                        <hr />
                         <br />
-                        Email:
-                        {student.email}
-                        <br />
-                        Phone Number:
-                        {student.phoneNumber}
-                        <br />
-                        <br />
+                        <div className="align-info2T">
+                          Name:
+                          {student.firstName} {student.lastName}
+                          <br />
+                          Email:
+                          {student.email}
+                          <br />
+                          Phone Number:
+                          {student.phoneNumber}
+                          <br />
+                          <br />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
-          </div>
           </div>
         </div>
       </div>

@@ -49,7 +49,7 @@ function Login(){
           window.localStorage.setItem("token", data.token);
           console.log("tok",data.token)
           if (data.role === "teacher") {
-            window.location.href = "/Home";
+            window.location.href = "/home";
           } else if (data.role === "superadmin") {
             window.location.href = "/TeacherSuperAdmin";
           } else {

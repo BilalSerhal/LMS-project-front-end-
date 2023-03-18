@@ -52,8 +52,8 @@ function Student() {
         <div className="app-body">
           <Navbar setMenuBar={setMenuBar} menubar={menubar} />
           <MenuBar menubar={menubar} />
-          <div className="class-body">
-            <h2 className="class-headline">Students</h2>
+          <div className="class-body-s">
+            <h2 className="class-headline-s">Students</h2>
           <div className="loll">
             <div className="first-buttons">
             <Dropdown

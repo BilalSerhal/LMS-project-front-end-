@@ -78,6 +78,7 @@ function Attendance() {
         <div className="app-body">
           <Navbar setMenuBar={setMenuBar} menubar={menubar} />
           <MenuBar menubar={menubar} />
+          
           <div className="attendances">
             <div className="section">
               <Dropdown
@@ -172,6 +173,7 @@ function Attendance() {
               </div>
             )}
           </div>
+          
         </div>
       </div>
     </>

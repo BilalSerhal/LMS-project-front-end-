@@ -281,6 +281,8 @@ const config2= {
         <div className="app-body">
           <Navbar setMenuBar={setMenuBar} menubar={menubar} />
           <MenuBar menubar={menubar} />
+          <div className="class-body-R">
+            <h2 className="class-headline-R">Teachers</h2>
           <div className='lolTeacher'>
           <div className='first-buttons'>  
 
@@ -302,7 +304,7 @@ const config2= {
     {card.sections.map((section,key2)=>
 
   <Dropdown.Item className="childSection" key={key2} onClick={(e)=>selectedTeacher(e,section.sectionName, card.levelName)} value={section.id}>
-  <h3 name='sectionName'>Sections {section.sectionName} {section.id}</h3>
+  <h3 name='sectionName'>Sections {section.sectionName}</h3>
   
   {console.log("sec",section.sectionName, section.id)}
   </Dropdown.Item>)}
@@ -324,8 +326,8 @@ const config2= {
                           >Add</button>
     
     </div>
-    <div className='levsecc'>
-                        {levelName}{sectionName}
+    <div className='levseccR'>
+                        {levelName} {sectionName}
                         
                         </div>
 
@@ -464,6 +466,7 @@ const config2= {
           
         </form>
         )}
+          </div>
           </div>
           </div>
         </div>

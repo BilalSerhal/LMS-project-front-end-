@@ -1,6 +1,7 @@
 import React from "react";
 import "./Navbar-pages.css";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import attendance from "./image/attendance.png";
 import classroom from "./image/classroom.png";
 import monitor from "./image/monitor.png";
@@ -12,6 +13,15 @@ import menu from "./image/Menu.png";
 import repor from "./image/report.png"
 
 const Navbar = ({ setMenuBar, menubar }) => {
+  const navigate = useNavigate();
+  const logOut = () => {
+    window.location.href = "/";
+    window.localStorage.clear();
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
+
   return (
     <div className="container">
       <div className="navbar-container">
@@ -85,8 +95,8 @@ const Navbar = ({ setMenuBar, menubar }) => {
         <div className="dashboard_main">
           <div className="dashboard">
             <img className="img_dashboard" src={power} alt="" />
-            <div className="text">
-              <Link to="/">Log out</Link>
+            <div className="text" onClick={logOut}>
+              <Link to="/" >Log out</Link>
             </div>
           </div>
         </div>
@@ -131,9 +141,6 @@ const MenuBar = ({ menubar }) => {
       </button>
       <button className="navmenu-menu">
         <Link to="/report">Report</Link>
-      </button>
-      <button className="navmenu-menu">
-        <Link to="/">logout</Link>
       </button>
     </div>
   );
