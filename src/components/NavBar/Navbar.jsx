@@ -25,9 +25,6 @@ const Navbar = ({ setMenuBar, menubar }) => {
     <div className="container1">
       <div className="navbar-container">
         <div className="navbar">
-            
-
-            
           <div className="dashboard_main">
             <div className="dashboard">
               <img className="img_dashboard" src={presentation} alt="" />

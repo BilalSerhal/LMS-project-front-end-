@@ -33,16 +33,28 @@ function Teacher() {
       });
   }, []);
 
-  const handleGetStudent = (levelName, sectionName) => {
-    axios
-      .get(`http://localhost:8000/api/listTeacher/${levelName}/${sectionName}`)
-      .then((response) => {
-        setTeachers(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const handleGetStudent = async (levelName, sectionName) => {
+    console.log(levelName, sectionName)
+    try {
+      const response = await axios.get(`http://localhost:8000/api/listTeacher/${levelName}/${sectionName}`);
+      setTeachers(response.data);
+      console.log(teachers)
+    } catch (error) {
+      console.log(error);
+    }
   };
+  
+
+  // const handleGetStudent = (levelName, sectionName) => {
+  //   axios
+  //     .get(`http://localhost:8000/api/listTeacher/${levelName}/${sectionName}`)
+  //     .then((response) => {
+  //       setTeachers(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   return (
     <>
@@ -58,7 +70,7 @@ function Teacher() {
                 <Dropdown
                   className="student-dropT"
                   title="Select Sections"
-                  position="right"
+                  position="bottom"
                   buttonVariant="primary"
                   style={dropdownStyles}
                 >
@@ -86,30 +98,44 @@ function Teacher() {
                 </Dropdown>
               </div>
               <div className="mappingdata-2T">
-                {teachers.map((student) => {
-                  // {console.log("temmm",item.levelName, item.sectionName)}
-                  return (
-                    <div key={student.id}>
-                      <div className="infopart-page2T">
-                        <img className="student-img2T" src={teache} alt="img" />
-                        <hr />
-                        <br />
-                        <div className="align-info2T">
-                          Name:
-                          {student.firstName} {student.lastName}
-                          <br />
-                          Email:
-                          {student.email}
-                          <br />
-                          Phone Number:
-                          {student.phoneNumber}
-                          <br />
-                          <br />
-                        </div>
-                      </div>
+              {teachers.map((item, index) => {
+                
+                return (
+                  item ? 
+                    <div key={index}>
+
+                    <div className='infopart'>
+                    <img className="teacher-img" src={teache} alt="img" />
+                    <hr/>
+                  <br />
+                  <div className='align-info'>
+                      Name:
+                      {item.firstName}
+                      {" "}
+                      {item.lastName}
+                      <br/>
+                      
+                      Email:
+                      {item.email}
+                      
+                      <br/>
+                     
+                      Phone Number:
+                      {item.phoneNumber}
+
+                      
+                     
+                      <br/>
+                      <br/>
+                     </div>
+                      
                     </div>
-                  );
-                })}
+  
+                  </div>
+                  : null
+                
+                )
+              })}
               </div>
             </div>
           </div>

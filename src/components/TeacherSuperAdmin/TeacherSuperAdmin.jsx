@@ -2,10 +2,9 @@
 import './images/student.png'
 import teacher from "./images/teacher.png"
 import  Dropdown from "react-multilevel-dropdown"
-import { Component, useState,useEffect } from "react";
+import { useState,useEffect } from "react";
 import axios from 'axios';
 import {Multiselect} from "multiselect-react-dropdown";
-import { Select } from '@material-ui/core';
 import Header from "../../components/Header/Header";
 import { Navbar, MenuBar } from "../../components/NavBar/Navbar";
 import { useNavigate } from "react-router-dom";
@@ -29,7 +28,7 @@ const [lastName,setLastName]=useState("");
 const [email,setEmail]=useState("");
 const [password,setPassword]=useState("");
 const [phoneNumber,setPhoneNumber]=useState("");
-const [role,setRole]=useState("student");
+
 const [idd, setidd] = useState("");
 const [options, setOptions] = useState([]);
 const [optionsLevel, setOptionsLevel] = useState([]);
@@ -37,7 +36,7 @@ const [optionsSubject, setOptionsSubject] = useState([]);
 const [selectedValuesSubject, setSelectedValuesSubject] = useState([]);
 const [selectedValues, setSelectedValues] = useState([]);
 const [selectedValuesLevel, setSelectedValuesLevel] = useState([]);
-const[subject,setSubject]=useState("");
+
 
 const navigate = useNavigate();
   useEffect(() => {
@@ -145,7 +144,7 @@ const config2= {
 
   const updateTeacherINfo=async(e)=>{
     e.preventDefault();
-    let postupdate = { firstName, lastName, email,password, phoneNumber };
+    let postupdate = { firstName, lastName, email, password, phoneNumber };
     console.log("nftcollection ", firstName, lastName, email,password, phoneNumber);
     try {
       console.log("iddd",idd)
@@ -164,20 +163,17 @@ const config2= {
     }
    }
 
-  const handleAddTeacher=async (e)=>{
+  const handleAddTeacher= async (e) => {
     e.preventDefault();
-    console.log("teacher",teacherCollection);
-    const addForm= document.getElementById('firstt-formm1');
     
-    addForm&& window.scrollTo({ top: addForm.offsetTop, behavior: "smooth" });
+    const addForm = document.getElementById('firstt-formm1');
+    
+    addForm && window.scrollTo({ top: addForm.offsetTop, behavior: "smooth" });
     setEditTeacher(false)
     setAddTeacher(true);
   
     const form = e.target;
       const formData = new FormData(form);
-    {console.log("subb",selectedValuesSubject[0].subject)}
-    {console.log("sec",selectedValues[0].sectionName)}
-    {console.log("lev",selectedValuesLevel[0].levelName)}
       const newUser = {
         
         firstName: formData.get("firstName"),
@@ -199,15 +195,16 @@ const config2= {
         .post("http://localhost:8000/api/userLMS", newUser)
         .then((response) => {
           console.log("New student added: ", response.data);
-          setTeachers([...teachers, response.data]);
+          postTeacher([...teachers, response.data]);
           setAddTeacher(false);
+          alert("gftf")
         })
         .catch((error) => {
           console.log(error);
         });
     
    
-        window.location.reload(true);
+        // window.location.reload(true);
   }
 
   const changingParams=(e)=>{
@@ -240,11 +237,7 @@ const config2= {
 
    const selectedTeacher = async(e,sectionName, levelName) => {
     e.preventDefault();
-    
-    
-    // console.log("section ",sectionName);
-    // console.log("course ",levelName);
-  
+   
     setLevel(levelName);
     setSection(sectionName);
       const res = await axios.get(`http://localhost:8000/api/listTeacher/${levelName}/${sectionName}`)
@@ -289,15 +282,14 @@ const config2= {
 <Dropdown
   className="dropdownSection button1  coll-btn-select1"
   title=" Select Sections"
-  position="right"
+  position="bottom"
   buttonVariant="primary"
   
   >
   {levSec.map((card,key) => (
   
     <Dropdown.Item key={key}  name={levelName} className="childSection1" value={card.id}>
-     {console.log("levSec",levSec)}
-     {console.log("lev",card.levelName)}
+     
       {card.levelName} 
     
   <Dropdown.Submenu position="right">
@@ -306,7 +298,7 @@ const config2= {
   <Dropdown.Item className="childSection" key={key2} onClick={(e)=>selectedTeacher(e,section.sectionName, card.levelName)} value={section.id}>
   <h3 name='sectionName'>Sections {section.sectionName}</h3>
   
-  {console.log("sec",section.sectionName, section.id)}
+  
   </Dropdown.Item>)}
   </Dropdown.Submenu>
     </Dropdown.Item>
@@ -336,7 +328,7 @@ const config2= {
               
                         
               {teachers.map((item, index) => {
-                 {console.log("temmm",teachers)}
+                
                 return (
                   item ? 
                     <div key={index}>
@@ -400,33 +392,32 @@ const config2= {
             <label className='alignForm'>Phone num <input className='textForm5 ' type='text' name="phoneNumber" value={teacherCollection.phoneNumber} onChange={changingParams} required></input></label>
             <br />
             <label for="type" className='alignForm'>Teacher Level:
-            {console.log("level",selectedValuesLevel.id)}
-            {console.log("levelid",selectedValuesLevel)}
+           
             <Multiselect id="typee" name="levelName"  options={optionsLevel} selectedValues={selectedValuesLevel} onSelect={onSelectLevel}
             onRemove={onRemoveLevel}
             displayValue="levelName" selectionLimit={1}
           ></Multiselect>
-          
+           {console.log("sections",selectedValuesLevel[0])}
   
             
         </label>
             <br/>
             <label for="type" className='alignForm'>Teacher Section:
-            {console.log("sections",selectedValues)}
             <Multiselect id="typee" name="sectionName"  options={options} selectedValues={selectedValues} onSelect={onSelect}
             onRemove={onRemove}
             displayValue="sectionName" selectionLimit={1}
-          >-</Multiselect>
+            >-</Multiselect>
+            {console.log("sections",selectedValues[0])}
           
           </label>
   
           <br/>
             <label for="type" className='alignForm'>Subject:
-            {console.log("subject",selectedValuesSubject[0])}
             <Multiselect id="typee" name="subject"  options={optionsSubject} selectedValues={selectedValuesSubject} onSelect={onSelectSubject}
             onRemove={onRemoveSubject}
             displayValue="subject" selectionLimit={1}
-          >-</Multiselect>
+            >-</Multiselect>
+            {console.log("subject",selectedValuesSubject[0])}
           
           </label>
   

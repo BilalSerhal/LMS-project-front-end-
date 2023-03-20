@@ -59,7 +59,7 @@ function Student() {
             <Dropdown
                 className="student-drop"
                 title=" Select Sections"
-                position="right"
+                position="bottom"
                 buttonVariant="primary"
                 style={dropdownStyles}
               >
@@ -87,29 +87,30 @@ function Student() {
               </Dropdown>
             </div>
             <div className="mappingdata1">
-              {students.map((student) => {
+            {students.map((item, index) => {
                 // {console.log("temmm",item.levelName, item.sectionName)}
-                return (
-                  <div key={student.id}>
-                    <div className="infopart-page1">
-                      <img className="student-img1" src={studen} alt="img" />
+                return item ? (
+                  <div key={index}>
+                    <div className="infopart">
+                      <img className="student-img" src={studen} alt="img" />
                       <hr />
                       <br />
-                      <div className="align-info1">
+                      <div className="align-info">
                         Name:
-                        {student.firstName} {student.lastName}
+                        {item.firstName} {item.lastName}
                         <br />
                         Email:
-                        {student.email}
+                        {item.email}
                         <br />
                         Phone Number:
-                        {student.phoneNumber}
+                        {item.phoneNumber}
                         <br />
                         <br />
                       </div>
+                      
                     </div>
                   </div>
-                );
+                ) : null;
               })}
             </div>
           </div>

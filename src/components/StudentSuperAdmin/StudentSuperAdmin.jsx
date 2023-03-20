@@ -221,14 +221,15 @@ function StudentSuperAdmin() {
       .post("http://localhost:8000/api/userLMS", newUser)
       .then((response) => {
         console.log("New student added: ", response.data);
-        setStudents([...students, response.data]);
+        postStudent([...students, response.data]);
         setAddStudent(false);
+        alert("You have added a student")
       })
       .catch((error) => {
         console.log(error);
       });
 
-    window.location.reload(true);
+    
   };
 
   const selectedStudent = async (e, sectionName, levelName) => {
@@ -253,12 +254,14 @@ function StudentSuperAdmin() {
         <div className="app-body">
           <Navbar setMenuBar={setMenuBar} menubar={menubar} />
           <MenuBar menubar={menubar} />
+          <div className="class-body-RR">
+            <h2 className="class-headline-RR">Students</h2>
           <div className="lol">
             <div className="first-buttons">
               <Dropdown
                 className="dropdownSection button  coll-btn-select"
                 title=" Select Sections"
-                position="right"
+                position="bottom"
                 buttonVariant="primary"
               >
                 {levSec.map((card, key) => (
@@ -570,6 +573,7 @@ function StudentSuperAdmin() {
                 </form>
               )}
             </div>
+          </div>
           </div>
         </div>
       </div>
