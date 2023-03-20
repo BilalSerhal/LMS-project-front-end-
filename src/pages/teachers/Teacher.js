@@ -65,22 +65,22 @@ function Teacher() {
           <MenuBar menubar={menubar} />
           <div className="class-body-t">
             <h2 className="class-headline-t">Teachers</h2>
-            <div className="lololT">
+            <div className="lol">
               <div>
                 <Dropdown
-                  className="student-dropT"
+                  className="dropdownSection button  coll-btn-select"
                   title="Select Sections"
                   position="bottom"
                   buttonVariant="primary"
                   style={dropdownStyles}
                 >
                   {data.map((card) => (
-                    <Dropdown.Item key={card.id} className="student-drop-chid">
+                    <Dropdown.Item key={card.id} className="childSection">
                       {card.levelName}
                       <Dropdown.Submenu position="right">
                         {card.sections.map((section) => (
                           <Dropdown.Item key={card.id}>
-                            <h3
+                            <h3 name="sectionName"
                               onClick={() =>
                                 handleGetStudent(
                                   card.levelName,
@@ -97,14 +97,14 @@ function Teacher() {
                   ))}
                 </Dropdown>
               </div>
-              <div className="mappingdata-2T">
+              <div className="mappingdata">
               {teachers.map((item, index) => {
                 
                 return (
                   item ? 
                     <div key={index}>
 
-                    <div className='infopart'>
+                    <div className='infopartt'>
                     <img className="teacher-img" src={teache} alt="img" />
                     <hr/>
                   <br />

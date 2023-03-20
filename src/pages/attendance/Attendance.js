@@ -15,8 +15,8 @@ function Attendance() {
   const [selectedSection, setSelectedSection] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
-    if (!localStorage.getItem('token') && window.location.pathname !== '/') {
-      navigate('/');
+    if (!localStorage.getItem("token") && window.location.pathname !== "/") {
+      navigate("/");
     }
   }, []);
   const dropdownStyles = {
@@ -24,14 +24,15 @@ function Attendance() {
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/levels`)
+    axios
+      .get(`http://localhost:8000/api/levels`)
       .then((response) => {
         setData(response.data);
       })
       .catch((error) => {
         console.log(error);
-      })
-  },[]);
+      });
+  }, []);
 
   const handleGetStudent = (levelName, sectionName) => {
     axios
@@ -58,13 +59,12 @@ function Attendance() {
         {
           studentId: id,
           status: status,
-          
         }
       );
       console.log(response.data);
       setAttendanceStatus(`${status} recorded for student ${id}`);
-      setButtonStatus(prevState => ({ ...prevState, [id]: status }));
-    
+      setButtonStatus((prevState) => ({ ...prevState, [id]: status }));
+
       console.log(response.data);
     } catch (error) {
       console.log(error);
@@ -78,7 +78,7 @@ function Attendance() {
         <div className="app-body">
           <Navbar setMenuBar={setMenuBar} menubar={menubar} />
           <MenuBar menubar={menubar} />
-          
+
           <div className="attendances">
             <div className="section">
               <Dropdown
@@ -89,11 +89,15 @@ function Attendance() {
                 style={dropdownStyles}
               >
                 {data.map((card) => (
-                  <Dropdown.Item position='right'  key={card.id} className="childSection">
+                  <Dropdown.Item
+                    position="right"
+                    key={card.id}
+                    className="childSection"
+                  >
                     {card.levelName}
                     <Dropdown.Submenu position="right">
                       {card.sections.map((section) => (
-                        <Dropdown.Item key={card.id} position='right'>
+                        <Dropdown.Item key={card.id} position="right">
                           <h3
                             onClick={() =>
                               handleGetStudent(
@@ -113,9 +117,11 @@ function Attendance() {
             </div>
             {tableMood && (
               <div className="createAttendance">
-                <div className='gradeAndSection'>
-                  <div className='gradeAttendance'>{selectedLevel}</div>
-                  <div className='sectionAttendance'>Section {selectedSection}</div>
+                <div className="gradeAndSection">
+                  <div className="gradeAttendance">{selectedLevel}</div>
+                  <div className="sectionAttendance">
+                    Section {selectedSection}
+                  </div>
                 </div>
                 <div className="attendance-section">
                   <table className="attendance-table">
@@ -128,6 +134,7 @@ function Attendance() {
                       </tr>
                     </thead>
                     {students.map((student) => (
+                      student ?
                       <tbody key={student.id}>
                         <tr className="attendance-tr rowR row1R">
                           <td className="attendance-td nameA1">
@@ -138,8 +145,14 @@ function Attendance() {
                             <button
                               className="present"
                               onClick={() =>
-                                handleStatus(student.id, "present")} 
-                                style={{backgroundColor: buttonStatus[student.id] === 'present' ? '#2599bd' : ''}}
+                                handleStatus(student.id, "present")
+                              }
+                              style={{
+                                backgroundColor:
+                                  buttonStatus[student.id] === "present"
+                                    ? "#2599bd"
+                                    : "",
+                              }}
                             >
                               Present
                             </button>
@@ -148,9 +161,12 @@ function Attendance() {
                             <button
                               className="absent"
                               onClick={() => handleStatus(student.id, "absent")}
-                              style={{backgroundColor: buttonStatus[student.id] === 'absent' ? '#FF7235' : ''}}
-
-
+                              style={{
+                                backgroundColor:
+                                  buttonStatus[student.id] === "absent"
+                                    ? "#FF7235"
+                                    : "",
+                              }}
                             >
                               Absent
                             </button>
@@ -158,22 +174,26 @@ function Attendance() {
                           <td className="attendance-td icon1">
                             <button
                               className="late"
-                              onClick={() => handleStatus(student.id, "late")} 
-                              style={{backgroundColor: buttonStatus[student.id] === 'late' ? '#d6a982' : ''}}
-
+                              onClick={() => handleStatus(student.id, "late")}
+                              style={{
+                                backgroundColor:
+                                  buttonStatus[student.id] === "late"
+                                    ? "#d6a982"
+                                    : "",
+                              }}
                             >
                               Late
                             </button>
                           </td>
                         </tr>
                       </tbody>
+                       :null
                     ))}
                   </table>
                 </div>
               </div>
             )}
           </div>
-          
         </div>
       </div>
     </>

@@ -54,17 +54,17 @@ function Student() {
           <MenuBar menubar={menubar} />
           <div className="class-body-s">
             <h2 className="class-headline-s">Students</h2>
-          <div className="loll">
+          <div className="lol">
             <div className="first-buttons">
             <Dropdown
-                className="student-drop"
+                className="dropdownSection button  coll-btn-select"
                 title=" Select Sections"
                 position="bottom"
                 buttonVariant="primary"
                 style={dropdownStyles}
               >
                 {data.map((card) => (
-                  <Dropdown.Item key={card.id} className="student-drop-chid">
+                  <Dropdown.Item key={card.id} className="childSection">
                     {card.levelName}
                     <Dropdown.Submenu position="right">
                       {card.sections.map((section) => (
@@ -86,12 +86,12 @@ function Student() {
                 ))}
               </Dropdown>
             </div>
-            <div className="mappingdata1">
+            <div className="mappingdata">
             {students.map((item, index) => {
                 // {console.log("temmm",item.levelName, item.sectionName)}
                 return item ? (
                   <div key={index}>
-                    <div className="infopart">
+                    <div className="infopartt">
                       <img className="student-img" src={studen} alt="img" />
                       <hr />
                       <br />

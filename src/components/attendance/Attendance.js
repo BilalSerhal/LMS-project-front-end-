@@ -131,6 +131,7 @@ function Attendance() {
                       </tr>
                     </thead>
                     {students.map((student) => (
+                      student ?
                       <tbody key={student.id}>
                         <tr className="attendance-tr rowR row1R">
                           <td className="attendance-td nameA1">
@@ -170,6 +171,7 @@ function Attendance() {
                           </td>
                         </tr>
                       </tbody>
+                      :null
                     ))}
                   </table>
                 </div>
